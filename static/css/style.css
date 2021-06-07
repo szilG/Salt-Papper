@@ -1,0 +1,16 @@
+.navbar-bg-color {
+    background: #585352;
+}
+
+.brand-logo, .side-nav h4 {
+    font-family: 'Pattaya', sans-serif;
+}
+
+.brand-logo span, .side-nav span {
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.side-nav {
+    background: rosybrown;
+}
+

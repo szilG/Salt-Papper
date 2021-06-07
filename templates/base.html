@@ -1,23 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salt And Papper</title>
+    <title>Salt And Pepper</title>
     <!--Font Awesome CDN-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100&family=Pattaya&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100&family=Pattaya&display=swap"
+        rel="stylesheet">
     <!--Materialize CSS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
+        type="text/css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
 </head>
+
 <body>
+    <header>
     
+        <nav class="nav-extended navbar-bg-color">
+            <div class="nav-wrapper">
+                <a href="{{ url_for('index') }}" class="brand-logo center">Salt <span>&</span>Pepper</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fas fa-bars"></i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">New recipe</a></li>
+                    <li><a href="#">Sign Out</a></li>
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">Register</a></li>
+                    
+
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><h4 class="center-align">Salt <span>&</span>Pepper</h4></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">New recipe</a></li>
+                    <li><a href="#">Sign Out</a></li>
+                    <li><a href="#">Sign In</a></li>
+                    <li><a href="#">Register</a></li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </header>
+
     {% block content %}
     {% endblock %}
 
@@ -25,7 +62,8 @@
 
 
     <!--JQuery-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--Materialize JAVASCRIPT-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <!--Custom JS-->
@@ -33,4 +71,5 @@
     {% block scripts %}
     {% endblock %}
 </body>
+
 </html>

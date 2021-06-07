@@ -17,6 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # MongoDB Global Variable
 mongo = PyMongo(app)
 
+
 @app.route("/")
 @app.route("/index/")
 def index():

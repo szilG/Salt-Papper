@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+
+<head>
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            object-fit: cover;
+            background-image: url("{{url_for('static', filename='img/') }}");
+        }
+    </style>
+</head>
+
+
+<div class="row">
+    <div class="col s12 m6 offset-m3">
+        <div class="card-panel">
+            <h3 class="center-align">{{ username }}'s Recepies</h3>
+        </div>
+    </div>
+</div>
+
+
+</html>
+{% endblock %}

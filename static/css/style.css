@@ -42,6 +42,11 @@ nav .slogen {
     background: rosybrown;
 }
 
+.flashes h4 {
+    color: #E4291F;
+    padding-top: 50px;
+}
+
 /* Register */
 .card-panel {
     margin-top: 5rem;
@@ -64,6 +69,6 @@ nav .slogen {
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 
-btn, .btn-large {
+.btn-large {
     background-color: #E4291F !important;
 }

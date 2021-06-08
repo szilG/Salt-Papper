@@ -15,22 +15,25 @@
 <div class="img-bg">
 
     <div class="row">
-        <form class="col s12 m6 offset-m3 padding-5" method="POST" action="{{ url_for('register') }}">
+        <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('register') }}">
             <div class="card-panel">
                 <h4 class="center-align">Welcome Foodie!</h4>
                 <p class="center-align">Register to add recipes to your recipe box, and create your own recipes and
                     menues.</p>
+                <small class="center-align grey-text text-lighten-1">Minimum 8 caracther one upper case letter, one lower case letter and one digit</small>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-user-plus prefix"></i>
-                        <input id="username" name="username" type="text" class="validate">
+                        <input id="username" name="username" type="text" minlength="5"
+                        maxlength="15" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="validate" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="fas fa-user-lock prefix"></i>
-                        <input id="password" name="password" type="password" class="validate">
+                        <input id="password" name="password" type="password" minlength="5"
+                        maxlength="15" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="validate" required>
                         <label for="password">Password</label>
                     </div>
                 </div>

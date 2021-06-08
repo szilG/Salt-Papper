@@ -1,16 +1,69 @@
+
+
 .navbar-bg-color {
-    background: #585352;
+    background: transparent;
+}
+
+nav {
+    box-shadow: none !important;
+}
+
+nav ul a{
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+nav .brand-logo {
+    font-size: 3rem !important;
+}
+
+nav .slogen {
+    display: block;
+    font-size: 2rem;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 100 !important;
+    font-style: italic;
+    color: #fff;
 }
 
 .brand-logo, .side-nav h4 {
     font-family: 'Pattaya', sans-serif;
+    color: #E4291F !important;
 }
 
 .brand-logo span, .side-nav span {
     font-family: 'Alegreya Sans SC', sans-serif;
+    color: #E4291F;
 }
 
 .side-nav {
     background: rosybrown;
 }
 
+/* Register */
+.card-panel {
+    margin-top: 5rem;
+}
+.card-panel h4 {
+    font-family: 'Pattaya', sans-serif;
+    color: #E4291F;
+}
+
+.card-panel p {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: 400;
+}
+
+.prefix {
+    color: #E4291F;
+}
+
+.input-field label {
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+btn, .btn-large {
+    background-color: #E4291F !important;
+}

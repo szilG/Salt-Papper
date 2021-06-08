@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            object-fit: cover;
+            background-image: url( {{url_for('static', filename='img/2.jpg') }});
+            }
+    </style>
+</head>
+<div class="img-bg">
+
+    <div class="row">
+        <form class="col s12 m6 offset-m3 padding-5" method="POST" action="{{ url_for('register') }}">
+            <div class="card-panel">
+                <h4 class="center-align">Welcome Foodie!</h4>
+                <p class="center-align">Register to add recipes to your recipe box, and create your own recipes and
+                    menues.</p>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-user-plus prefix"></i>
+                        <input id="username" name="username" type="text" class="validate">
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-user-lock prefix"></i>
+                        <input id="password" name="password" type="password" class="validate">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="col s12 btn-large" type="submit" name="action">Register
+                        <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</html>
+{% endblock %}

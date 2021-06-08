@@ -11,8 +11,7 @@
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" type="text/css" />
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100&family=Pattaya&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,400;0,500;1,400;1,500&family=Pattaya&display=swap" rel="stylesheet">
     <!--Materialize CSS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
         type="text/css">
@@ -25,9 +24,9 @@
 <body>
     <header>
     
-        <nav class="nav-extended navbar-bg-color">
+        <nav class="nav-extended  transparent">
             <div class="nav-wrapper">
-                <a href="{{ url_for('index') }}" class="brand-logo center">Salt <span>&</span>Pepper</a>
+                <a href="{{ url_for('index') }}" class="brand-logo center">Salt <span>&</span>Pepper<small class="slogen center">Only for foodies</small></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fas fa-bars"></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('index') }}">Home</a></li>
@@ -36,7 +35,7 @@
                     <li><a href="#">New recipe</a></li>
                     <li><a href="#">Sign Out</a></li>
                     <li><a href="#">Sign In</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                     
 
                 </ul>
@@ -48,7 +47,7 @@
                     <li><a href="#">New recipe</a></li>
                     <li><a href="#">Sign Out</a></li>
                     <li><a href="#">Sign In</a></li>
-                    <li><a href="#">Register</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                     
                 </ul>
             </div>

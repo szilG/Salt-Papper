@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<html>
 
-<head>
     <style>
         body {
             background-repeat: no-repeat;
@@ -12,13 +10,13 @@
             background-image: url("{{url_for('static', filename='img/2.jpg')}}");
         }
     </style>
-</head>
+
 
 <div class="row">
     <form class="col s12 m6 offset-m3" method="POST" action="{{ url_for('register') }}">
         <div class="card-panel">
             <h4 class="center-align">Welcome Foodie!</h4>
-            <p class="center-align">Register to add recipes to your recipe box, and create your own recipes and
+            <p class="center-align white-text">Register to add recipes to your recipe box, and create your own recipes and
                 menues.</p>
             <small class="center-align grey-text text-lighten-1">Minimum 8 caracther one upper case letter, one lower
                 case letter and one digit</small>
@@ -39,13 +37,13 @@
                 </div>
             </div>
             <div class="row">
-                <button class="col s12 btn-large" type="submit" name="action">Register
+                <button class="col s12 btn-large waves-effect waves-orange" type="submit" name="action">Register
                     <i class="fas fa-sign-in-alt"></i>
                 </button>
             </div>
             <div class="row">
                 <div class="col s12">
-                    <p class="center-align">
+                    <p class="center-align white-text">
                         Already Registered?
                         <a href="{{ url_for('login') }}" class="center-align grey-text text-lighten-1">Sign In</a>
                     </p>
@@ -56,6 +54,4 @@
 </div>
 
 
-
-</html>
 {% endblock %}

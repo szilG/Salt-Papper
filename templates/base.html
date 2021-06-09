@@ -13,8 +13,7 @@
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,400;0,500;1,400;1,500&family=Pattaya&display=swap" rel="stylesheet">
     <!--Materialize CSS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"
-        type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
@@ -23,13 +22,12 @@
 
 <body>
     <header>
-    
         <nav class="nav-extended  transparent">
             <div class="nav-wrapper">
-                <a href="{{ url_for('index') }}" class="brand-logo center">Salt <span>&</span>Pepper<small class="slogen center">Only for foodies</small></a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse right"><i class="fas fa-bars"></i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
+              <a href="{{ url_for('index') }}" class="brand-logo center">Salt <span>&</span>Pepper<small class="slogen center">Only for foodies</small></a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="#">Categories</a></li>
                     {% if session.user %}
                         <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
@@ -39,23 +37,24 @@
                         <li><a href="{{ url_for('login') }}">Sign-In</a></li>
                         <li><a href="{{ url_for('register') }}">Sign-up</a></li>
                     {% endif %}
-                </ul>
-                <ul class="side-nav" id="mobile-demo">
-                    <li><h4 class="center-align">Salt <span>&</span>Pepper</h4></li>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="#">Categories</a></li>
-                    {% if session.user %}
-                        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li><a href="#">New recipe</a></li>
-                        <li><a href="{{ url_for('logout') }}">Sign-Out</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('login') }}">Sign-In</a></li>
-                        <li><a href="{{ url_for('register') }}">Sign-up</a></li>
-                    {% endif %}
-                    
-                </ul>
+              </ul>
             </div>
-        </nav>
+          </nav>
+        
+          <ul class="sidenav" id="mobile-demo">
+            <li><h4 class="center-align">Salt <span>&</span>Pepper</h4></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    {% if session.user %}
+                        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                        <li><a href="#">New recipe</a></li>
+                        <li><a href="{{ url_for('logout') }}">Sign-Out</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Sign-In</a></li>
+                        <li><a href="{{ url_for('register') }}">Sign-up</a></li>
+                    {% endif %}
+          </ul>
+
     </header>
 
     <section>
@@ -71,8 +70,9 @@
         {% endwith %}
     </section>
 
-    <main class="container">
+    <main class="">
         {% block content %}
+        
         {% endblock %}
     </main>
 
@@ -82,7 +82,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--Materialize JAVASCRIPT-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!--Custom JS-->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}

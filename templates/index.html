@@ -1,9 +1,56 @@
 {% extends "base.html" %}
 {% block content %}
 
-    
+<style>
+  nav ul a {
+    color: black;
+  }
 
-    {% for recipe in recipes %}
-        {{ recipe.category_name }}<br>
-    {% endfor %}
+  nav .slogen {
+    color: black;
+  }
+
+  .nav-wrapper i {
+    color: black;
+  }
+</style>
+
+<div id="fixed-background">
+  <div class="row text-light py-md-5">
+    <div class="col-12 text-center">
+
+    </div>
+  </div>
+  <div id="fixed-wrap">
+    <div id="fixed">
+    </div>
+  </div>
+</div>
+<!--Section to display all recipes-->
+<div class="recipe-text">
+  <h3 class="recipe-header center-align">All Recipes</h3>
+</div>
+<div class="container">
+<div class="row">
+  {% for recipe in recipes %}
+  <div class="col s12 m6 l4">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{ recipe.image }}">
+      </div>
+      <div class="card-content">
+        <h3 class="center-align">{{ recipe.recipe_name }}</h3>
+        <p><strong>{{ recipe.description}}</strong></p>
+        <p>Category: {{ recipe.category_name }}</p>
+        <p>Difficulty Level: {{ recipe.difficulty }}</p>
+      </div>
+      <div class="card-action">
+        <a href="#">Go for the recipe<i class="fas fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
 {% endblock %}

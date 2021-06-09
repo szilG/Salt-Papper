@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 @app.route("/index/")
 def index():
     """To display all recipes by posted date"""
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())
     return render_template("index.html", recipes=recipes)
 
 

@@ -1,3 +1,3 @@
-$( document ).ready(function(){
-    $(".button-collapse").sideNav({edge: 'right'});
-})
+$(document).ready(function(){
+    $('.sidenav').sidenav({edge: "rigth"});
+  });

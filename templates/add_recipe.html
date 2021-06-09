@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    nav ul a {
+    color: black;
+}
+
+  nav .slogen {
+    color: black;
+}
+
+  .nav-wrapper i {
+    color: black;
+}
+.row .col {
+    padding: 0 !important;
+}
+</style>
+
+<div class="row">
+    <div class="col s12">
+        <div class="add-recipe-header">
+            <img src="{{ url_for('static', filename='img/4.jpg')}}" alt="Cherry Pie on the Table">
+            <h2 class="text-wrapper center-align white">Add New Recipe</h2>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

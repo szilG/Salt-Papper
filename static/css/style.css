@@ -1,6 +1,9 @@
 /*=============Base==============*/
-body {
-    
+*{
+    --main-text-color: #E4291F;
+    --light-text-color: rgb(204, 204, 204);
+    --logo-font: 'Pattaya', sans-serif;
+    --secondary-font: 'Alegreya Sans SC', sans-serif;
 }
 .navbar-bg-color {
     background: transparent;
@@ -12,7 +15,7 @@ nav {
 }
 
 nav ul a{
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 400;
     font-style: italic;
 
@@ -25,7 +28,7 @@ nav .brand-logo {
 nav .slogen {
     display: block;
     font-size: 1.5rem;
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 100 !important;
     font-style: italic;
     color: #fff;
@@ -33,13 +36,13 @@ nav .slogen {
 }
 
 .brand-logo, .sidenav h4 {
-    font-family: 'Pattaya', sans-serif;
-    color: #E4291F !important;
+    font-family: var(--logo-font);
+    color: var(--main-text-color) !important;
 }
 
 .brand-logo span, .sidenav span {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    color: #E4291F;
+    font-family: var(--secondary-font);
+    color: var(--main-text-color);
 }
 
 .sidenav {
@@ -47,7 +50,7 @@ nav .slogen {
 }
 
 .flashes h4 {
-    color: #E4291F;
+    color: var(--main-text-color);
     padding-top: 50px;
 }
 
@@ -71,25 +74,25 @@ nav .slogen {
 
 }
 .card-panel h4 {
-    font-family: 'Pattaya', sans-serif;
-    color: #E4291F;
+    font-family: var(--logo-font);
+    color: var(--main-text-color);
 }
 
 .card-panel p {
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 400;
 }
 
 .prefix {
-    color: #E4291F;
+    color: var(--main-text-color);
 }
 
 .input-field label {
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: var(--secondary-font);
 }
 
 .btn-large {
-    background-color: #E4291F !important;
+    color: var(--main-text-color) !important;
 }
 
 
@@ -130,7 +133,7 @@ nav .slogen {
     bottom: 0;
     top: 0;
     left: 0;
-    right: 0;  
+    right: 0;
 }
 
 .recipe-text {
@@ -138,38 +141,41 @@ nav .slogen {
 }
 
 .card .card-action  {
-    font-family: 'Alegreya Sans SC', sans-serif;
-    color: #E4291F !important;
+    font-family: var(--secondary-font);
+    color: var(--main-text-color) !important;
 }
 .card-action i {
-    color: #E4291F !important;
+    color: var(--main-text-color) !important;
     margin-left: 10px;
 }
 
 /*=========Add Recipe=============*/
-.add-recipe-header {
-    width: 100%;
-    height: 400px;
-    margin-top: 2rem;
-    position: relative;
+
+.back-to-recipe {
+    margin-top: 3rem;
 }
 
-.add-recipe-header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.back-to-recipe a, i {
+    color: #86B51B;
+    padding-right: 10px;
 }
 
-.text-wrapper {
-    width: 100%;
-    position: absolute;
-    top: 40%;
-    width: 100%;
+.add-recipe-container {
+    margin-top: 6rem;
 }
 
-.add-recipe-header h2 {
-    color: #E4291F;
-    font-size: 10vh;
-    font-family: 'Pattaya', sans-serif;
+fieldset {
+    /* grid-area: 1/1; */
+    border: 2px solid rgb(230, 230, 230);
+    padding: 20px;
+    /* box-sizing: border-box; */
+}
 
+legend {
+    padding: 0 6px;
+    margin: auto;
+    font-family: var(--secondary-font);
+    background-color: var(--main-text-color);
+    color: #fff;
+    font-size: 2rem;
 }

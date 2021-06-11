@@ -39,21 +39,22 @@
         <form class="col s12  offset-m3 " method="POST" action="">
             <div class="card-panel">
                 <div class="input-field">
-                    <select>
+                    <select id="category_name" name="category_name" class="validate" required>
                         <option value="" disabled selected>Choose Category</option>
-                        <option value="3">Breakfast</option>
-                        <option value="1">Starter</option>
-                        <option value="2">Main</option>
-                        <option value="3">Dessert</option>
-                        <option value="3">Drink</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
                     </select>
+                    <label for="category_name">*Required field</label>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="recipe_name" name="recipe_name" class="materialize-textarea" required></textarea>
+
+                    <textarea id="recipe_name" name="recipe_name" class="materialize-textarea validate"
+                    minlength="5" maxlength="30" data-length="30" required></textarea>
                     <label for="recipe_name">Recipe Title  <span>*Required field</span></label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="chef" name="chef" type="text" class="validate">
+                    <input id="chef" name="chef" type="text" minlength="5" maxlength="30" data-length="30"class="validate">
                     <label for="chef">Chef of this meal</label>
                 </div>
                 <div class="row">
@@ -62,14 +63,13 @@
                         <label for="serves">Serves<span>*Required field Use numbers</span></label>
                     </div>
                     <div class="input-field col s12 m5 offset-m1">
-                        <select>
+                        <select id="difficulty_level" name="difficulty_level" class="validate" required>
                           <option value="" disabled selected>Difficulty Level</option>
-                          <option value="1">Super Easy</option>
-                          <option value="2">Easy</option>
-                          <option value="3">Medium</option>
-                          <option value="3">Hard</option>
+                          {% for difficulty in difficulties %}
+                          <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
+                          {% endfor %}
                         </select>
-                        <label>*Required field</label>
+                        <label for="difficulty_level">*Required field</label>
                       </div>
                 </div>
                 <div class="row">
@@ -94,15 +94,18 @@
                     </div>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="ingredients" name="ingredients" class="materialize-textarea" required></textarea>
+                    <textarea id="ingredients" name="ingredients" class="materialize-textarea validate"
+                    minlength="5" maxlength="1000" data-length="1000" required></textarea>
                     <label for="ingredients">Ingredients<span>*Required field</span></label>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="method" name="method" class="materialize-textarea" required></textarea>
+                    <textarea id="method" name="method" class="materialize-textarea validate"
+                    minlength="5" maxlength="1000" data-length="1000"required></textarea>
                     <label for="method">Method<span>*Required field</span></label>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="description" name="description" class="materialize-textarea" required></textarea>
+                    <textarea id="description" name="description" class="materialize-textarea validate"
+                    minlength="5" maxlength="1000" data-length="1000" required></textarea>
                     <label for="description">Short Description<span>*Required field</span></label>
                 </div>
             </div>

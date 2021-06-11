@@ -69,7 +69,7 @@ nav .slogen {
     background: rgba(0,0,0,.8);
 }
 
-.card-panel input {
+.card-panel input, textarea{
     color: #fff;
 
 }

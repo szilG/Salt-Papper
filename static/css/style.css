@@ -92,7 +92,8 @@ nav .slogen {
 }
 
 .btn-large {
-    color: var(--main-text-color) !important;
+    background-color: var(--main-text-color) !important;
+    color: #fff;
 }
 
 
@@ -161,7 +162,7 @@ nav .slogen {
 }
 
 .add-recipe-container {
-    margin-top: 6rem;
+    margin-top: 3rem;
 }
 
 fieldset {

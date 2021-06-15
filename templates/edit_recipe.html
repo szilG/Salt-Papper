@@ -38,9 +38,13 @@
                 <!--Start Category Section-->
                 <div class="input-field">
                     <select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled selected>Choose Category</option>
+                        <option value="" disabled>Choose Category</option>
                         {% for category in categories %}
-                        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                            {% if category.category_name == recipe.category_name %}
+                                <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
+                            {% else %}
+                                <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <label for="category_name">*Required field</label>
@@ -50,7 +54,7 @@
                 <!--Start Recipe Name Section-->
                 <div class="input-field col s12">
                     <textarea id="recipe_name" name="recipe_name" class="materialize-textarea validate" minlength="5"
-                        maxlength="30" data-length="30" required></textarea>
+                        maxlength="30" data-length="30" required>{{ recipe.recipe_name }}</textarea>
                     <label for="recipe_name">Recipe Title <span>*Required field</span></label>
                 </div>
                 <!--End Recipe Name Section-->
@@ -58,7 +62,7 @@
                 <!--Start Chef Name Section-->
                 <div class="input-field col s12">
                     <input id="chef" name="chef" type="text" minlength="5" maxlength="30" data-length="30"
-                        class="validate">
+                        class="validate" value="{{ recipe.chef }}">
                     <label for="chef">Chef of this meal</label>
                 </div>
                 <!--End Chef Name Section-->
@@ -66,7 +70,8 @@
                 <!--Start Serves Section-->
                 <div class="row">
                     <div class="input-field col s12 m5">
-                        <input id="serves" type="number" name="serves" class="validate" required>
+                        <input id="serves" type="number" name="serves" class="validate" required
+                        value="{{ recipe.serves }}">
                         <label for="serves">Serves<span>*Required field Use numbers</span></label>
                     </div>
                     <!--End Serves Section-->
@@ -74,9 +79,13 @@
                     <!--Start Difficulty Level Section-->
                     <div class="input-field col s12 m5 offset-m1">
                         <select id="difficulty_level" name="difficulty_level" class="validate" required>
-                            <option value="" disabled selected>Difficulty Level</option>
+                            <option value="" disabled>Difficulty Level</option>
                             {% for difficulty in difficulties %}
-                            <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
+                                {% if difficulty.difficulty_level == recipe.difficulty_level %}
+                                    <option value="{{ difficulty.difficulty_level}}" selected>{{ difficulty.difficulty_level}}</option>
+                                {% else %}
+                                    <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
+                                {% endif %}
                             {% endfor %}
                         </select>
                         <label for="difficulty_level">*Required field</label>
@@ -87,12 +96,14 @@
                 <!--Start Prep-time and Cook-time Section-->
                 <div class="row">
                     <div class="input-field col s12 m5">
-                        <input id="prep_time" type="number" name="prep_time" class="validate" required>
+                        <input id="prep_time" type="number" name="prep_time" class="validate" required
+                        value="{{ recipe.prep_time }}">
                         <label for="serves">Preparation Time<i class="fas fa-question-circle tooltipped"
                                 data-position="right" data-tooltip="Enter total preparation time"></i></label>
                     </div>
                     <div class="input-field col s12 m5 offset-m1">
-                        <input id="cook_time" type="number" name="cook_time" class="validate" required>
+                        <input id="cook_time" type="number" name="cook_time" class="validate" required
+                        value="{{ recipe.cook_time }}">
                         <label for="cook_time">Cooking Time<i class="fas fa-question-circle tooltipped"
                                 data-position="right" data-tooltip="Enter total cooking time"></i></label>
                     </div>
@@ -114,7 +125,7 @@
                 <!--Start Ingredients Section-->
                 <div class="input-field col s12">
                     <textarea id="ingredients" name="ingredients" class="materialize-textarea validate" minlength="5"
-                        maxlength="1000" data-length="1000" required></textarea>
+                        maxlength="1000" data-length="1000" required>{{ recipe.ingredients }}</textarea>
                     <label for="ingredients">Ingredients<span>*Required field</span></label>
                 </div>
                 <!--End Ingredients Section-->
@@ -122,7 +133,7 @@
                 <!--Start Method Section-->
                 <div class="input-field col s12">
                     <textarea id="method" name="method" class="materialize-textarea validate" minlength="5"
-                        maxlength="1000" data-length="1000" required></textarea>
+                        maxlength="1000" data-length="1000" required>{{ recipe.method }}</textarea>
                     <label for="method">Method<span>*Required field</span></label>
                 </div>
                 <!--End Method Section-->
@@ -130,15 +141,16 @@
                 <!--Start Description Section-->
                 <div class="input-field col s12">
                     <textarea id="description" name="description" class="materialize-textarea validate" minlength="5"
-                        maxlength="1000" data-length="1000" required></textarea>
+                        maxlength="1000" data-length="1000" required>{{ recipe.description}}</textarea>
                     <label for="description">Short Description<span>*Required field</span></label>
                 </div>
                 <!--End Description Section-->
 
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button type="submit" class="btn-small">Edit Recipe<i class="fas fa-edit"></i></button>
-                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn-small">Cancel</a>
+                        <button type="submit" class="btn-small">Edit Recipe</button>
+                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn-small">Cancel
+                        </a>
                     </div>
                 </div>
             </div>

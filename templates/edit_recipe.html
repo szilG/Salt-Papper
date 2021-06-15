@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        object-fit: cover;
+        background-image: url("{{url_for('static', filename='img/7.jpg') }}");
+    }
+
+    nav ul a {
+        color: black;
+        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    nav .slogen {
+        color: var(--light-text-color);
+    }
+
+    .nav-wrapper i {
+        color: var(--light-text-color);
+    }
+
+    .row .col {
+        padding: 0 !important;
+    }
+</style>
+
+
+
+<div class="container add-recipe-container">
+    <fieldset>
+        <legend>Edit Your Recipe</legend>
+        <form class="col s12  offset-m3 " method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+            <div class="card-panel">
+                <!--Start Category Section-->
+                <div class="input-field">
+                    <select id="category_name" name="category_name" class="validate" required>
+                        <option value="" disabled selected>Choose Category</option>
+                        {% for category in categories %}
+                        <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category_name">*Required field</label>
+                </div>
+                <!--End Category Section-->
+
+                <!--Start Recipe Name Section-->
+                <div class="input-field col s12">
+                    <textarea id="recipe_name" name="recipe_name" class="materialize-textarea validate" minlength="5"
+                        maxlength="30" data-length="30" required></textarea>
+                    <label for="recipe_name">Recipe Title <span>*Required field</span></label>
+                </div>
+                <!--End Recipe Name Section-->
+
+                <!--Start Chef Name Section-->
+                <div class="input-field col s12">
+                    <input id="chef" name="chef" type="text" minlength="5" maxlength="30" data-length="30"
+                        class="validate">
+                    <label for="chef">Chef of this meal</label>
+                </div>
+                <!--End Chef Name Section-->
+
+                <!--Start Serves Section-->
+                <div class="row">
+                    <div class="input-field col s12 m5">
+                        <input id="serves" type="number" name="serves" class="validate" required>
+                        <label for="serves">Serves<span>*Required field Use numbers</span></label>
+                    </div>
+                    <!--End Serves Section-->
+
+                    <!--Start Difficulty Level Section-->
+                    <div class="input-field col s12 m5 offset-m1">
+                        <select id="difficulty_level" name="difficulty_level" class="validate" required>
+                            <option value="" disabled selected>Difficulty Level</option>
+                            {% for difficulty in difficulties %}
+                            <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="difficulty_level">*Required field</label>
+                    </div>
+                </div>
+                <!--End Difficulty Level Section-->
+
+                <!--Start Prep-time and Cook-time Section-->
+                <div class="row">
+                    <div class="input-field col s12 m5">
+                        <input id="prep_time" type="number" name="prep_time" class="validate" required>
+                        <label for="serves">Preparation Time<i class="fas fa-question-circle tooltipped"
+                                data-position="right" data-tooltip="Enter total preparation time"></i></label>
+                    </div>
+                    <div class="input-field col s12 m5 offset-m1">
+                        <input id="cook_time" type="number" name="cook_time" class="validate" required>
+                        <label for="cook_time">Cooking Time<i class="fas fa-question-circle tooltipped"
+                                data-position="right" data-tooltip="Enter total cooking time"></i></label>
+                    </div>
+                </div>
+                <!--End Prep-time and Cook-time Section-->
+
+                <!--Start File Upload Section-->
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Upload Your Photo</span>
+                        <input type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" id="image" name="image" type="text">
+                    </div>
+                </div>
+                <!--End File Upload Section-->
+
+                <!--Start Ingredients Section-->
+                <div class="input-field col s12">
+                    <textarea id="ingredients" name="ingredients" class="materialize-textarea validate" minlength="5"
+                        maxlength="1000" data-length="1000" required></textarea>
+                    <label for="ingredients">Ingredients<span>*Required field</span></label>
+                </div>
+                <!--End Ingredients Section-->
+
+                <!--Start Method Section-->
+                <div class="input-field col s12">
+                    <textarea id="method" name="method" class="materialize-textarea validate" minlength="5"
+                        maxlength="1000" data-length="1000" required></textarea>
+                    <label for="method">Method<span>*Required field</span></label>
+                </div>
+                <!--End Method Section-->
+
+                <!--Start Description Section-->
+                <div class="input-field col s12">
+                    <textarea id="description" name="description" class="materialize-textarea validate" minlength="5"
+                        maxlength="1000" data-length="1000" required></textarea>
+                    <label for="description">Short Description<span>*Required field</span></label>
+                </div>
+                <!--End Description Section-->
+
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-small">Edit Recipe<i class="fas fa-edit"></i></button>
+                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn-small">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>
+
+{% endblock %}

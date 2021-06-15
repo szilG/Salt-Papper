@@ -1,37 +1,65 @@
 {% extends "base.html" %}
 {% block content %}
-<html>
 
-<head>
-    <style>
-        body {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            object-fit: cover;
-            /* background-image: url("{{url_for('static', filename='img/') }}"); */
-        }
-        nav ul a {
-            color: var(--light-text-color);
-        }
-        nav .slogen {
-            color: var(--light-text-color);
-        }
-        .nav-wrapper i {
+
+
+<style>
+    body {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        object-fit: cover;
+        background-image: url("{{url_for('static', filename='img/my-profile-bg.jpg') }}");
+    }
+
+    nav ul a {
         color: var(--light-text-color);
     }
-    </style>
-</head>
+
+    nav .slogen {
+        color: var(--light-text-color);
+    }
+
+    .nav-wrapper i {
+        color: var(--light-text-color);
+    }
+</style>
 
 
+<!--Start Greatings section-->
 <div class="row">
     <div class="col s12 m6 offset-m3">
-        <div class="card-panel">
-            <h3 class="center-align">{{ username }}'s Recepies</h3>
-        </div>
+        <h3 class="center-align">Welcome {{ username }} !</h3>
+    </div>
+</div>
+
+<!--Start add new recipe button-->
+<div class="row">
+    <div class="col s12 center-align">
+        <a href="{{ url_for('add_recipe') }}" class="btn-small">Add new recipe</a>
+    </div>
+</div>
+<!--Start user section-->
+<div class="row">
+    <div class="col s12 center-align">
+        <h4>My Recipes</h4>
     </div>
 </div>
 
 
-</html>
+<div class="row">
+    {% for recipe in user_recipes %}
+    <div class="col s12">
+        <img class="recipe-img" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+        <div class="recipe-title">
+
+            <h3 class="center-align">{{ recipe.recipe_name }}</h3>
+        </div>
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="btn-small">Edit Recipe</a>
+        <a href="" class="btn-small">Delete Recipe</a>
+    </div>
+    {% endfor %}
+</div>
+
+
 {% endblock %}

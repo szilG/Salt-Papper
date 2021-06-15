@@ -82,7 +82,7 @@
                             <option value="" disabled>Difficulty Level</option>
                             {% for difficulty in difficulties %}
                                 {% if difficulty.difficulty_level == recipe.difficulty_level %}
-                                    <option value="{{ difficulty.difficulty_level}}" selected>{{ difficulty.difficulty_level}}</option>
+                                    <option value="{{ difficulty.difficulty_level }}" selected>{{ difficulty.difficulty_level}}</option>
                                 {% else %}
                                     <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
                                 {% endif %}

@@ -42,7 +42,18 @@
                     </div>
                     <div class="card-action">
                         <a href="{{ url_for('edit_category', category_id=category._id) }}" class="btn-small">Edit Category</a>
-                        <a href="#" class="btn-small">Delete Category</a>
+                        <a href="#delete-modal-{{ (category._id) }}" class="btn-small modal-trigger">Delete Category</a>
+                    </div>
+                </div>
+                <!--Start Delete-Modal-->
+                <div id="delete-modal-{{ (category._id) }}" class="modal center-align">
+                    <div class="modal-content">
+                        <h6 id="info-modal-content">Are you sure you want to delete the category?</h6>
+                    </div>
+                    <!--Modal footer-->
+                    <div class="modal-footer">
+                        <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small">Delete</a>
+                        <a href="{{ url_for('get_categories') }}" class="btn-small">Cancel</a>
                     </div>
                 </div>
             </div>

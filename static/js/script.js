@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('select').formSelect();
     $('input#input_text, textarea#textarea2').characterCounter();
     $('.tooltipped').tooltip();
+    $('.modal').modal();
 
 
   validateMaterializeSelect();
@@ -34,3 +35,9 @@ $(document).ready(function(){
     }
 
   });
+
+  // Target modal//
+  function toggleModal() {
+      var instance = M.Modal.getInstance($('#delete-modal-{{ recipe._id }}'))
+      instance.open()
+  }

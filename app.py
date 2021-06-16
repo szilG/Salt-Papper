@@ -89,7 +89,13 @@ def profile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        if session["user"] == "admin@gmail.com":
+            user_recipes = list(mongo.db.recipes.find())
+        else:
+            user_recipes = list(
+                mongo.db.recipes.find({"username": session["user"]}))
+        return render_template(
+            "profile.html", username=username, user_recipes=user_recipes)
 
     return redirect(url_for("login"))
 
@@ -168,6 +174,13 @@ def edit_recipe(recipe_id):
     difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
     return render_template(
         "edit_recipe.html", recipe=recipe, categories=categories, difficulties=difficulties)
+
+
+@app.route("/delete_recipe/<recipe_id>")
+def delete_recipe(recipe_id):
+    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+    flash("Recipe successfully deleted")
+    return redirect(url_for("profile", username=session['user']))
 
 
 if __name__ == "__main__":

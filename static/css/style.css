@@ -91,10 +91,10 @@ nav .slogen {
     font-family: var(--secondary-font);
 }
 
-.btn-large {
+/* .btn-large {
     background-color: var(--main-text-color) !important;
     color: #fff;
-}
+} */
 
 
 /*==========Home===========*/
@@ -179,4 +179,18 @@ legend {
     background-color: var(--main-text-color);
     color: #fff;
     font-size: 2rem;
+}
+
+/*=============Profile==============*/
+.btn-small {
+    background: var(--main-text-color);
+    margin: 5px;
+}
+
+.btn-small :hover {
+    background-color: #86B51B !important;
+}
+
+.modal-footer {
+    text-align: center !important;
 }

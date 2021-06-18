@@ -5,6 +5,7 @@
     --logo-font: 'Pattaya', sans-serif;
     --secondary-font: 'Alegreya Sans SC', sans-serif;
 }
+
 .navbar-bg-color {
     background: transparent;
 }
@@ -63,6 +64,7 @@ nav .slogen {
     }
 }
 
+
 /*===========Register==================*/
 .card-panel {
     margin-top: 5rem;
@@ -91,52 +93,8 @@ nav .slogen {
     font-family: var(--secondary-font);
 }
 
-/* .btn-large {
-    background-color: var(--main-text-color) !important;
-    color: #fff;
-} */
-
 
 /*==========Home===========*/
-#fixed-background {
-    position: relative;
-    width: 100%;
-    z-index: 1000 !important;
-    padding: 15rem 0;
-}
-#fixed-wrap {
-    clip: rect(0, auto, auto, 0);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -999 !important;
-}
-#fixed {
-    background-image: url("../img/3.jpg");
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center center;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    will-change: transform;
-}
-
-#fixed:before {
-    content: "";
-    background: rgba(0,0,0,.4);
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-}
-
 .recipe-text {
     margin-top: 5rem;
 }
@@ -166,10 +124,8 @@ nav .slogen {
 }
 
 fieldset {
-    /* grid-area: 1/1; */
     border: 2px solid rgb(230, 230, 230);
     padding: 20px;
-    /* box-sizing: border-box; */
 }
 
 legend {

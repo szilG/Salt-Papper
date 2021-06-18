@@ -13,19 +13,42 @@
   .nav-wrapper i {
     color: var(--light-text-color);
   }
+
+
 </style>
+<div class="slider">
+  <ul class="slides">
+    <li>
+      <img src="../static/img/3.jpg">
+      <div class="caption center-align">
+        <div class="row card-panel">
+          <form action="{{ url_for('search') }}" method="post" class="col s12">
+              <div class="row valign-wrapper center-align">
+                  <div class="input-field col s12 m6">
+                      <input type="text" name="query" id="query" minlength="3" class="validate" required>
+                      <label for="query">Search Recipes</label>
+                  </div>
+                  <div class="col s12 m4">
+                      <button type="submit" class="btn-small">
+                          <i class="fas fa-search left"></i>Search</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+      </div>
+      </div>
+    </li>
+  </ul>
+</div>
 
-<div id="fixed-background">
-    <div class="row text-light py-md-5">
-      <div class="col-12 text-center">
-
-    </div>
-  </div>
-  <div id="fixed-wrap">
-    <div id="fixed">
-    </div>
+<!-- <div id="fixed-background">
+  
+</div>
+<div id="fixed-wrap">
+  <div id="fixed">
   </div>
 </div>
+</div> -->
 <!--Section to display all recipes-->
 <div class="recipe-text">
   <h3 class="recipe-header center-align">All Recipes</h3>
@@ -36,17 +59,17 @@
     <div class="col s12 m6 l4">
       <div class="card">
         <div class="card-image">
-          <img src="{{ recipe.image }}">
+          <img class="recipe-img" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
         </div>
         <div class="card-content">
           <h3 class="center-align">{{ recipe.recipe_name }}</h3>
           <p><strong>{{ recipe.description}}</strong></p>
           <p>Category: {{ recipe.category_name }}</p>
-          <p>Difficulty Level: {{ recipe.difficulty }}</p>
-          <p><em>by: {{ recipe.username }}</em></p>
+          <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
+          <p><em>by: {{ recipe.chef }}</em></p>
         </div>
         <div class="card-action">
-          <a href="#">Go for the recipe<i class="fas fa-arrow-circle-right"></i></a>
+
         </div>
       </div>
     </div>

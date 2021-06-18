@@ -4,6 +4,8 @@ $(document).ready(function(){
     $('input#input_text, textarea#textarea2').characterCounter();
     $('.tooltipped').tooltip();
     $('.modal').modal();
+    $('.slider').slider({indicators: false});
+
 
 
   validateMaterializeSelect();

@@ -112,7 +112,9 @@
 
                 <!--Start File Upload Section-->
                 <div class="row">
-                    <textarea id="image" class="form-control bg-color-49332-06" name="image" rows="3" maxlength="200"></textarea>
+                    <textarea id="image" name="image" rows="3" maxlength="200">
+                        {{ recipe.image }}
+                    </textarea>
                     <label class="form-label" for="image">Recipe Image URL</label>
                 </div>
                 <!--End File Upload Section-->

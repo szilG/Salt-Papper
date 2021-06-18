@@ -60,12 +60,11 @@
       <div class="card large">
         <div class="card-image">
           <img class="recipe-img" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
-          <p>Category: {{ recipe.category_name }}</p>
         </div>
-        <div class="card-content">
+        <div class="card-content homepage-cards">
+          <h6 class="center-align"><strong>{{ recipe.recipe_name }}</strong></h6>
+          <p>{{ recipe.description | truncate(30, true) }}</p>
           <p>Category: {{ recipe.category_name }}</p>
-          <p class="center-align"><strong>{{ recipe.recipe_name }}</strong></p>
-          <p>{{ recipe.description}}</p>
           <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
           <p class="center-align"><em>Posted by: {{ recipe.chef }}</em></p>
           <hr>

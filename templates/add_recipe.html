@@ -33,7 +33,7 @@
         recipes</a>
 </div>
 
-
+<!-- Credit: Materialize css Forms & Input + Dropdowns https://materializecss.com/select.html https://materializecss.com/text-inputs.html-->
 <div class="container add-recipe-container">
     <fieldset>
         <legend>Add Your Own Recipes</legend>
@@ -54,7 +54,7 @@
                 <!--Start Recipe Name Section-->
                 <div class="input-field col s12">
                     <textarea id="recipe_name" name="recipe_name" class="materialize-textarea validate" minlength="5"
-                        maxlength="30" data-length="30" required></textarea>
+                        maxlength="50"required></textarea>
                     <label for="recipe_name">Recipe Title <span>*Required field</span></label>
                 </div>
                 <!--End Recipe Name Section-->
@@ -104,14 +104,9 @@
                 <!--End Prep-time and Cook-time Section-->
 
                 <!--Start File Upload Section-->
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>Upload Your Photo</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" id="image" name="image" type="text">
-                    </div>
+                <div class="row">
+                    <textarea id="image" class="form-control bg-color-49332-06" name="image" rows="3" maxlength="200"></textarea>
+                    <label class="form-label" for="image">Recipe Image URL</label>
                 </div>
                 <!--End File Upload Section-->
 
@@ -141,12 +136,14 @@
 
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button type="submit" class="btn-large">Add Recipe<i class="fas fa-plus"></i></button>
+                        <button type="submit" class="btn-small">Add Recipe<i class="fas fa-plus"></i></button>
+                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn-small">Cancel</a>
                     </div>
                 </div>
             </div>
         </form>
     </fieldset>
 </div>
+<!--End Credit-->
 
 {% endblock %}

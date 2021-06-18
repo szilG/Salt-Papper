@@ -29,7 +29,7 @@
 </style>
 
 
-
+<!-- Credit: Materialize css Forms & Input + Dropdowns https://materializecss.com/select.html https://materializecss.com/text-inputs.html-->
 <div class="container add-recipe-container">
     <fieldset>
         <legend>Edit Your Recipe</legend>
@@ -111,14 +111,9 @@
                 <!--End Prep-time and Cook-time Section-->
 
                 <!--Start File Upload Section-->
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>Upload Your Photo</span>
-                        <input type="file">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" id="image" name="image" type="text">
-                    </div>
+                <div class="row">
+                    <textarea id="image" class="form-control bg-color-49332-06" name="image" rows="3" maxlength="200"></textarea>
+                    <label class="form-label" for="image">Recipe Image URL</label>
                 </div>
                 <!--End File Upload Section-->
 
@@ -157,5 +152,6 @@
         </form>
     </fieldset>
 </div>
+<!--End credit-->
 
 {% endblock %}

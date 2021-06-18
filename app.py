@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 if os.path.exists("env.py"):
     import env
 
@@ -23,7 +24,8 @@ mongo = PyMongo(app)
 @app.route("/index/")
 def index():
     """To display all recipes by posted date"""
-    recipes = list(mongo.db.recipes.find())
+    recipes = list(mongo.db.recipes.find().sort("_id", -1))
+
     return render_template("index.html", recipes=recipes)
 
 
@@ -134,7 +136,8 @@ def add_recipe():
             "ingredients": request.form.get("ingredients"),
             "method": request.form.get("method"),
             "description": request.form.get("description"),
-            "username": session["user"]
+            "username": session["user"],
+            "formated_date": datetime.today().strftime("%d-%m-%Y")
         }
         """
         Insert form to database
@@ -167,7 +170,8 @@ def edit_recipe(recipe_id):
             "ingredients": request.form.get("ingredients"),
             "method": request.form.get("method"),
             "description": request.form.get("description"),
-            "username": session["user"]
+            "username": session["user"],
+            "formated_date": datetime.today().strftime("%d-%m-%Y")
         }
         """
         Insert form to database

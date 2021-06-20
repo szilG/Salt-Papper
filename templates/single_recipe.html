@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        object-fit: cover;
+        background-image: url("{{url_for('static', filename='img/my-profile-bg.jpg') }}");
+    }
+</style>
+
+<!--Start recipe Header-->
+<div class="container single-rec-cont">
+    <div class="row">
+        <div class="col s12 center-align">
+            <h3>{{ recipe.recipe_name }}</h3>
+        </div>
+    </div>
+</div>
+
+
+<!--Start recipe content container-->
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 l4">
+            <div class="single-rec-image">
+                <img class="responsive-img" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <p>{{ recipe.description }}</p>
+            <p>Created by Chef: {{ recipe.chef }}</p>
+            <hr>
+            <p>Serves: {{ recipe.serves }}</p>
+            <p>Preparation Time: {{ recipe.prep_time }} minutes</p>
+            <p>Cooking : {{ recipe.cook_time }}  minutes <p>
+            <p>Difficulty: {{ recipe.difficulty_level }}</p>
+            <hr>
+            <i class="fas fa-tag"><p class="tag">{{ recipe. category_name}}</p></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m4">
+            <h6>Ingredients</h6>
+            <ul>
+                <!--Make for loop to iterate over the ingredients list-->
+                <!--Use splitline() methods to returns a list with all the lines in string
+                ref:https://www.tutorialspoint.com/python3/string_splitlines.htm-->
+                {% for list in recipe.ingredients.splitlines() %}
+                <li>
+                    <p>{{ list }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col s12 m8">
+            <h6>Method</h6>
+            <ol>
+                <!--Make for loop to iterate over  the method steps-->
+                <!--Use splitline() methods to returns a list with all the lines in string
+                ref: https://www.tutorialspoint.com/python3/string_splitlines.htm-->
+                {% for method in recipe.method.splitlines() %}
+                <li>
+                    <p>{{ method }}</p>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

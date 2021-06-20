@@ -12,6 +12,7 @@ if os.path.exists("env.py"):
 # Instance of Flask
 app = Flask(__name__)
 
+# MongoDB Configuration
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -152,6 +153,7 @@ def add_recipe():
         "add_recipe.html", categories=categories, difficulties=difficulties)
 
 
+# Edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     if request.method == "POST":
@@ -234,6 +236,13 @@ def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
+
+
+# Single Recipe route
+@app.route("/single_recipe/<recipe_id>")
+def single_recipe(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("single_recipe.html", recipe=recipe)
 
 
 if __name__ == "__main__":

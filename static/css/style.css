@@ -5,7 +5,9 @@
     --logo-font: 'Pattaya', sans-serif;
     --secondary-font: 'Alegreya Sans SC', sans-serif;
 }
-
+hr {
+    color: #86B51B !important;
+}
 .navbar-bg-color {
     background: transparent;
 }
@@ -108,6 +110,13 @@ nav .slogen {
     margin-left: 10px;
 }
 
+.homepage-cards {
+    margin: 10px !important;
+}
+.homepage-cards a {
+    color: coral;
+}
+
 /*=========Add Recipe=============*/
 
 .back-to-recipe {
@@ -138,9 +147,10 @@ legend {
 }
 
 /*=============Profile==============*/
-.btn-small {
+.btn, .btn-large, .btn-small, .btn-flat {
     background: var(--main-text-color);
     margin: 5px;
+    padding: 0 5px !important;
 }
 
 .btn-small :hover {
@@ -149,4 +159,61 @@ legend {
 
 .modal-footer {
     text-align: center !important;
+}
+
+.card {
+    padding: 5px;
+    margin: 5rem 0 1rem 0 !important;
+}
+.card .card-content  {
+    padding: 15px 0 25px 0 !important;
+}
+
+.card a {
+    text-decoration: none;
+}
+
+.card-content a:hover {
+    color: #E4291F;
+}
+
+.card-content .padding {
+    padding-top: 20px;
+}
+
+.recipe-title a {
+    color: coral;
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 601px){
+    .container {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 300px){
+    .btn, .btn-large, .btn-small, .btn-flat {
+        margin: 0;
+    }
+}
+
+/*=========Single recipe page===========*/
+.single-rec-cont {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.single-rec-image  img{
+    width: 100%;
+    height: 320px;
+}
+
+.tag {
+    display: inline-block;
+    padding-left: 20px;
 }

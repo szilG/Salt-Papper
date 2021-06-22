@@ -71,8 +71,11 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+            does_password_match = check_password_hash(
+                existing_user["password"],
+                request.form.get("password")
+            )
+            if does_password_match:
                 session["user"] = request.form.get("username").lower()
                 flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for("profile", username=session["user"]))
@@ -186,7 +189,8 @@ def edit_recipe(recipe_id):
     categories = mongo.db.categories.find().sort("category_name", 1)
     difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
     return render_template(
-        "edit_recipe.html", recipe=recipe, categories=categories, difficulties=difficulties)
+        "edit_recipe.html",
+        recipe=recipe, categories=categories, difficulties=difficulties)
 
 
 @app.route("/delete_recipe/<recipe_id>")

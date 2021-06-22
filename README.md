@@ -1,10 +1,9 @@
 <style>
-    H1{color:#E4291F !important}
+    H1{color:#E4291F !important; align="center";}
 </style>
 
-<h1 align="center">
-    Salt and Pepper
-<h1>
+
+# Salt and Pepper
 
 ## About
 

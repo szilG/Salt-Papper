@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="swiper-container" name="swiper-container">
+
+  {% for recipe in recipes %}
+  <div class="swiper-wrapper">
+    <div id="swiper-slide">
+
+      <img class="recipe-img" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+      <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+        <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
+      </a>
+
+    </div>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+  {% endfor %}
+</div>
+
+
+<!--Section to display all recipes-->
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-12 recipe-text">
+      <h2>Get inspired</h2>
+      <p>Hand-picked bits & bites</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 mt-5">
+      <a href="#">Vibrant lunch and light supper recipes </a>
+    </div>
+  </div>
+  <div class="row">
+    
+    {% for recipe in recipes %}
+    {% if main_recipes == 'Mains'%}
+    
+    {
+    
+      <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card">
+        <img class=" img-fluid card-img-top" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+        <div class="card-body ">
+          <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+            <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
+          </a>
+          <p>{{ recipe.description | truncate(40, true) }}</p>
+          <p>Category: {{ recipe.category_name }}</p>
+          <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
+          <p><em>Posted by: {{ recipe.chef }}</em> on {{ recipe.formated_date }}</p>
+        </div>
+      </div>
+    </div>
+    
+    {% endif %} 
+   
+    {% endfor %}
+  </div>
+
+
+
+
+
+  <div class="col-sm-12 col-md-6 col-lg-4"></div>
+  <div class="col-sm-12 col-md-6 col-lg-4"></div>
+
+
+
+</div>
+
+{% endblock %}

@@ -1,43 +1,28 @@
-$(document).ready(function(){
-    $('.sidenav').sidenav({edge: "right" });
-    $('select').formSelect();
-    $('input#input_text, textarea#textarea2').characterCounter();
-    $('.tooltipped').tooltip();
-    $('.modal').modal();
-    $('.slider').slider({indicators: false});
 
 
 
-  validateMaterializeSelect();
-    function validateMaterializeSelect() {
-        let classValid = { "border-bottom": "1px solid #4caf50", "box-shadow": "0 1px 0 0 #4caf50" };
-        let classInvalid = { "border-bottom": "1px solid #f44336", "box-shadow": "0 1px 0 0 #f44336" };
-
-        $(".select-wrapper input.select-dropdown").on("focusin", function () {
-            $(this).parent(".select-wrapper").on("change", function () {
-                if ($(this).children("ul").children("li.selected:not(.disabled)").on("click", function () { })) {
-                    $(this).children("input").css(classValid);
-                }
-            });
-        }).on("click", function () {
-            if ($(this).parent(".select-wrapper").children("ul").children("li.selected:not(.disabled)").css("background-color") === "rgba(0, 0, 0, 0.03)") {
-                $(this).parent(".select-wrapper").children("input").css(classValid);
-            } else {
-                $(".select-wrapper input.select-dropdown").on("focusout", function () {
-                    if ($(this).parent(".select-wrapper").children("select").prop("required")) {
-                        if ($(this).css("border-bottom") != "1px solid rgb(76, 175, 80)") {
-                            $(this).parent(".select-wrapper").children("input").css(classInvalid);
-                        }
-                    }
-                });
-            }
-        });
+//Swiper - Credit to Vladimir Kharlampidi https://github.com/nolimits4web/Swiper/blob/master/demos/150-freemode.html
+const swiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    loop: true,
+    centeredSlides: true,
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      540: {
+        slidesPerView: 1,
+      },  
+      541: {
+        slidesPerView: 2,  
+      },
+      1024: {
+        slidesPerView: 3,  
+      },
+      1200: {
+        slidesPerView: 4,
+      }
     }
-
   });
-
-  // Target modal//
-  function toggleModal() {
-      var instance = M.Modal.getInstance($('#delete-modal-{{ recipe._id }}'))
-      instance.open()
-  }

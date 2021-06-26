@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container-fluid">
+  <div class="recipe-text">
+    <h2>Recipes</h2>
+  </div>
+
+  <div class="container recipes-container">
+    {% if recipes|length > 0 %}
+    <div class="row">
+      {% for recipe in recipes %}
+      
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="">
+            <img class=" img-fluid w-75" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+            <div class="card-body">
+              <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
+              </a>
+              <p>{{ recipe.description | truncate(40, true) }}</p>
+              <p>Category: {{ recipe.category_name }}</p>
+              <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
+              <p><em>Posted by: {{ recipe.chef }}</em> on {{ recipe.formated_date }}</p>
+            </div>
+          </div>
+        </div>
+      
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="recipe-text">
+      <h4 class="recipe-header">Sorry no recipe in this category, try something else.</h4>
+      {% if not session.user %}
+      <p>Or <a href="{{ url_for('login') }}">Sign-In</a>/<a href="{{ url_for('register') }}">Sign-up</a> to add your own
+        recipes!</p>
+    </div>
+    {% endif %}
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

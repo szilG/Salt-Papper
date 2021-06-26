@@ -22,19 +22,43 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
-@app.route("/index/")
-def index():
+@app.route("/home/")
+def home():
     """To display all recipes by posted date"""
     recipes = list(mongo.db.recipes.find().sort("_id", -1))
 
-    return render_template("index.html", recipes=recipes)
+    return render_template(
+        "home.html",
+        recipes=recipes)
+
+
+@app.route("/recipes/<categories>")
+def recipes(categories):
+    """To display recipes of that specific category by posted date"""
+    if categories == "all":
+        recipes = list(mongo.db.recipes.find().sort("_id", -1))
+    elif categories == "mains":
+        recipes = list(mongo.db.recipes.find({"category_name": "Mains"}))
+    elif categories == "breakfast":
+        recipes = list(mongo.db.recipes.find({"category_name": "Breakfast"}))
+    elif categories == "desserts":
+        recipes = list(mongo.db.recipes.find({"category_name": "Desserts"}))
+    elif categories == "starters":
+        recipes = list(mongo.db.recipes.find({"category_name": "Starters"}))
+    elif categories == "drinks":
+        recipes = list(mongo.db.recipes.find({"category_name": "Drinks"}))
+    else:
+        recipes = list(mongo.db.recipes.find().sort("_id", -1))
+
+    return render_template(
+        "recipes.html", recipes=recipes, categories=categories)
 
 
 @app.route("/search/", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("index.html", recipes=recipes)
+    return render_template("home.html", recipes=recipes)
 
 
 @app.route("/register/", methods=["GET", "POST"])
@@ -71,13 +95,13 @@ def login():
 
         if existing_user:
             # ensure hashed password matches user input
+            # make variable to password check
             does_password_match = check_password_hash(
                 existing_user["password"],
                 request.form.get("password")
             )
             if does_password_match:
                 session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(request.form.get("username")))
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match

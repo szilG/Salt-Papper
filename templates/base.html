@@ -35,6 +35,20 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ url_for( 'recipes', categories = 'all') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Recipes
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'all') }}">All</a>
+                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'mains') }}">Main Course</a>
+                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'breakfast') }}">Breakfast</a>
+                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'starters') }}">Starters</a>
+                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'desserts') }}">Desserts</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'drinks') }}">Drinks</a>
+                    </div>
+                  </li>
                 {% if session.user %}
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="{{ url_for('add_recipe') }}">New recipe</a></li>

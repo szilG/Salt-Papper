@@ -1,152 +1,167 @@
 {% extends "base.html" %}
 {% block content %}
 
-<style>
-    body {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        object-fit: cover;
-        background-image: url("{{url_for('static', filename='img/7.jpg') }}");
-    }
-
-    nav ul a {
-        color: black;
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    }
-
-    nav .slogen {
-        color: var(--light-text-color);
-    }
-
-    .nav-wrapper i {
-        color: var(--light-text-color);
-    }
-
-    .row .col {
-        padding: 0 !important;
-    }
-</style>
 
 
 <!-- Credit: Materialize css Forms & Input + Dropdowns https://materializecss.com/select.html https://materializecss.com/text-inputs.html-->
 <div class="container add-recipe-container">
     <fieldset>
         <legend>Edit Your Recipe</legend>
-        <form class="col s12  offset-m3 " method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
-            <div class="card-panel">
+        <small class="">* Required fields</small>
+        <form class="col-sm-12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
+            <div class="form-panel">
                 <!--Start Category Section-->
-                <div class="input-field">
-                    <select id="category_name" name="category_name" class="validate" required>
-                        <option value="" disabled>Choose Category</option>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="category_name">Choose *</label>
+                    </div>
+                    <select id="category_name" name="category_name" class="custom-select validate" required>
+                        <option value="" disabled selected>Category *</option>
                         {% for category in categories %}
-                            {% if category.category_name == recipe.category_name %}
+                        {% if category.category_name == recipe.category_name %}
                                 <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
                             {% else %}
                                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
                             {% endif %}
                         {% endfor %}
                     </select>
-                    <label for="category_name">*Required field</label>
                 </div>
                 <!--End Category Section-->
 
+                <!--Start Difficulty Level Section-->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">Choose *</label>
+                    </div>
+                    <select id="difficulty_level" name="difficulty_level" class="custom-select validate" required>
+                        <option value="" disabled selected>Difficulty Level *</option>
+                        {% for difficulty in difficulties %}
+                        {% if difficulty.difficulty_level == recipe.difficulty_level %}
+                                    <option value="{{ difficulty.difficulty_level }}" selected>{{ difficulty.difficulty_level}}</option>
+                                {% else %}
+                                    <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
+                                {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <!--End Difficulty Level Section-->
+
                 <!--Start Recipe Name Section-->
-                <div class="input-field col s12">
-                    <textarea id="recipe_name" name="recipe_name" class="materialize-textarea validate" minlength="5"
-                        maxlength="30" data-length="30" required>{{ recipe.recipe_name }}</textarea>
-                    <label for="recipe_name">Recipe Title <span>*Required field</span></label>
+                <div class="row">
+                    <label class="form-label" for="recipe_name">Recipe Title *</label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}"
+                            class="form-control validate" minlength="5"
+                            maxlength="50" rows="1" aria-label="Recipe Name" aria-describedby="basic-addon1"
+                            placeholder="Recipe Title">
+                    </div>
                 </div>
                 <!--End Recipe Name Section-->
 
                 <!--Start Chef Name Section-->
-                <div class="input-field col s12">
-                    <input id="chef" name="chef" type="text" minlength="5" maxlength="30" data-length="30"
-                        class="validate" value="{{ recipe.chef }}">
-                    <label for="chef">Chef of this meal</label>
+                <div class="row">
+                    <label class="form-label" for="chef">Chef of this meal</label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="chef" name="chef" value="{{ recipe.chef }}"
+                            minlength="5" maxlength="30"
+                            class="form-control validate" placeholder="Chef" rows="1"
+                            aria-label="Chef" aria-describedby="basic-addon2">
+                    </div>
                 </div>
                 <!--End Chef Name Section-->
 
                 <!--Start Serves Section-->
                 <div class="row">
-                    <div class="input-field col s12 m5">
-                        <input id="serves" type="number" name="serves" class="validate" required
-                        value="{{ recipe.serves }}">
-                        <label for="serves">Serves<span>*Required field Use numbers</span></label>
-                    </div>
-                    <!--End Serves Section-->
-
-                    <!--Start Difficulty Level Section-->
-                    <div class="input-field col s12 m5 offset-m1">
-                        <select id="difficulty_level" name="difficulty_level" class="validate" required>
-                            <option value="" disabled>Difficulty Level</option>
-                            {% for difficulty in difficulties %}
-                                {% if difficulty.difficulty_level == recipe.difficulty_level %}
-                                    <option value="{{ difficulty.difficulty_level }}" selected>{{ difficulty.difficulty_level}}</option>
-                                {% else %}
-                                    <option value="{{ difficulty.difficulty_level}}">{{ difficulty.difficulty_level}}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <label for="difficulty_level">*Required field</label>
+                    <label class="form-label" for="serves">Serves *</label>
+                    <div class="input-group mb-3">
+                        <input id="serves" type="number" name="serves" placeholder="Serves" 
+                        value="{{ recipe.serves }}" class="form-control validate"
+                        aria-label="Serving" aria-describedby="basic-addon3">
+                        <span class="input-group-text" id="basic-addon3">For Example: 2</span>
                     </div>
                 </div>
-                <!--End Difficulty Level Section-->
+                <!--End Serves Section-->
 
-                <!--Start Prep-time and Cook-time Section-->
+                <!--Start Prep-time Section-->
                 <div class="row">
-                    <div class="input-field col s12 m5">
-                        <input id="prep_time" type="number" name="prep_time" class="validate" required
-                        value="{{ recipe.prep_time }}">
-                        <label for="serves">Preparation Time<i class="fas fa-question-circle tooltipped"
-                                data-position="right" data-tooltip="Enter total preparation time"></i></label>
-                    </div>
-                    <div class="input-field col s12 m5 offset-m1">
-                        <input id="cook_time" type="number" name="cook_time" class="validate" required
-                        value="{{ recipe.cook_time }}">
-                        <label for="cook_time">Cooking Time<i class="fas fa-question-circle tooltipped"
-                                data-position="right" data-tooltip="Enter total cooking time"></i></label>
+                    <label for ="prep_time" class="form-label">Preparation Time * <i class="fas fa-question-circle"
+                        data-toggle="tooltip" data-placement="right" title="Enter total preparation time"></i>
+                    </label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="prep_time"  name="prep_time" value="{{ recipe.prep_time }}"
+                        class="form-control validate"
+                        placeholder="Preparation Time" aria-label="Preparation Time" aria-describedby="basic-addon4">
+                        <span class="input-group-text" id="basic-addon4">For Example: 20 mins.</span>
                     </div>
                 </div>
-                <!--End Prep-time and Cook-time Section-->
+                <!--End Prep-time Section-->
+
+                <!--Start Cook-time Section-->
+                <div class="row">
+                    <label for="cook_time" class="form-label">Cooking Time * <i class="fas fa-question-circle"
+                        data-toggle="tooltip" data-placement="right" title="Enter total cooking time"></i>
+                    </label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="cook_time" name="cook_time" value="{{ recipe.cook_time }}"
+                        class="form-control validate"
+                        placeholder="Cooking Time" aria-label="Cooking Time" aria-describedby="basic-addon5">
+                        <span class="input-group-text" id="basic-addon5">For Example: 20 mins.</span>
+                    </div>
+                </div>
+                <!--End Cook-time Section-->
 
                 <!--Start File Upload Section-->
                 <div class="row">
-                    <textarea id="image" name="image" rows="3" maxlength="200">
-                        {{ recipe.image }}
-                    </textarea>
                     <label class="form-label" for="image">Recipe Image URL</label>
+                    <div class="input-group mb-3">
+                        <input type="text" id="image" name="image" value="{{ recipe.image }}"
+                        rows="3" maxlength="200" class="form-control validate"
+                        aria-describedby="basic-addon6">
+                        <span class="input-group-text" id="basic-addon6">https://example.com/users/</span>
+                    </div>
                 </div>
                 <!--End File Upload Section-->
 
                 <!--Start Ingredients Section-->
-                <div class="input-field col s12">
-                    <textarea id="ingredients" name="ingredients" class="materialize-textarea validate" minlength="5"
-                        maxlength="1000" data-length="1000" required>{{ recipe.ingredients }}</textarea>
-                    <label for="ingredients">Ingredients<span>*Required field</span></label>
+                <div class="row">
+                    <label for="ingredients" class="form-label">Ingredients *</label>
+                    <div class="input-group mb-3">
+                        <textarea id="ingredients" name="ingredients" class="form-control validate" minlength="5"
+                            maxlength="1000" aria-label="Ingredients" aria-describedby="basic-addon7"
+                            required>{{ recipe.ingredients }}</textarea>
+                            <span class="input-group-text" id="basic-addon7">Write each ingradients in new line</span>
+                    </div>
                 </div>
                 <!--End Ingredients Section-->
 
                 <!--Start Method Section-->
-                <div class="input-field col s12">
-                    <textarea id="method" name="method" class="materialize-textarea validate" minlength="5"
-                        maxlength="1000" data-length="1000" required>{{ recipe.method }}</textarea>
-                    <label for="method">Method<span>*Required field</span></label>
+                <div class="row">
+                    <label for="method" class="form-label">Method *</label>
+                    <div class="input-group mb-3">
+                        <textarea id="method" name="method" class="form-control validate" minlength="5"
+                            maxlength="1000" aria-label="Method" aria-describedby="basic-addon8"
+                            required>{{ recipe.method }}</textarea>
+                            <span class="input-group-text" id="basic-addon8">Write each steps in new line</span>
+                    </div>
                 </div>
                 <!--End Method Section-->
 
                 <!--Start Description Section-->
-                <div class="input-field col s12">
-                    <textarea id="description" name="description" class="materialize-textarea validate" minlength="5"
-                        maxlength="1000" data-length="1000" required>{{ recipe.description}}</textarea>
-                    <label for="description">Short Description<span>*Required field</span></label>
+                <div class="row">
+                    <label for="description" class="form-label">Short Description *</label>
+                    <div class="input-group mb-3">
+                        <textarea id="description" name="description" class="form-control validate" minlength="5"
+                            maxlength="1000" aria-label="Description" aria-describedby="basic-addon9"
+                            required>{{ recipe.description}}</textarea>
+                            <span class="input-group-text" id="basic-addon9">Write a short description</span>
+                    </div>
                 </div>
                 <!--End Description Section-->
 
                 <div class="row">
-                    <div class="col s12 center-align">
-                        <button type="submit" class="btn-small">Edit Recipe</button>
-                        <a href="{{ url_for('profile', username=session['user']) }}" class="btn-small">Cancel
+                    <div class="col-sm-12 center-align">
+                        <button type="submit" class="edit-btn-custom">Edit Recipe</button>
+                        <button class="cancel-btn-custom"><a href="{{ url_for('profile', username=session['user']) }}">Cancel</a></button>
                         </a>
                     </div>
                 </div>

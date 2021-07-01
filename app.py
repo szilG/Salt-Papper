@@ -26,10 +26,10 @@ mongo = PyMongo(app)
 def home():
     """To display all recipes by posted date"""
     recipes = list(mongo.db.recipes.find().sort("_id", -1))
-
+    
     return render_template(
         "home.html",
-        recipes=recipes)
+        recipes=recipes,)
 
 
 @app.route("/recipes/<categories>")
@@ -70,7 +70,7 @@ def register():
 
         if existing_user:
             flash("Username already exists")
-            return redirect(url_for("register"))
+            return redirect(url_for("home"))
 
         register = {
             "username": request.form.get("username").lower(),
@@ -83,7 +83,7 @@ def register():
         flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
-    return render_template("register.html")
+    return render_template("home.html")
 
 
 @app.route("/login/", methods=["GET", "POST"])
@@ -105,15 +105,15 @@ def login():
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
-                flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
+                flash("Incorrect Username and/or Password. Please try Again")
+                return redirect(url_for("home"))
 
         else:
             # username doesn't exist
-            flash("Incorrect Username and/or Password")
-            return redirect(url_for("login"))
+            flash("Incorrect Username and/or Password Please try Again")
+            return redirect(url_for("home"))
 
-    return render_template("login.html")
+    return render_template("home.html")
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
@@ -140,9 +140,8 @@ def profile(username):
 @app.route("/logout")
 def logout():
     # remove user from session cookie
-    flash("You have been logged out")
     session.pop("user")
-    return redirect(url_for("login"))
+    return redirect(url_for("home"))
 
 
 # Add New Recipe To DB

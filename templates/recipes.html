@@ -1,44 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container-fluid">
-  <div class="recipe-text">
-    <h2>Recipes</h2>
+<div class="container-fluid header-img"></div>
+<div class="row header-text">
+  <div class="col-md-12 text-center">
+      <h2>Recipes</h2>
   </div>
+</div>  
 
-  <div class="container recipes-container">
-    {% if recipes|length > 0 %}
-    <div class="row">
-      {% for recipe in recipes %}
-      
-        <div class="col-sm-12 col-md-6 col-lg-4">
-          <div class="">
-            <img class=" img-fluid w-75" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
-            <div class="card-body">
-              <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
-                <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
-              </a>
-              <p>{{ recipe.description | truncate(40, true) }}</p>
-              <p>Category: {{ recipe.category_name }}</p>
-              <p>Difficulty Level: {{ recipe.difficulty_level }}</p>
-              <p><em>Posted by: {{ recipe.chef }}</em> on {{ recipe.formated_date }}</p>
+<section class="container-fluid recipe-categories">
+  <div class="container">
+      <div class="text-center">
+          <h1>Explore of delicious recipe ideas</h1>
+      </div>
+      <div class="row mt-5">
+        {% for recipe in recipes %}
+        <div class="col-md-6 col-lg-4 d-flex">
+          <div class="product">
+            <div class="img d-flex align-items-center justify-content-center">
+              <img class=" img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+            </div>
+            <div class="text-center">
+              <span class="recipe-title"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                      <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
+                </a>
+              </span>
+              <span class="recipe-description d-block text-white"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                {{ recipe.description | truncate(40, true) }}</a></span>
+              <span class="recipe-category d-block text-white">Category: {{ recipe.category_name }}</span>
+              <span class="recipe-difficulty d-block">Difficulty Level: {{ recipe.difficulty_level }}</span>
+              <span class="posted d-block">Posted by: {{ recipe.chef }} on {{ recipe.formated_date }}</span>
             </div>
           </div>
+          
         </div>
-      
-      {% endfor %}
-    </div>
-    {% else %}
-    <div class="recipe-text">
-      <h4 class="recipe-header">Sorry no recipe in this category, try something else.</h4>
-      {% if not session.user %}
-      <p>Or <a href="{{ url_for('login') }}">Sign-In</a>/<a href="{{ url_for('register') }}">Sign-up</a> to add your own
-        recipes!</p>
-    </div>
-    {% endif %}
-    {% endif %}
-  </div>
-</div>
+        {% endfor %}
+      </div>
+
+</section>
 
 
 

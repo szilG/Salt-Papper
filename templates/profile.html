@@ -1,26 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
+<!--Profile header section-->
+<div class="container-fluid profile-header-img"></div>
+<div class="row profile-container">
+    <div class="col-sm-12 ">
+        <h3 class="text-center">Welcome {{ username }} !</h3>
+    </div>
+    <div class="col-sm-12 text-center">
+        <h4>Here is your recipes</h4>
+    </div>   
+</div>
 
-<section class="profile-container mt-5">
-    <!--Start Greatings section-->
-    <div class="row">
-        <div class="col-sm-12 ">
-            <h3 class="text-center">Welcome {{ username }} !</h3>
-        </div>
+<div class="row mt-5">
+    <div class="col-sm-12 text-center">
+        <button class="btn-custom"><a href="{{ url_for('add_recipe') }}">Add new recipe</a></button>
     </div>
-    <!--Start user section-->
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <h4>Here is your recipes</h4>
-        </div>
-    </div>
-    <!--Start add new recipe button-->
-    <div class="row mt-5">
-        <div class="col-sm-12 text-center">
-            <button class="btn-custom"><a href="{{ url_for('add_recipe') }}">Add new recipe</a></button>
-        </div>
-    </div>
-</section>
+</div>
 
 
 <div class="container mt-5">
@@ -28,7 +23,9 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-4">
-                        <img class="img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+                        <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                            <img class="img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+                        </a> 
                     </div>
                     <div class="col-md-8 card-body">
                         <div class="mt-5">

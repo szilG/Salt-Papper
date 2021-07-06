@@ -8,38 +8,60 @@
             <h2>Search Result</h2>
       </div>
 </div>
-<div class="container">
-      <div class="row">
-            {% if total < 2 %} 
-            <h3>{{ total }} Recipe Found</h3>
-            {% else %}
-            <h3>{{ total }} Recipes Found</h3>
-            {% endif %}
-      </div>
+<div class="container-fluid orange-container"></div>
+<div class="col-12 text-center text">
+      {% if total < 2 %}
+      <h3>{{ total }} Recipe Found</h3>
+      {% else %}
+      <h3>{{ total }} Recipes Found</h3>
+      {% endif %}
+</div>
+<div class="container back-to-recipe mt-5">
+      <a href="{{ url_for('recipes', categories = 'all') }}"><i class="fas fa-arrow-circle-left"></i>Back to all
+          recipes</a>
+</div>
+<div class="container no-recipe-bg">
+      {% if total == 0%}
+      <h1 class="text-center">Sorry no recipes was found here, please try somethind else!</h1>
+      {% else %}
+
       <div class="row mt-5">
             {% for recipe in recipes %}
             <div class="col-md-6 col-lg-4 d-flex">
                   <div class="product">
+                        {% if recipe.image %}
                         <div class="img d-flex align-items-center justify-content-center">
-                  <img class=" img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
-                </div>
-                <div class="text-center">
-                  <span class="recipe-title"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
-                          <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
-                    </a>
-                  </span>
-                  <span class="recipe-description d-block text-white"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
-                    {{ recipe.description | truncate(40, true) }}</a></span>
-                  <span class="recipe-category d-block text-white">Category: {{ recipe.category_name }}</span>
-                  <span class="recipe-difficulty d-block">Difficulty Level: {{ recipe.difficulty_level }}</span>
-                  <span class="posted d-block">Posted by: {{ recipe.chef }} on {{ recipe.formated_date }}</span>
-                </div>
-              </div>
-              
+                              <img class=" img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+                        </div>
+                        {% else %}
+                        <div class="img d-flex align-items-center justify-content-center">
+                              <img class=" img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}"
+                                    alt="{{ recipe.recipe_name }}">
+                        </div>
+                        {% endif %}
+                        <div class="text-center">
+                              <span class="recipe-title"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                                          <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
+                                    </a>
+                              </span>
+                              <span class="recipe-description d-block"><a
+                                          href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                                          {{ recipe.description | truncate(40, true) }}</a></span>
+                              <span class="recipe-category d-block">Category: {{ recipe.category_name }}</span>
+                              <span class="recipe-difficulty d-block">Difficulty Level:
+                                    {{ recipe.difficulty_level }}</span>
+                              <span class="posted d-block">Posted by: {{ recipe.chef }} on
+                                    {{ recipe.formated_date }}</span>
+                        </div>
+                  </div>
+
             </div>
             {% endfor %}
       </div>
+      {% endif %}
 </div>
+      
+
 
 
 

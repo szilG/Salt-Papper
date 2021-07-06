@@ -1,6 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
+
+<!-- Start Searchbar -->
+<section class="search-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <form action="{{ url_for('search') }}" method="post">
+          <div class="p-1 bg-light shadow-sm">
+            <div class="input-group">
+              <input class="form-control border-0 bg-light" type="search" name="query" id="query"
+              placeholder="Search for Recipes" minlength="3" class="validate">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-link"><i class="fas fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Searchbar -->
+
 <div class="container-fluid header-img"></div>
 <div class="row header-text">
   <div class="col-md-12 text-center">
@@ -8,26 +31,33 @@
   </div>
 </div>  
 
+<div class="container-fluid orange-container"></div>
+<div class="col-12 text-center text">
+    <h3>Explore of delicious recipe ideas</h3>
+</div>
 <section class="container-fluid recipe-categories">
   <div class="container">
-      <div class="text-center">
-          <h1>Explore of delicious recipe ideas</h1>
-      </div>
       <div class="row mt-5">
         {% for recipe in recipes %}
         <div class="col-md-6 col-lg-4 d-flex">
           <div class="product">
+            {% if recipe.image %}
             <div class="img d-flex align-items-center justify-content-center">
               <img class=" img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
             </div>
+            {% else %}
+            <div class="img d-flex align-items-center justify-content-center">
+              <img class=" img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}" alt="{{ recipe.recipe_name }}">
+            </div>
+            {% endif %}
             <div class="text-center">
               <span class="recipe-title"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
                       <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
                 </a>
               </span>
-              <span class="recipe-description d-block text-white"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+              <span class="recipe-description d-block"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
                 {{ recipe.description | truncate(40, true) }}</a></span>
-              <span class="recipe-category d-block text-white">Category: {{ recipe.category_name }}</span>
+              <span class="recipe-category d-block">Category: {{ recipe.category_name }}</span>
               <span class="recipe-difficulty d-block">Difficulty Level: {{ recipe.difficulty_level }}</span>
               <span class="posted d-block">Posted by: {{ recipe.chef }} on {{ recipe.formated_date }}</span>
             </div>

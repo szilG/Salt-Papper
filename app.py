@@ -58,7 +58,13 @@ def recipes(categories):
 def search():
     query = request.form.get("query")
     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    return render_template("home.html", recipes=recipes)
+    """
+    count how many recipes in total from search word(s)
+    """
+    total = int(mongo.db.recipes.find({"$text": {"$search": query}}).count())
+    categories = mongo.db.categories.find()
+    return render_template("search.html", recipes=recipes,
+                           total=total, categories=categories, search=True)
 
 
 @app.route("/register/", methods=["GET", "POST"])

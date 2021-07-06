@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="container-fluid search-header"></div>
+<div class="row search-header-text">
+      <div class="col-md-12 text-center">
+            <h2>Search Result</h2>
+      </div>
+</div>
+<div class="container">
+      <div class="row">
+            {% if total < 2 %} 
+            <h3>{{ total }} Recipe Found</h3>
+            {% else %}
+            <h3>{{ total }} Recipes Found</h3>
+            {% endif %}
+      </div>
+      <div class="row mt-5">
+            {% for recipe in recipes %}
+            <div class="col-md-6 col-lg-4 d-flex">
+                  <div class="product">
+                        <div class="img d-flex align-items-center justify-content-center">
+                  <img class=" img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+                </div>
+                <div class="text-center">
+                  <span class="recipe-title"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                          <h6 class="card-title"><strong>{{ recipe.recipe_name }}</strong></h6>
+                    </a>
+                  </span>
+                  <span class="recipe-description d-block text-white"><a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                    {{ recipe.description | truncate(40, true) }}</a></span>
+                  <span class="recipe-category d-block text-white">Category: {{ recipe.category_name }}</span>
+                  <span class="recipe-difficulty d-block">Difficulty Level: {{ recipe.difficulty_level }}</span>
+                  <span class="posted d-block">Posted by: {{ recipe.chef }} on {{ recipe.formated_date }}</span>
+                </div>
+              </div>
+              
+            </div>
+            {% endfor %}
+      </div>
+</div>
+
+
+
+
+{% endblock %}

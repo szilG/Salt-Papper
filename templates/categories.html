@@ -1,62 +1,59 @@
 {% extends "base.html" %}
 {% block content %}
-<style>
-    body {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-attachment: fixed;
-        object-fit: cover;
-        background-image: url("{{url_for('static', filename='img/my-profile-bg.jpg') }}");
-    }
 
-    nav ul a {
-        color: var(--light-text-color);
-    }
 
-    nav .slogen {
-        color: var(--light-text-color);
-    }
-
-    .nav-wrapper i {
-        color: var(--light-text-color);
-    }
-</style>
-
-<h5 class="center-align">Manage Categories</h5>
-
-<!--Start add category button-->
-<div class="row">
-    <div class="col s12 center-align">
-        <a href="{{ url_for('add_category') }}" class="btn-small">Add new category</a>
+<div class="container-fluid manage-cat-bg"></div>
+<div class="row header-text">
+    <div class="col-md-12 text-center">
+        <h2>Admin Page</h2>
     </div>
+</div>  
+
+<div class="container-fluid orange-container"></div>
+<div class="col-12 text-center text">
+      <h3>Manage Categories</h3>
 </div>
 
-
-<div class="container">
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col s12 center-align">
+            <button class="btn-custom"><a href="{{ url_for('add_category') }}" >Add category</a></button>
+        </div>
+    </div>
     <div class="row">
         {% for category in categories %}
-            <div class="col s12 m4 center-align">
+            <div class="col-sm-12 md-4 text-center">
                 <div class="card">
-                    <div class="card-content dark-text">
-                        <span class="card-title">{{ category.category_name }}</span>
+                    <div class="card-content">
+                        <p>{{ category.category_name }}</p>
                     </div>
                     <div class="card-action">
-                        <a href="{{ url_for('edit_category', category_id=category._id) }}" class="btn-small">Edit Category</a>
-                        <a href="#delete-modal-{{ (category._id) }}" class="btn-small modal-trigger">Delete Category</a>
+                        <button class="edit-btn-custom"><a href="{{ url_for('edit_category', category_id=category._id) }}">Edit Category</a></button>
+                        <button class="delete-btn-custom"><a href="#delete-modal-{{ (category._id) }}" data-toggle="modal"
+                            data-target="#delete-modal-{{ (category._id) }}">Delete</a></button>
                     </div>
                 </div>
-                <!--Credit: materialize css Modals https://materializecss.com/modals.html-->
+                <!--Credit for https://getbootstrap.com/docs/4.6/components/modal/-->
                 <!--Start Delete-Modal-->
-                <div id="delete-modal-{{ (category._id) }}" class="modal center-align">
-                    <div class="modal-content">
-                        <h6 id="info-modal-content">Are you sure you want to delete the category?</h6>
+                <div class="modal fade" id="delete-modal-{{ (category._id) }}" tabindex="-1" aria-labelledby="delete-modal-{{ (category._id) }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="delete-modal-{{ (category._id) }}"></h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6 id="info-modal-content">Are you sure you want to delete the category?</h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="delete-btn-custom"><a href="{{ url_for('delete_category', category_id=category._id) }}">Delete</a></button>
+                            <button class="cancel-btn-custom"><a href="{{ url_for('get_categories') }}">Cancel</a></button>
+                        </div>
+                      </div>
                     </div>
-                    <!--Modal footer-->
-                    <div class="modal-footer">
-                        <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn-small">Delete</a>
-                        <a href="{{ url_for('get_categories') }}" class="btn-small">Cancel</a>
-                    </div>
-                </div>
+                  </div>
                 <!--End Credit-->
             </div>
         {% endfor %}

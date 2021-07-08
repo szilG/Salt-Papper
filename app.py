@@ -21,17 +21,25 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# HOME
 @app.route("/")
 @app.route("/home/")
 def home():
-    """To display all recipes by posted date"""
-    recipes = list(mongo.db.recipes.find().sort("_id", -1))
-    
+    """To display 3 recipes from category by posted date"""
+    mains = mongo.db.recipes.find(
+        {"category_name": "Mains"}).sort("_id", -1).limit(3)
+    breakfasts = mongo.db.recipes.find(
+        {"category_name": "Breakfast"}).sort("_id", -1).limit(3)
+    drinks = mongo.db.recipes.find(
+        {"category_name": "Drinks"}).sort("_id", -1).limit(3)
+
     return render_template(
         "home.html",
-        recipes=recipes,)
+        recipes=recipes, mains=mains, breakfasts=breakfasts,
+        drinks=drinks)
 
 
+# RECPES
 @app.route("/recipes/<categories>")
 def recipes(categories):
     """To display recipes of that specific category by posted date"""
@@ -275,6 +283,7 @@ def delete_category(category_id):
 @app.route("/single_recipe/<recipe_id>")
 def single_recipe(recipe_id):
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+
     return render_template("single_recipe.html", recipe=recipe)
 
 

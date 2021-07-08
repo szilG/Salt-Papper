@@ -126,34 +126,19 @@ body {
     align-items: center;
 }
 
-/*===========Register==================*/
-/* .card-panel {
-    margin-top: 5rem;
-    background: rgba(0,0,0,.8);
-}
-
-.card-panel input, textarea{
-    color: #fff;
-
-}
-.card-panel h4 {
+.modal-title {
+    color: var(--purple-text-color);
     font-family: var(--logo-font);
-    color: var(--main-text-color);
 }
-
-.card-panel p {
+.modal-footer a {
+    text-decoration: none;
+    color: var(--purple-text-color);
     font-family: var(--secondary-font);
-    font-weight: 400;
 }
 
-.prefix {
-    color: var(--main-text-color);
+.modal-footer a:hover {
+    color: var(--orange-color);
 }
-
-.input-field label {
-    font-family: var(--secondary-font);
-} */
-
 
 /*==========Home===========*/
 .carousel-item img {
@@ -219,23 +204,28 @@ body {
 }
 
 .recipe-categories {
-    margin-top: 60px;
-    padding-bottom: 40px;
+    margin-top: 30px;
+    padding-bottom: 10px;
     
 }
 
 .section-title {
-    padding-top: 100px;
+    padding-top: 10px;
     font-size: 20px;
 }
 
 .section-title a:hover {
-    color: var(--slogen-color);
+    color: var(--orange-color);
 }
 
 .section-title a {
     text-decoration: none;
-    color: var(--orange-color);
+    color: var(--purple-text-color);
+}
+
+.section-title p {
+    font-family: var(--secondary-font);
+    color: var(--gold-text-color);
 }
 
 .product {
@@ -584,6 +574,55 @@ legend {
     right: 80%;
 }
 
+/*=================btn-All-recipes==================*/
+.btn-all-recipes a {
+    text-decoration: none;
+    color: var(--navbar-color);
+}
+.btn-all-recipes {
+    width: 200px;
+    height: 50px;
+    background: none;
+    border: 4px solid;
+    border-radius: 30px;
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    margin-top: -100px;
+}
+
+.btn-all-recipes::before, .btn-all-recipes::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 4px;
+    background: #fff;
+    transform: skewX(50deg);
+    transition: .4s linear;
+}
+
+.btn-all-recipes::before {
+    top: -4px;
+    left: 10%;
+}
+
+.btn-all-recipes::after {
+    bottom: -4px;
+    right: 10%;
+}
+
+.btn-all-recipes:hover::before {
+    left: 80%;
+}
+
+.btn-all-recipes:hover::after {
+    right: 80%;
+}
+/*=================================================================*/
+
 .card {
     padding: 5px;
     margin: 3rem 0 1rem 0 !important;
@@ -609,8 +648,13 @@ legend {
 
 /*=========Single recipe page===========*/
 .single-rec-cont {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: 6rem;
+}
+
+.recipe-header h3 {
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
+    padding-bottom: 40px;
 }
 
 .single-rec-image  img{
@@ -646,7 +690,7 @@ legend {
 }
 
 .recipe-categories {
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .recipe-categories h1 {

@@ -50,15 +50,20 @@ def recipes(categories):
     if categories == "all":
         recipes = list(mongo.db.recipes.find().sort("_id", -1))
     elif categories == "mains":
-        recipes = list(mongo.db.recipes.find({"category_name": "Mains"}))
+        recipes = list(mongo.db.recipes.find(
+            {"category_name": "Mains"}).sort("_id", -1))
     elif categories == "breakfast":
-        recipes = list(mongo.db.recipes.find({"category_name": "Breakfast"}))
+        recipes = list(mongo.db.recipes.find(
+            {"category_name": "Breakfast"}).sort("_id", -1))
     elif categories == "desserts":
-        recipes = list(mongo.db.recipes.find({"category_name": "Desserts"}))
+        recipes = list(mongo.db.recipes.find(
+            {"category_name": "Desserts"}).sort("_id", -1))
     elif categories == "starters":
-        recipes = list(mongo.db.recipes.find({"category_name": "Starters"}))
+        recipes = list(mongo.db.recipes.find(
+            {"category_name": "Starters"}).sort("_id", -1))
     elif categories == "drinks":
-        recipes = list(mongo.db.recipes.find({"category_name": "Drinks"}))
+        recipes = list(mongo.db.recipes.find(
+            {"category_name": "Drinks"}).sort("_id", -1))
     else:
         recipes = list(mongo.db.recipes.find().sort("_id", -1))
 
@@ -120,6 +125,7 @@ def login():
             )
             if does_password_match:
                 session["user"] = request.form.get("username").lower()
+                flash("Login Successful", "success")
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # invalid password match
@@ -157,9 +163,13 @@ def profile(username):
 
 @app.route("/logout")
 def logout():
+    # Only if user in session show the flash message
+    if "user" in session:
+        user = session["user"]
+        flash(f"You have been logged out, {user}", "success")
     # remove user from session cookie
     session.pop("user")
-    return redirect(url_for("home"))
+    return redirect(url_for("home", user=user))
 
 
 # Add New Recipe To DB
@@ -316,7 +326,8 @@ def single_recipe(recipe_id):
 
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
-    return render_template("single_recipe.html", recipe=recipe)
+    return render_template(
+        "single_recipe.html", recipe=recipe)
 
 
 if __name__ == "__main__":

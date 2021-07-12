@@ -3,11 +3,14 @@ from flask import (
     Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
+from flask_paginate import Pagination, get_page_args
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 if os.path.exists("env.py"):
     import env
+
+ADMIN_USER_NAME = "admin222"
 
 # Instance of Flask
 app = Flask(__name__)
@@ -42,6 +45,7 @@ def home():
 # RECPES
 @app.route("/recipes/<categories>")
 def recipes(categories):
+
     """To display recipes of that specific category by posted date"""
     if categories == "all":
         recipes = list(mongo.db.recipes.find().sort("_id", -1))
@@ -133,14 +137,14 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     if not session.get("user"):
-        return render_template("error_handlers/404.html")
+        return render_template("404.html")
 
     # grab the session user's username from db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        if session["user"] == "admin222":
+        if session["user"] == ADMIN_USER_NAME:
             user_recipes = list(mongo.db.recipes.find())
         else:
             user_recipes = list(
@@ -161,6 +165,10 @@ def logout():
 # Add New Recipe To DB
 @app.route("/add_recipe/", methods=["GET", "POST"])
 def add_recipe():
+    # Check if the user loged in
+    if not session.get("user"):
+        return render_template("404.html")
+
     if request.method == "POST":
         """
         Create dictionary
@@ -190,12 +198,17 @@ def add_recipe():
     categories = mongo.db.categories.find().sort("category_name", 1)
     difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
     return render_template(
-        "add_recipe.html", categories=categories, difficulties=difficulties)
+        "add_recipe.html",
+        categories=categories, difficulties=difficulties)
 
 
 # Edit recipe
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
+    # Check if the user loged in
+    if not session.get("user"):
+        return render_template("404.html")
+
     if request.method == "POST":
         """
         Create dictionary
@@ -232,6 +245,10 @@ def edit_recipe(recipe_id):
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
+    # Check if the user loged in
+    if not session.get("user"):
+        return render_template("404.html")
+
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     flash("Recipe successfully deleted")
     return redirect(url_for("profile", username=session['user']))
@@ -239,6 +256,9 @@ def delete_recipe(recipe_id):
 
 @app.route("/get_categories/")
 def get_categories():
+    if not session.get("user") == ADMIN_USER_NAME:
+        return render_template("403.html")
+
     categories = list(mongo.db.categories.find().sort("category_name", 1))
     return render_template(
         "categories.html", categories=categories)
@@ -246,6 +266,9 @@ def get_categories():
 
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
+    if not session.get("user") == ADMIN_USER_NAME:
+        return render_template("403.html")
+
     if request.method == "POST":
         category = {
             "category_name": request.form.get("category_name")
@@ -259,6 +282,9 @@ def add_category():
 
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
+    if not session.get("user") == ADMIN_USER_NAME:
+        return render_template("403.html")
+
     if request.method == "POST":
         submit = {
             "category_name": request.form.get("category_name")
@@ -274,6 +300,9 @@ def edit_category(category_id):
 
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
+    if not session.get("user") == ADMIN_USER_NAME:
+        return render_template("403.html")
+
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
@@ -282,6 +311,9 @@ def delete_category(category_id):
 # Single Recipe route
 @app.route("/single_recipe/<recipe_id>")
 def single_recipe(recipe_id):
+    if not single_recipe:
+        return render_template("404.html")
+
     recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
 
     return render_template("single_recipe.html", recipe=recipe)

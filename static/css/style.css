@@ -41,7 +41,7 @@ body {
 }
 
 .dropdown-menu {
-    background: var(--slogen-color);
+    background: rgba(0,0,0,.8);
 }
 
 #login {
@@ -206,7 +206,12 @@ body {
 .recipe-categories {
     margin-top: 30px;
     padding-bottom: 10px;
-    
+}
+
+.title h4 {
+    font-family: var(--logo-font);
+    color: var(--purple-text-color);
+    letter-spacing: 1px;
 }
 
 .section-title {
@@ -221,6 +226,8 @@ body {
 .section-title a {
     text-decoration: none;
     color: var(--purple-text-color);
+    font-family: var(--logo-font);
+
 }
 
 .section-title p {
@@ -621,7 +628,7 @@ legend {
 .btn-all-recipes:hover::after {
     right: 80%;
 }
-/*=================================================================*/
+/*======================End of buttons===========================================*/
 
 .card {
     padding: 5px;
@@ -733,6 +740,12 @@ legend {
     color: var(--purple-text-color);
 }
 
+.no-recipe-bg h4 {
+    font-family: var(--logo-font);
+    color: var(--purple-text-color);
+    
+}
+
 /*=======================Categories page==================*/
 .manage-cat-bg {
     background: url('../img/9.jpg') no-repeat;
@@ -768,8 +781,38 @@ footer {
     color: var(--orange-color);
 }
 
+.error-container {
+    background: url('../img/10.jpg') no-repeat;
+    width: 100%;
+    height: 400px;
+    background-position: center;
+    object-fit: cover;
+}
 
+.error-header h2 {
+    color: var(--purple-text-color);
+    font-family: var(--logo-font);
+    letter-spacing: 1px;
+}
 
+.error-header h4 {
+    color: var(--gold-text-color);
+    font-family: var(--secondary-font);
+}
+
+.error-header p {
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
+}
+
+.error-header a {
+    text-decoration: none;
+    color: var(--gold-text-color);
+    font-family: var(--logo-font);
+    padding: 5px;
+}
+
+/*==========================MEDIA=========================*/
 @media screen and (max-width: 991px) {
     .card-buttons {
         padding-top: 0;
@@ -792,7 +835,7 @@ footer {
 @media screen and (max-width:768px) {
     form {
         display: block;
-        width: 70%;
+        /* width: 70%; */
         margin: 0 auto;
     }
     .navbar .navbar-brand {
@@ -807,6 +850,16 @@ footer {
     .profile-container h3 {
         font-size: 25px;
     }
+    fieldset {
+        border: none;
+        padding: 0;
+        margin-top: 20px;   
+    }
+    legend {
+        padding: 0px 0px;
+        font-size: 1.5rem;
+    }
+    
 }
 
 @media screen and (max-width:992px) {

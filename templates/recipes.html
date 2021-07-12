@@ -36,7 +36,14 @@
     <h3>Explore of delicious recipe ideas</h3>
 </div>
 <section class="container-fluid recipe-categories">
+  
   <div class="container">
+    <div class="row">
+      <div class="col-sm-12 d-flex title">
+        <h4>Recipe by Category:</h4>
+        <h4 class="pl-md-3">{{ categories | title }}</h4>
+      </div>
+    </div>
       <div class="row mt-5">
         {% for recipe in recipes %}
         <div class="col-md-6 col-lg-4 d-flex">
@@ -66,7 +73,7 @@
         </div>
         {% endfor %}
       </div>
-
+      
 </section>
 
 

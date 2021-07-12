@@ -2,8 +2,13 @@
 {% block content %}
 
 <div class="container back-to-recipe mt-5 pt-5">
+    {% if recipe.username == session.user %}
+    <a href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-arrow-circle-left"></i>Back to my
+        recipes</a>
+        {% else %}
     <a href="{{ url_for('recipes', categories = 'all') }}"><i class="fas fa-arrow-circle-left"></i>Back to all
         recipes</a>
+    {% endif %}
 </div>
 
 <!--Start recipe content container-->
@@ -67,7 +72,7 @@
     </div>
 
     <!--Start Edit, Delete Buttons-->
-    {% if session.user_id == session.user_recipes %}
+    {% if recipe.username == session.user %}
     <div class="row mb-5">
         <div class="col-sm-12">
             <div class="card-buttons text-center">

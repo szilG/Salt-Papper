@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid error-container"></div>
+<div class="row header-text">
+      <div class="col-md-12 text-center">
+          <h2>OOH NUTS</h2>
+      </div>
+    </div>  
+<div class="container">
+      <div class="row text-center">
+          <div class="col-12 error-header mt-5">
+              <h2 class="">404 - Page not found </h2>
+              <h4 class="">Sorry, the page you requested could not be found.</h4>
+              <p>Please<a href="login_modal" data-toggle="modal" data-target="#login_modal" data-dismiss="modal" 
+                  class="center-align grey-text text-lighten-1">Sign In</a> or 
+                  <a href="register_modal" data-toggle="modal" data-target="#register_modal" data-dismiss="modal">
+                        Sign-Up</a> for an Account</p> 
+            </p>
+          </div>
+      </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid error-container"></div>
+<div class="row header-text">
+      <div class="col-md-12 text-center">
+          <h2>OOH NUTS</h2>
+      </div>
+    </div>  
+<div class="container">
+      <div class="row text-center">
+          <div class="col-12 error-header mt-5">
+              <h2 class="">403 - Not autorized</h2>
+              <h4 class="">Sorry, You Are Not Allowed To Access This Page</h4>
+              <p>Please <a href="{{ url_for('home') }}">Go to homepage</a></p> 
+            </p>
+          </div>
+      </div>
+  </div>
+{% endblock %}

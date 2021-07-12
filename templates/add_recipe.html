@@ -45,7 +45,7 @@
                         <label class="form-label" for="recipe_name">Recipe Title *</label>
                         <div class="input-group mb-3">
                             <input type="text" id="recipe_name" name="recipe_name" class="form-control validate"
-                                minlength="5" maxlength="50" rows="1" aria-label="Recipe Name"
+                                minlength="5" maxlength="50" aria-label="Recipe Name"
                                 aria-describedby="basic-addon1" placeholder="Recipe Title" required>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <label class="form-label" for="chef">Chef of this meal</label>
                         <div class="input-group mb-3">
                             <input type="text" id="chef" name="chef" minlength="5" maxlength="30"
-                                class="form-control validate" placeholder="Chef" rows="1" aria-label="Chef"
+                                class="form-control validate" placeholder="Chef" aria-label="Chef"
                                 aria-describedby="basic-addon2">
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                     <div class="row">
                         <label class="form-label" for="image">Recipe Image URL</label>
                         <div class="input-group mb-3">
-                            <input type="text" id="image" name="image" rows="3" maxlength="200"
+                            <input type="text" id="image" name="image" maxlength="200"
                                 class="form-control validate" aria-describedby="basic-addon6">
                             <span class="input-group-text" id="basic-addon6">https://example.com/users/</span>
                         </div>
@@ -151,8 +151,7 @@
                     <div class="row">
                         <div class="col-sm-12 text-align">
                             <button type="submit" class="delete-btn-custom">Add Recipe</button>
-                            <button class="cancel-btn-custom"><a
-                                    href="{{ url_for('profile', username=session['user']) }}">Cancel</a></button>
+                            <a href="{{ url_for('profile', username=session['user']) }}" class="btn cancel-btn-custom">Cancel</a>
                         </div>
                     </div>
                 </div>

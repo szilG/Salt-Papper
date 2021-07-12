@@ -10,12 +10,14 @@
 
 <div class="container-fluid orange-container"></div>
 <div class="col-sm-12 text-center text">
+    
     <h3>Here is your recipes</h3>
+    
 </div> 
 
 <div class="container mt-5 pt-5">
     <div class="row btn-container">
-        <div class="col-12">
+        <div class="col-12 pb-3">
             <button class="btn-custom"><a href="{{ url_for('add_recipe') }}">Add new recipe</a></button>
         </div>
     </div>
@@ -94,7 +96,6 @@
                     </div>
                 </div>  
             </div>
-            <!--End credit-->
         {% endfor %}
 
 </div>

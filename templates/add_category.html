@@ -17,13 +17,13 @@
                 <label class="form-label" for="category_name">Category Name</label>
                 <div class="input-group mb-5">
                     <input id="category_name" name="category_name" type="text" minlength="3" maxlength="25"
-                        class="form-control validate" rows="1" placeholder="Category Name">
+                        class="form-control validate" placeholder="Category Name">
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 text-center">
                         <button type="submit" class="btn-custom">Add Category</button>
-                        <button class="cancel-btn-custom"><a href="{{ url_for('get_categories') }}">Cancel</a></button>
+                        <a href="{{ url_for('get_categories') }}" class="btn cancel-btn-custom">Cancel</a>
                     </div>
                 </div>
             </div>

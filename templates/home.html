@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- Start Searchbar -->
-<section class="search-bar">
+<div class="search-bar">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 <!-- End Searchbar -->
 
 
@@ -67,7 +67,7 @@
 <section class="container-fluid recipe-categories">
     <div class="container">
         <div class="section-title">
-          <a href="{{ url_for( 'recipes', categories = 'mains') }}"><h4>Vibrant lunch and supper recipes</h4></a>
+          <a href="{{ url_for( 'recipes', categories = 'mains') }}"><h4 class="text-center text-md-left">Vibrant lunch and supper recipes</h4></a>
             <p>Explore new cuisines, diets and crowd-pleasing spreads with all our favourite dishes. Find a recipe for every occasion.</p>
         </div>
         <div class="row mt-5">
@@ -84,12 +84,12 @@
             </div>
             {% endif %}
               <div class="text-center">
-                
-                        <h6 class="card-title"><strong>{{ main.recipe_name }}</strong></h6>
-                  </a>
-                </span>
+                <span class="recipe-title"><span>
+                  
+                    <h6 class="card-title"><strong>{{ main.recipe_name }}</strong></h6>
                
-                  {{ main.description | truncate(40, true) }}</a></span>
+
+                  {{ main.description | truncate(40, true) }}
                 <span class="recipe-category d-block">Category: {{ main.category_name }}</span>
                 <span class="recipe-difficulty d-block">Difficulty Level: {{ main.difficulty_level }}</span>
                 <span class="posted d-block">Posted by: {{ main.chef }} on {{ main.formated_date }}</span>
@@ -102,17 +102,17 @@
         
         <div class="row justify-content-center">
           <div class="col-md-4 recipe-bottom text-center">
-            <button class="btn-all-recipes"><a href="{{ url_for( 'recipes', categories = 'all') }}" class="d-block">View all recipes <i class="fas fa-carrot"></i></a></button>
+            <a href="{{ url_for( 'recipes', categories = 'all') }}" class="btn-all-recipes p-2">View all recipes <i class="fas fa-carrot"></i></a>
           </div>
         </div>
-
+    </div>
 </section>
 
 <!--Breakfasts-->
 <section class="container-fluid recipe-categories">
   <div class="container">
       <div class="section-title">
-        <a href="{{ url_for( 'recipes', categories = 'breakfast') }}"><h4>Healty Breakfast Ideas</h4></a>
+        <a href="{{ url_for( 'recipes', categories = 'breakfast') }}"><h4 class="text-center text-md-left">Healty Breakfast Ideas</h4></a>
           <p>Fresh, Healty, Yummy Breakfasts to Start Your Day</p>
       </div>
       <div class="row mt-5">
@@ -128,13 +128,12 @@
             <img class=" img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}" alt="{{ breakfast.recipe_name }}">
           </div>
           {% endif %}
-            <div class="text-center">
+            <div class="text-center"></span>
              
                       <h6 class="card-title"><strong>{{ breakfast.recipe_name }}</strong></h6>
-                </a>
-              </span>
+                
              
-                {{ breakfast.description | truncate(40, true) }}</a></span>
+                {{ breakfast.description | truncate(40, true) }}
               <span class="recipe-category d-block">Category: {{ breakfast.category_name }}</span>
               <span class="recipe-difficulty d-block">Difficulty Level: {{ breakfast.difficulty_level }}</span>
               <span class="posted d-block">Posted by: {{ breakfast.chef }} on {{ breakfast.formated_date }}</span>
@@ -147,17 +146,17 @@
       
       <div class="row justify-content-center">
         <div class="col-md-4 recipe-bottom text-center">
-          <button class="btn-all-recipes"><a href="{{ url_for( 'recipes', categories = 'all') }}" class="d-block">View all recipes <i class="fas fa-carrot"></i></a></button>
+          <a href="{{ url_for( 'recipes', categories = 'all') }}" class="btn-all-recipes p-2">View all recipes <i class="fas fa-carrot"></i></a>
         </div>
       </div>
-
+  </div>
 </section>
 
 <!--Drinks-->
 <section class="container-fluid recipe-categories mb-5">
   <div class="container">
       <div class="section-title">
-        <a href="{{ url_for( 'recipes', categories = 'drinks') }}"><h4>Cocktails & drinks</h4></a>
+        <a href="{{ url_for( 'recipes', categories = 'drinks') }}"><h4 class="text-center text-md-left">Cocktails & drinks</h4></a>
           <p>Recipe inspiration for everything from classic blends and mocktails to seasonal tipples and refreshing, fruity favourites.</p>
       </div>
       <div class="row mt-5">
@@ -192,10 +191,10 @@
       
       <div class="row justify-content-center">
         <div class="col-md-4 recipe-bottom text-center">
-          <button class="btn-all-recipes"><a href="{{ url_for( 'recipes', categories = 'all') }}" class="d-block">View all recipes <i class="fas fa-carrot"></i></a></button>
+          <a href="{{ url_for( 'recipes', categories = 'all') }}" class="btn-all-recipes p-2">View all recipes <i class="fas fa-carrot"></i></a>
         </div>
       </div>
-
+  </div>
 </section>
   
 

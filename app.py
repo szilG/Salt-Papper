@@ -68,7 +68,7 @@ def recipes(categories):
         recipes = list(mongo.db.recipes.find().sort("_id", -1))
 
     return render_template(
-        "recipes.html", recipes=recipes, categories=categories)
+        "recipes.html", recipes=recipes, categories=categories,)
 
 
 @app.route("/search/", methods=["GET", "POST"])

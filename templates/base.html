@@ -23,194 +23,192 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar fixed-top navbar-expand-lg mb-3">
-            <a href="{{ url_for('home') }}" class="navbar-brand">Salt <span>&</span>Pepper<small class="slogen">Only for foodies</small></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ url_for( 'recipes', categories = 'all') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Recipes
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'all') }}">All</a>
-                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'mains') }}">Main Course</a>
-                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'breakfast') }}">Breakfast</a>
-                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'starters') }}">Starters</a>
-                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'desserts') }}">Desserts</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'drinks') }}">Drinks</a>
-                    </div>
-                </li>
-                {% if session.user %}
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('add_recipe') }}">New recipe</a></li>
-                    {% if session.user|lower == "Admin222"|lower %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('get_categories') }}">Manage Categories</a></li>
-                    {% endif %}
-                    <li class="nav-item"><a class="nav-link" id="signup" href="{{ url_for('logout') }}">Sign-Out</a></li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" id="login" href="login_modal" data-toggle="modal" data-target="#login_modal">Sign-In</a></li>
-                    <li class="nav-item"><a class="nav-link" id="signup" href="register_modal" data-toggle="modal" data-target="#register_modal">Sign-up</a></li>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg mb-3">
+        <a href="{{ url_for('home') }}" class="navbar-brand">Salt <span>&</span>Pepper<small class="slogen">Only for foodies</small></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{{ url_for( 'recipes', categories = 'all') }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Recipes
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'all') }}">All</a>
+                  <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'mains') }}">Main Course</a>
+                  <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'breakfast') }}">Breakfast</a>
+                  <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'starters') }}">Starters</a>
+                  <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'desserts') }}">Desserts</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item nav-link" href="{{ url_for( 'recipes', categories = 'drinks') }}">Drinks</a>
+                </div>
+            </li>
+            {% if session.user %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('add_recipe') }}">New recipe</a></li>
+                {% if session.user|lower == "Admin222"|lower %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_categories') }}">Manage Categories</a></li>
                 {% endif %}
-              </ul>
-            </div>
-          </nav> 
-    </header>
-
-    <!--LogIN modal-->
-    <div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="container p-5">
-            <fieldset>
-              <legend class="text-center">Welcome Foodie!</legend>
-                <div class="modal-header">
-                  <h5 class="modal-title" id="login_modal">Please Sign In ...</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-
-                <form action="/login/" method="POST" name="login_modal">
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <label for="username">Username</label>
-                            <i class="fas fa-user-cog"></i>
-                            <input id="username" name="username" type="text" minlength="5" maxlength="15"
-                                class="form-control validate" required>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <small id="password" class="center-align grey-text text-lighten-1">Minimum 8 caracther one upper case letter, one lower
-                      case letter and one digit</small>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <label for="password">Password</label>
-                          <i class="fas fa-user-lock prefix"></i>
-                          <input id="password" name="password" type="password" minlength="5" maxlength="15"
-                          pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="validate form-control" 
-                          aria-describedby="password" required>
-                        </div>
-                      </div>   
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <button class="btn-custom" type="submit" name="action">Sign In
-                            <i class="fas fa-sign-in-alt"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                            <p class="center-align">
-                                New Here?
-                                <a href="register_modal" data-toggle="modal" data-target="#register_modal" data-dismiss="modal" class="center-align grey-text text-lighten-1">
-                                  Sign-Up</a> for an Account</p>
-                        </div>
-                    </div>
-                  </div>
-                </form>
-             </fieldset>
-          </div>
+                <li class="nav-item"><a class="nav-link" id="signup" href="{{ url_for('logout') }}">Sign-Out</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" id="login" href="login_modal" data-toggle="modal" data-target="#login_modal">Sign-In</a></li>
+                <li class="nav-item"><a class="nav-link" id="signup" href="register_modal" data-toggle="modal" data-target="#register_modal">Sign-up</a></li>
+            {% endif %}
+          </ul>
         </div>
-      </div>
-    </div>
-    <!--End LogIn modal-->
+      </nav> 
+  </header>
 
-    <!--Register modal-->
-    <div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="container p-5">
-            <fieldset>
-              <legend class="text-center">Welcome Foodie!</legend>
-                <div class="modal-header">
-                  <h5 class="modal-title" id="register_modal">Register to add recipes to your recipe box, and create your own recipes.</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
+  <!--LogIN modal-->
+  <div class="modal fade" id="login_modal" tabindex="-1" aria-labelledby="login_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="container">
+          <fieldset>
+            <legend class="text-center">Welcome Foodie!</legend>
+              <div class="modal-header">
+                <h5 class="modal-title" id="login_modal">Please Sign In ...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
 
-                <form action="/register/" method="POST" name="register_modal">
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <label for="username">Username</label>
-                          <i class="fas fa-user-cog prefix"></i>
+              <form action="/login/" method="POST" name="login_modal">
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="username">Username</label>
+                          <i class="fas fa-user-cog"></i>
                           <input id="username" name="username" type="text" minlength="5" maxlength="15"
-                              class="validate form-control" required>
-                        </div>
+                              class="form-control validate" required>
                       </div>
                     </div>
-
-                    <small id="password2" class="center-align grey-text text-lighten-1">Minimum 8 caracther one upper case letter, one lower
-                      case letter and one digit</small>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <label for="password">Password</label>
-                          <i class="fas fa-user-lock prefix"></i>
-                          <input id="password" name="password" type="password" minlength="5" maxlength="15"
-                          pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="validate form-control" 
-                          aria-describedby="password2" required>
-                        </div>
-                      </div>     
-                    </div>
                   </div>
-                  <div class="modal-footer">
+                  
+                  <small id="password" class="center-align grey-text text-lighten-1">Minimum 8 caracther one upper case letter, one lower
+                    case letter and one digit</small>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <i class="fas fa-user-lock prefix"></i>
+                        <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                        pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="validate form-control" 
+                        aria-describedby="password" required>
+                      </div>
+                    </div>   
+                  </div>
+                </div>
+                <div class="modal-footer">
                     <div class="row">
                       <div class="col-sm-12">
-                        <button class="btn-custom" type="submit" name="action">Register
+                        <button class="btn-custom" type="submit" name="action">Sign In
                           <i class="fas fa-sign-in-alt"></i>
                         </button>
-                      </div>  
+                      </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-12">
-                        <p class="text-center">
-                          Already Registered?
-                          <a href="login_modal" data-toggle="modal" data-target="#login_modal" data-dismiss="modal" 
-                          class="center-align grey-text text-lighten-1">Sign In</a>
-                        </p>
+                          <p class="center-align">
+                              New Here?
+                              <a href="register_modal" data-toggle="modal" data-target="#register_modal" data-dismiss="modal">
+                                Sign-Up</a> for an Account</p>
                       </div>
-                    </div>
                   </div>
-                </form>
-
-            </fieldset>
-          </div>
+                </div>
+              </form>
+           </fieldset>
         </div>
       </div>
     </div>
-    <!--End Register modal-->
+  </div>
+  <!--End LogIn modal-->
 
+  <!--Register modal-->
+  <div class="modal fade" id="register_modal" tabindex="-1" aria-labelledby="register_modal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="container p-5">
+          <fieldset>
+            <legend class="text-center">Welcome Foodie!</legend>
+              <div class="modal-header">
+                <h5 class="modal-title" id="register_modal">Register to add recipes to your recipe box, and create your own recipes.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
 
-    <section class="mt-0">
-      <!-- flash messages -->
-      {% with messages = get_flashed_messages() %}
-          {% if messages %}
-              {% for message in messages %}
-                  <div class="row flashes">
-                      <h6 class="center-align">{{ message }}</h6>
+              <form action="/register/" method="POST" name="register_modal">
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="username">Username</label>
+                        <i class="fas fa-user-cog prefix"></i>
+                        <input id="username" name="username" type="text" minlength="5" maxlength="15"
+                            class="validate form-control" required>
+                      </div>
+                    </div>
                   </div>
-              {% endfor %}
-          {% endif %}
-      {% endwith %}
+
+                  <small id="password2" class="center-align grey-text text-lighten-1">Minimum 8 caracther one upper case letter, one lower
+                    case letter and one digit</small>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <i class="fas fa-user-lock prefix"></i>
+                        <input id="password" name="password" type="password" minlength="5" maxlength="15"
+                        pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" class="validate form-control" 
+                        aria-describedby="password2" required>
+                      </div>
+                    </div>     
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button class="btn-custom" type="submit" name="action">Register
+                        <i class="fas fa-sign-in-alt"></i>
+                      </button>
+                    </div>  
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <p class="text-center">
+                        Already Registered?
+                        <a href="login_modal" data-toggle="modal" data-target="#login_modal" data-dismiss="modal" 
+                        class="center-align grey-text text-lighten-1">Sign In</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--End Register modal-->
+
+
+  <section class="mt-0">
+    <!-- flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+              <div class="alert text-center" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
   </section>
 
 

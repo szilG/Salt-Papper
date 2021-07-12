@@ -1,5 +1,6 @@
 /*=============Base==============*/
 *{
+    
     --main-text-color: #3d454b;
     --logo-font: 'Pattaya', sans-serif;
     --secondary-font: 'Alegreya Sans SC', sans-serif;
@@ -12,8 +13,8 @@
 body {
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .navbar {
@@ -42,6 +43,10 @@ body {
 
 .dropdown-menu {
     background: rgba(0,0,0,.8);
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
 }
 
 #login {
@@ -119,11 +124,8 @@ body {
     color: var(--slogen-color) !important;
 }
 
-.flashes h6 {
-    color: var(--main-text-color);
-    margin-left: 50%;
-    z-index: 1001;
-    align-items: center;
+.alert {
+    margin-bottom: 0;
 }
 
 .modal-title {
@@ -682,10 +684,16 @@ legend {
 /*=========Recipes page========*/
 .header-img {
     background: url('../img/1.jpg') no-repeat;
+    --webkit-background-size: cover;
+    --moz-background-size: cover;
+    --o-background-size: cover;
     width: 100%;
     height: 400px;
     background-position: center;
     object-fit: cover;
+    justify-content: center;
+    display: flex;
+    
 }
 
 .header-text h2 {
@@ -716,7 +724,7 @@ legend {
     width: 100%;
     height: 400px;
     background-position: center;
-    object-fit: cover;  
+    object-fit: cover;    
 }
 
 .search-header-text h2 {
@@ -835,7 +843,6 @@ footer {
 @media screen and (max-width:768px) {
     form {
         display: block;
-        /* width: 70%; */
         margin: 0 auto;
     }
     .navbar .navbar-brand {
@@ -858,6 +865,18 @@ footer {
     legend {
         padding: 0px 0px;
         font-size: 1.5rem;
+    }
+    .social {
+        padding-bottom: 10px;
+    }
+    .social a{
+        margin-right: 40px;
+    }
+    .input-group {
+        padding: 0;
+    }
+    .search-bar {
+        top: 80px;
     }
     
 }

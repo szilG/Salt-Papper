@@ -16,7 +16,7 @@
       <h3>{{ total }} Recipes Found</h3>
       {% endif %}
 </div>
-<div class="container back-to-recipe mt-5">
+<div class="container back-to-recipe mt-5 pt-5">
       <a href="{{ url_for('recipes', categories = 'all') }}"><i class="fas fa-arrow-circle-left"></i>Back to all
           recipes</a>
 </div>
@@ -25,6 +25,12 @@
       <h1 class="text-center">Sorry no recipes was found here, please try somethind else!</h1>
       {% else %}
 
+      <div class="row">
+            <div class="col-sm-12 d-flex">
+              <h4>Search by Category:</h4>
+              <h4 class="pl-md-3">{{ categories | title }}</h4>
+            </div>
+          </div>
       <div class="row mt-5">
             {% for recipe in recipes %}
             <div class="col-md-6 col-lg-4 d-flex">

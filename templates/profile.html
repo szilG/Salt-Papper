@@ -1,21 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 <!--Profile header section-->
-<div class="container-fluid profile-header-img"></div>
-<div class="row profile-container">
-    <div class="col-sm-12 ">
-        <h3 class="text-center">Welcome {{ username }} !</h3>
+<div class="container-fluid profile-header-img">
+    <div class="row">
+        <div class="col-sm-12 profile-container">
+            <h3 class="text-center">Welcome {{ username }} !</h3>
+        </div>
     </div>
 </div>
 
-<div class="container-fluid orange-container"></div>
-<div class="col-sm-12 text-center text">
-    
-    <h3>Here is your recipes</h3>
-    
-</div> 
+<div class="container-fluid orange-container">
+    <div class="col-sm-12 text-center text">
+        <h3>
+            {% if user_recipes|length == 0 %}
+                You have no recipes yet why not create one
+            {% else %}
+                Here is your recipes
+            {% endif %}
+        </h3>
+        
+    </div> 
+</div>
 
-<div class="container mt-5 pt-5">
+
+<div class="container mt-lg-5 pt-lg-5">
     <div class="row btn-container">
         <div class="col-12 pb-3">
             <button class="btn-custom"><a href="{{ url_for('add_recipe') }}">Add new recipe</a></button>

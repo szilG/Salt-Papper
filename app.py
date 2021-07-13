@@ -23,6 +23,22 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # MongoDB Global Variable
 mongo = PyMongo(app)
 
+PER_PAGE = 6
+
+
+def paginated(recipes):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    offset = page * PER_PAGE - PER_PAGE
+    return recipes[offset: offset + PER_PAGE]
+
+
+def pagination_args(recipes):
+    page, per_page, offset = get_page_args(
+        page_parameter='page', per_page_parameter='per_page')
+    total = len(recipes)
+    return Pagination(page=page, per_page=PER_PAGE, total=total)
+
 
 # HOME
 @app.route("/")
@@ -45,7 +61,7 @@ def home():
 # RECPES
 @app.route("/recipes/<categories>")
 def recipes(categories):
-
+    recipes = mongo.db.recipes.find()
     """To display recipes of that specific category by posted date"""
     if categories == "all":
         recipes = list(mongo.db.recipes.find().sort("_id", -1))
@@ -67,8 +83,12 @@ def recipes(categories):
     else:
         recipes = list(mongo.db.recipes.find().sort("_id", -1))
 
+    recipes_paginated = paginated(recipes)
+    pagination = pagination_args(recipes)
+
     return render_template(
-        "recipes.html", recipes=recipes, categories=categories,)
+        "recipes.html", recipes=recipes, categories=categories,
+        recipe_paginated=recipes_paginated, pagination=pagination)
 
 
 @app.route("/search/", methods=["GET", "POST"])

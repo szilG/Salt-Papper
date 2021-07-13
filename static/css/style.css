@@ -820,6 +820,36 @@ footer {
     padding: 5px;
 }
 
+/* Pagination */
+.pagination {
+    color:var(--purple-text-color);
+    font-family: var(--logo-font);
+    font-size: 1.4rem;
+}
+
+.pagination ul {
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+
+.pagination ul li {
+    display: inline;
+}
+
+.pagination ul li a {
+    border-radius: 0.3rem;
+    color: rgba(17, 29, 94, 0.6);
+    padding: 0.3rem 0.5rem;
+}
+
+.pagination ul li a:hover {
+    background-color: rgba(243, 113, 33, .3);
+}
+
+.pagination ul {
+    padding-left: 0;
+}
+
 /*==========================MEDIA=========================*/
 @media screen and (max-width: 991px) {
     .card-buttons {

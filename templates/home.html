@@ -2,11 +2,11 @@
 {% block content %}
 
 <!-- Start Searchbar -->
-<div class="search-bar">
+<div class="search-bar pt-1 pt-lg-5">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
-        <form action="{{ url_for('search') }}" method="post">
+        <form action="{{ url_for('recipes') }}" method="post">
           <div class="p-1 bg-light shadow-sm">
             <div class="input-group">
               <input class="form-control border-0 bg-light" type="search" name="query" id="query"
@@ -68,7 +68,7 @@
   </div>
 </div>
 
-<div class="row justify-content-center">
+<div class="row pt-4 justify-content-center">
   <div class="col-md-4 recipe-bottom text-center">
     <a href="{{ url_for( 'recipes', categories = 'all') }}" class="btn-all-recipes p-2">View all recipes <i class="fas fa-carrot"></i></a>
   </div>
@@ -82,32 +82,11 @@
             <p>Explore new cuisines, diets and crowd-pleasing spreads with all our favourite dishes. Find a recipe for every occasion.</p>
         </div>
         <div class="row mt-5">
-          {% for main in mains %}
-          <div class="col-md-6 col-lg-4 d-flex">
-            <div class="product">
-              {% if main.image %}
-            <div class="img d-flex align-items-center justify-content-center">
-              <img class=" img-fluid" src="{{ main.image }}" alt="{{ main.recipe_name }}">
-            </div>
-            {% else %}
-            <div class="img d-flex align-items-center justify-content-center">
-              <img class=" img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}" alt="{{ main.recipe_name }}">
-            </div>
-            {% endif %}
-              <div class="text-center">
-                <span class="recipe-title"><span>
-                  
-                    <h6 class="card-title"><strong>{{ main.recipe_name }}</strong></h6>
-               
+          {% for recipe in mains %}
+          <!--Use -include- statement to include recipe_card template and return the rendered contents-->
+          <!--https://jinja.palletsprojects.com/en/2.10.x/templates/#include-->
+          {% include "recipe_card.html" %}
 
-                  {{ main.description | truncate(40, true) }}
-                <span class="recipe-category d-block">Category: {{ main.category_name }}</span>
-                <span class="recipe-difficulty d-block">Difficulty Level: {{ main.difficulty_level }}</span>
-                <span class="posted d-block">Posted by: {{ main.chef }} on {{ main.formated_date }}</span>
-              </div>
-            </div>
-            
-          </div>
           {% endfor %}
         </div>
     </div>
@@ -121,31 +100,11 @@
           <p>Fresh, Healty, Yummy Breakfasts to Start Your Day</p>
       </div>
       <div class="row mt-5">
-        {% for breakfast in breakfasts %}
-        <div class="col-md-6 col-lg-4 d-flex">
-          <div class="product">
-            {% if breakfast.image %}
-          <div class="img d-flex align-items-center justify-content-center">
-            <img class=" img-fluid" src="{{ breakfast.image }}" alt="{{ breakfast.recipe_name }}">
-          </div>
-          {% else %}
-          <div class="img d-flex align-items-center justify-content-center">
-            <img class=" img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}" alt="{{ breakfast.recipe_name }}">
-          </div>
-          {% endif %}
-            <div class="text-center"></span>
-             
-                      <h6 class="card-title"><strong>{{ breakfast.recipe_name }}</strong></h6>
-                
-             
-                {{ breakfast.description | truncate(40, true) }}
-              <span class="recipe-category d-block">Category: {{ breakfast.category_name }}</span>
-              <span class="recipe-difficulty d-block">Difficulty Level: {{ breakfast.difficulty_level }}</span>
-              <span class="posted d-block">Posted by: {{ breakfast.chef }} on {{ breakfast.formated_date }}</span>
-            </div>
-          </div>
-          
-        </div>
+        {% for recipe in breakfasts %}
+        <!--Use -include- statement to include recipe_card template and return the rendered contents-->
+        <!--https://jinja.palletsprojects.com/en/2.10.x/templates/#include-->
+        {% include "recipe_card.html" %}
+        
         {% endfor %}
       </div>
       
@@ -160,32 +119,11 @@
           <p>Recipe inspiration for everything from classic blends and mocktails to seasonal tipples and refreshing, fruity favourites.</p>
       </div>
       <div class="row mt-5">
-        {% for drink in drinks %}
-        <div class="col-md-6 col-lg-4 d-flex">
-          <div class="product">
-            {% if drink.image %}
-          <div class="img d-flex align-items-center justify-content-center">
-            <img class=" img-fluid" src="{{ drink.image }}" alt="{{ drink.recipe_name }}">
-          </div>
-          {% else %}
-          <div class="img d-flex align-items-center justify-content-center">
-            <img class=" img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}" alt="{{ drink.recipe_name }}">
-          </div>
-          {% endif %}
-            <div class="text-center">
-             
-                      <h6 class="card-title"><strong>{{ drink.recipe_name }}</strong></h6>
-                </a>
-              </span>
-             
-                {{ drink.description | truncate(40, true) }}</a></span>
-              <span class="recipe-category d-block">Category: {{ drink.category_name }}</span>
-              <span class="recipe-difficulty d-block">Difficulty Level: {{ drink.difficulty_level }}</span>
-              <span class="posted d-block">Posted by: {{ drink.chef }} on {{ drink.formated_date }}</span>
-            </div>
-          </div>
-          
-        </div>
+        {% for recipe in drinks %}
+        <!--Use -include- statement to include recipe_card template and return the rendered contents-->
+        <!--https://jinja.palletsprojects.com/en/2.10.x/templates/#include-->
+        {% include "recipe_card.html" %}
+        
         {% endfor %}
       </div>
   </div>

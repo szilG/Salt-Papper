@@ -1,13 +1,26 @@
-<style>
-    H1{color:#E4291F !important; align="center";}
-</style>
-
-
+<style> H1{align="center"}</style>
 # Salt and Pepper
 
+
 ## About
+Salt and Pepper is the website for anyone who believes that good food brings us together, no matter where are you (they) live.
+KEEP COOKING DAILY - these recipes show you how to make a delicious meal or incredible drinks easyly in your home.
+Salt and Pepper is a website for all food lovers who love to eat, try different flavour and create magnificent recipes!
+I created this for **Milestone Project 3 (Python and Data-Centric Development), Full Stack Software Development** in [Code Institute](https://codeinstitute.net/), Ireland.
+It is fully responsive on all devices and easy to navigate for users.
+The link to the website is available [HERE]().
+
+
 
 ## User Experience (UX)
+### User Stories
+Salt and Pepper gives the information about different recipe with cooking method, cooking-time, ingredients-list posted by users.
+Salt and Pepper provides to create your own account and post recipe.
+#### Generic User
+    1. I want to easily understand the purpose and the layout of the site without additional instructions needed.
+    1. I want to easily navigate through the site to browse the content.
+    1. I want the site is responsive on all device.
+    1. I want to use the navigation at all times so I can quickly navigate from one page to another.
 
 ## Design
 

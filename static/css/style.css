@@ -1,6 +1,5 @@
 /*=============Base==============*/
 *{
-    
     --main-text-color: #3d454b;
     --logo-font: 'Pattaya', sans-serif;
     --secondary-font: 'Alegreya Sans SC', sans-serif;
@@ -80,6 +79,14 @@ body {
 
 }
 
+.fa-user-cog {
+    color: var(--orange-color);
+}
+
+.fa-user-lock {
+    color: var(--orange-color);
+}
+
 .input-group>.form-control:focus {
     box-shadow: none;
 }
@@ -150,8 +157,8 @@ body {
 }
 
 /*==========Home===========*/
-.carousel-item img {
-    object-fit: cover;
+.carousel-inner {
+    max-height: 40rem;
 }
 
 .carousel-control-next,
@@ -308,11 +315,12 @@ body {
 }
 .back-to-recipe a {
     text-decoration: none;
-    color: var(--main-text-color);
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
 }
 
 .back-to-recipe i {
-    color: var(--main-text-color);
+    color: var(--purple-text-color);
     padding-right: 10px;
 }
 
@@ -321,13 +329,10 @@ body {
     color: var(--orange-color);
 }
 
-.add-recipe-container {
-    /* padding: 5rem 0; */
-}
-
 fieldset {
     border: 2px solid var(--orange-color);
     padding: 20px;
+    margin: 20px;
 }
 
 legend {
@@ -351,7 +356,12 @@ legend {
 
 .form-label {
     padding-left: 2rem;
-    color: var(--main-text-color);
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
+}
+
+form label {
+    color: var(--purple-text-color);
 }
 
 .input-group-text {
@@ -464,8 +474,9 @@ legend {
     color: var(--navbar-color);
 }
 .edit-btn-custom {
-    width: 150px;
-    height: 40px;
+    /* width: 150px;
+    height: 40px; */
+    padding: 5px 20px;
     background: none;
     border: 4px solid;
     border-radius: 30px;
@@ -510,8 +521,9 @@ legend {
     color: var(--navbar-color);
 }
 .delete-btn-custom {
-    width: 150px;
-    height: 40px;
+    /* width: 150px;
+    height: 40px; */
+    padding: 5px 20px;
     background: none;
     border: 4px solid;
     border-radius: 30px;
@@ -556,9 +568,9 @@ legend {
     text-decoration: none;
     color: var(--navbar-color);
 }
+
 .cancel-btn-custom {
-    width: 150px;
-    height: 40px;
+    padding: 5px 20px;
     background: none;
     border: 4px solid;
     border-radius: 30px;
@@ -896,6 +908,11 @@ footer {
 }
 
 /*==========================MEDIA=========================*/
+@media screen and (max-width: 1199px) {
+    .alert {
+        top: 15%;
+    }
+}
 @media screen and (max-width: 991px) {
     .card-buttons {
         padding-top: 0;
@@ -903,12 +920,40 @@ footer {
     .text h3 {
         font-size: 20px;
     }
-    
     .text span {
         font-size: 20px;
     }
     .footer-orange-container p {
         font-size: 16px;
+    }
+    .navbar-collapse {
+        background: black ;
+        opacity: .9;
+        border-radius: 1px;
+    }
+    .alert {
+        top: 10%;
+    }
+    .navbar-nav {
+        padding: 20px 0;
+    }
+    .navbar-nav .nav-link {
+        padding-left: 20px !important;
+    }
+    #login {
+      margin: 15px 30px;  
+    }
+    #signup {
+       margin: 15px 30px; 
+    }
+    fieldset {
+        border: none;
+        padding: 0;
+        margin-top: 20px;   
+    }
+    legend {
+        padding: 0px 0px;
+        font-size: 1.5rem;
     }
 }
 
@@ -921,6 +966,12 @@ footer {
 @media screen and (max-width:480px) {
     .carousel-control-next,
     .carousel-control-prev {
+        display: none;
+    }
+}
+
+@media screen and (max-width:359px){
+    .search-bar {
         display: none;
     }
 }
@@ -944,15 +995,7 @@ footer {
     }
     .profile-container h3 {
         font-size: 25px;
-    }
-    fieldset {
-        border: none;
-        padding: 0;
-        margin-top: 20px;   
-    }
-    legend {
-        padding: 0px 0px;
-        font-size: 1.5rem;
+        padding-top: 30px;
     }
     .social {
         padding-bottom: 10px;
@@ -961,24 +1004,16 @@ footer {
         padding: 0;
     }
     .search-bar {
-        top: 80px;
+        top: 25%;
     }
     .text {
         top: 10%;
     }
-    
-}
-
-@media screen and (max-width:992px) {
-    .carousel-inner {
-        height: auto !important;
+    .alert {
+        top: 15%;
+        font-size: 16px;
     }
-    .navbar-nav {
-        padding-left: 20px;
-    }
-    .navbar-collapse {
-        background: black ;
-        opacity: .9;
-        border-radius: 1px;
+    .header-text h2 {
+        padding-top: 65px;
     }
 }

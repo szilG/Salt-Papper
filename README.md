@@ -3,7 +3,11 @@
 
 ## About
 Salt and Pepper is the website for anyone who believes that good food brings us together, no matter where are you (they) live.
+
+
 KEEP COOKING DAILY - these recipes show you how to make a delicious meal or incredible drinks easyly in your home.
+
+
 Salt and Pepper is a website for all food lovers who love to eat, try different flavour and create magnificent recipes!
 
 
@@ -19,14 +23,32 @@ The link to the website is available [HERE]().
 
 <a name="ux"></a>
 ## User Experience (UX)
+
 ### User Stories
 Salt and Pepper gives the information about different recipe with cooking method, cooking-time, ingredients-list posted by users.
 Salt and Pepper provides to create your own account and post recipe.
-#### Generic User
+- #### Generic User
 1.  I want to easily understand the purpose and the layout of the site without additional instructions needed.
 1.  I want to easily navigate through the site to browse the content.
 1.  I want the site is responsive on all device.
 1.  I want to use the navigation at all times so I can quickly navigate from one page to another.
+
+- ####  Admin/Owner
+    1. As a Admin/Owner I want to read all the recipe.
+    1. As a Admin/Owner I want to add, edit and delete my recipe.
+    1. As a Admin/Owner I can delete others recipe from my site.
+    1. As a Admin/Owner I want manage categories of recipes.I want to add, edit and delete the category.
+
+- #### User who wants to get recipe
+    1. I want to check all the recipe without login or sign up on site.
+    1. I want to get recipe by search option.
+
+- #### User who wants to post recipe
+    1. I want to create my profile by sign up.
+    1. I want to easliy login and check my page.
+    1. I want to add new recipe on my page and available to all users of site.
+    1. I want to edit and delete my recipe only.
+    
 
 ## Design
 
@@ -43,8 +65,7 @@ Salt and Pepper provides to create your own account and post recipe.
 #### Code
 * Bootstrap library was used to create a responsive design.
 #### Content
-* All code was written by Szilvia Gombarovics
-* The recipes of the page was copied from [Jamie Oliver](https://www.jamieoliver.com/)
+* The recipes and the Image URL-s of the page was copied from [Jamie Oliver](https://www.jamieoliver.com/)
 #### Media
 ###### No recipe Image
 * The [No Recipe Image](https://norecipes.com/karaage-recipe/) was used from this website.

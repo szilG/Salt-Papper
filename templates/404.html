@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid error-container"></div>
-<div class="row header-text">
-      <div class="col-md-12 text-center">
-          <h2>OOH NUTS</h2>
-      </div>
-    </div>  
+<div class="container-fluid error-container">
+    <div class="row error-hero">
+        <div class="col-md-12 text-center">
+            <h2>OOH NUTS</h2>
+        </div>
+  </div>  
+</div>
 <div class="container">
       <div class="row text-center">
+          <div class="col mt-5 error-header text-left">
+            <a href="{{ url_for('home') }}"><i class="fas fa-arrow-circle-left pr-2"></i>Back to Home page</a>
+          </div>
           <div class="col-12 error-header mt-5">
               <h2 class="">404 - Page not found </h2>
               <h4 class="">Sorry, the page you requested could not be found.</h4>

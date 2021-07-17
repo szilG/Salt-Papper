@@ -23,20 +23,21 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # MongoDB Global Variable
 mongo = PyMongo(app)
 
+
 PER_PAGE = 6
 
 
-def paginated(recipes):
+def paginated(recipe):
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    offset = page * PER_PAGE - PER_PAGE
-    return recipes[offset: offset + PER_PAGE]
+    offset = (page * PER_PAGE) - PER_PAGE
+    return recipe[offset: offset + PER_PAGE]
 
 
-def pagination_args(recipes):
+def pagination_args(recipe):
     page, per_page, offset = get_page_args(
         page_parameter='page', per_page_parameter='per_page')
-    total = len(recipes)
+    total = recipe.count()
     return Pagination(page=page, per_page=PER_PAGE, total=total)
 
 
@@ -58,30 +59,21 @@ def home():
         drinks=drinks)
 
 
-# RECPES
-@app.route("/recipes/<categories>")
-def recipes(categories):
-    recipes = mongo.db.recipes.find()
-    """To display recipes of that specific category by posted date"""
-    if categories == "all":
-        recipes = list(mongo.db.recipes.find().sort("_id", -1))
-    elif categories == "mains":
-        recipes = list(mongo.db.recipes.find(
-            {"category_name": "Mains"}).sort("_id", -1))
-    elif categories == "breakfast":
-        recipes = list(mongo.db.recipes.find(
-            {"category_name": "Breakfast"}).sort("_id", -1))
-    elif categories == "desserts":
-        recipes = list(mongo.db.recipes.find(
-            {"category_name": "Desserts"}).sort("_id", -1))
-    elif categories == "starters":
-        recipes = list(mongo.db.recipes.find(
-            {"category_name": "Starters"}).sort("_id", -1))
-    elif categories == "drinks":
-        recipes = list(mongo.db.recipes.find(
-            {"category_name": "Drinks"}).sort("_id", -1))
-    else:
-        recipes = list(mongo.db.recipes.find().sort("_id", -1))
+# RECIPES
+@app.route("/recipes/", methods=["GET", "POST"])
+def recipes():
+
+    categories = request.args.get("categories")
+    query = request.form.get("query")
+    page_number = int(request.args.get("page_number", 1))
+    filter_obj = {}
+    if query:
+        filter_obj["$text"] = {"$search": query}
+    if categories and categories != 'all':
+        filter_obj["category_name"] = categories.capitalize()
+
+    recipes = mongo.db.recipes.find(filter_obj).sort(
+        "_id", -1).skip((page_number - 1)*PER_PAGE).limit(PER_PAGE)
 
     recipes_paginated = paginated(recipes)
     pagination = pagination_args(recipes)
@@ -91,19 +83,20 @@ def recipes(categories):
         recipe_paginated=recipes_paginated, pagination=pagination)
 
 
-@app.route("/search/", methods=["GET", "POST"])
-def search():
-    query = request.form.get("query")
-    recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-    """
-    count how many recipes in total from search word(s)
-    """
-    total = int(mongo.db.recipes.find({"$text": {"$search": query}}).count())
-    categories = mongo.db.categories.find()
-    return render_template("search.html", recipes=recipes,
-                           total=total, categories=categories, search=True)
+# @app.route("/search/", methods=["GET", "POST"])
+# def search():
+#     query = request.form.get("query")
+#     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
+#     """
+#     count how many recipes in total from search word(s)
+#     """
+#     total = int(mongo.db.recipes.find({"$text": {"$search": query}}).count())
+#     categories = mongo.db.categories.find()
+#     return render_template("search.html", recipes=recipes,
+#                            total=total, categories=categories, search=True)
 
 
+# Register/signin route
 @app.route("/register/", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -129,6 +122,7 @@ def register():
     return render_template("home.html")
 
 
+# login route
 @app.route("/login/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -160,8 +154,9 @@ def login():
     return render_template("home.html")
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
+# Profile route
+@app.route("/profile/", methods=["GET", "POST"])
+def profile():
     if not session.get("user"):
         return render_template("404.html")
 
@@ -171,17 +166,19 @@ def profile(username):
 
     if session["user"]:
         if session["user"] == ADMIN_USER_NAME:
-            user_recipes = list(mongo.db.recipes.find())
+            user_recipes = list(mongo.db.recipes.find().sort("_id", -1))
         else:
             user_recipes = list(
-                mongo.db.recipes.find({"username": session["user"]}))
+                mongo.db.recipes.find({"username": session["user"]}).sort(
+                    "_id", -1))
         return render_template(
             "profile.html", username=username, user_recipes=user_recipes)
 
     return redirect(url_for("login"))
 
 
-@app.route("/logout")
+# Logout route
+@app.route("/logout/")
 def logout():
     # Only if user in session show the flash message
     if "user" in session:
@@ -192,6 +189,7 @@ def logout():
     return redirect(url_for("home", user=user))
 
 
+# Add recipe route
 # Add New Recipe To DB
 @app.route("/add_recipe/", methods=["GET", "POST"])
 def add_recipe():
@@ -232,7 +230,7 @@ def add_recipe():
         categories=categories, difficulties=difficulties)
 
 
-# Edit recipe
+# Edit recipe route
 @app.route("/edit_recipe/<recipe_id>", methods=["GET", "POST"])
 def edit_recipe(recipe_id):
     # Check if the user loged in
@@ -273,6 +271,7 @@ def edit_recipe(recipe_id):
         recipe=recipe, categories=categories, difficulties=difficulties)
 
 
+# Delete recipe route
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     # Check if the user loged in
@@ -284,6 +283,7 @@ def delete_recipe(recipe_id):
     return redirect(url_for("profile", username=session['user']))
 
 
+# Categories route
 @app.route("/get_categories/")
 def get_categories():
     if not session.get("user") == ADMIN_USER_NAME:
@@ -294,6 +294,7 @@ def get_categories():
         "categories.html", categories=categories)
 
 
+# Add Category route
 @app.route("/add_category", methods=["GET", "POST"])
 def add_category():
     if not session.get("user") == ADMIN_USER_NAME:
@@ -310,6 +311,7 @@ def add_category():
     return render_template("add_category.html")
 
 
+# Edit Category route
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     if not session.get("user") == ADMIN_USER_NAME:
@@ -328,6 +330,7 @@ def edit_category(category_id):
         "edit_category.html", category=category)
 
 
+# Delete Category route
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
     if not session.get("user") == ADMIN_USER_NAME:
@@ -350,6 +353,7 @@ def single_recipe(recipe_id):
         "single_recipe.html", recipe=recipe)
 
 
+# IP & PORT Environment Variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

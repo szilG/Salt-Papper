@@ -48,15 +48,14 @@
 </div>
 <!-- End Carousel -->
 
-<!-- Start section -->
+<!-- Start hero text section -->
 <div class="container-fluid orange-container">
   <div class="col-12 text-center text">
     <h3><span>Salt</span>&<span>Pepper</span>
       is The Place to find what your inner foodie craves</h3>
+  </div>
 </div>
-</div>
-
-
+<!-- End hero text section -->
 
 <!--Section to display recipes-->
 <div class="container-fluid">
@@ -68,10 +67,12 @@
   </div>
 </div>
 
-<div class="row pt-4 justify-content-center">
-  <div class="col-md-4 recipe-bottom text-center">
-    <a href="{{ url_for( 'recipes', categories = 'all') }}" class="btn-all-recipes p-2">View all recipes <i class="fas fa-carrot"></i></a>
-  </div>
+<div class="container">
+  <div class="row pt-4 justify-content-center">
+    <div class="col-md-4 all-recipe-btn text-center">
+      <a href="{{ url_for( 'recipes', categories = 'all') }}" class="p-2">View all recipes <i class="fas fa-carrot"></i></a>
+    </div>
+  </div>  
 </div>
 
 <!--Mains-->
@@ -128,7 +129,5 @@
       </div>
   </div>
 </section>
-  
-
 
 {% endblock %}

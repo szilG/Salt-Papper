@@ -156,11 +156,10 @@
                 </div>
                 <!--End Description Section-->
 
-                <div class="row">
-                    <div class="col-sm-12 center-align">
-                        <button type="submit" class="edit-btn-custom">Edit Recipe</button>
-                        <button class="cancel-btn-custom"><a href="{{ url_for('profile', username=session['user']) }}">Cancel</a></button>
-                        </a>
+                <div class="row justify-content-center mt-5">
+                    <div class="edit-recipe-buttons text-center">
+                        <button type="submit">Edit Recipe</button>
+                        <a href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
                     </div>
                 </div>
             </div>

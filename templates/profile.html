@@ -25,8 +25,8 @@
 
 <div class="container mt-lg-5 pt-lg-5">
     <div class="row btn-container">
-        <div class="col-12 pb-3">
-            <button class="btn-custom"><a href="{{ url_for('add_recipe') }}">Add new recipe</a></button>
+        <div class="col-12  all-recipe-btn pb-3">
+            <a href="{{ url_for('add_recipe') }}" class="p-2">Add new recipe</a>
         </div>
     </div>
         {% for recipe in user_recipes %}
@@ -63,10 +63,13 @@
                                 <p>Cooking : {{ recipe.cook_time }}  minutes <p>
                             </div>
                         </div>
-                        <div class="card-buttons text-center">
-                            <button class="edit-btn-custom"><a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">Edit Recipe</a></button>
-                            <button type="button" data-toggle="modal" data-target="#delete-modal-{{ recipe._id }}" class="delete-btn-custom"><a href="#delete-modal-{{ recipe._id }} ">Delete Recipe</a></button>
+                        <div class="row justify-content-center">
+                            <div class="profile-buttons text-center">
+                                <a href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}" class="edit">Edit Recipe</a>
+                                <a href="#delete-modal-{{ recipe._id }} " data-toggle="modal" data-target="#delete-modal-{{ recipe._id }}" class="delete">Delete Recipe</a>
+                            </div>
                         </div>
+                        
                         
                     </div>
                 </div>
@@ -97,8 +100,8 @@
                             </div>
                             <!--Modal footer-->
                             <div class="modal-footer text-center">
-                                <button class="delete-btn-custom"><a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}">Delete</a></button>
-                                <button class="cancel-btn-custom"><a href="{{ url_for('profile', username=session['user']) }}">Cancel</a></button>
+                                <a href="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" class="delete-btn-custom pr-3">Yes, delete it</a>
+                                <a href="{{ url_for('profile', username=session['user']) }}" class="cancel-btn-custom">No, keep it</a>
                             </div>
                         </div>
                     </div>

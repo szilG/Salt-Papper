@@ -2,22 +2,25 @@
 {% block content %}
 
 
-<div class="container-fluid manage-cat-bg"></div>
-<div class="row header-text">
-    <div class="col-md-12 text-center">
-        <h2>Admin Page</h2>
-    </div>
-</div>  
-
-<div class="container-fluid orange-container"></div>
-<div class="col-12 text-center text">
-      <h3>Manage Categories</h3>
+<div class="container-fluid manage-cat-bg">
+    <div class="row admin-header-text">
+        <div class="col-md-12 text-center">
+            <h2>Admin Page</h2>
+        </div>
+    </div>  
 </div>
+
+<div class="container-fluid orange-container">
+    <div class="col-12 text-center text">
+        <h3>Manage Categories</h3>
+  </div>
+</div>
+
 
 <div class="container mt-5 pt-5">
     <div class="row">
-        <div class="col s12 center-align">
-            <button class="btn-custom"><a href="{{ url_for('add_category') }}" >Add category</a></button>
+        <div class="col all-recipe-btn pb-3 text-center">
+            <a href="{{ url_for('add_category') }}" class="p-2" >Add category</a>
         </div>
     </div>
     <div class="row">
@@ -28,9 +31,9 @@
                         <p>{{ category.category_name }}</p>
                     </div>
                     <div class="card-action">
-                        <button class="edit-btn-custom"><a href="{{ url_for('edit_category', category_id=category._id) }}">Edit Category</a></button>
-                        <button class="delete-btn-custom"><a href="#delete-modal-{{ (category._id) }}" data-toggle="modal"
-                            data-target="#delete-modal-{{ (category._id) }}">Delete</a></button>
+                        <a href="{{ url_for('edit_category', category_id=category._id) }}" class="">Edit Category</a>
+                        <a href="#delete-modal-{{ (category._id) }}" data-toggle="modal"
+                            data-target="#delete-modal-{{ (category._id) }}" class="">Delete Category</a>
                     </div>
                 </div>
                 <!--Credit for https://getbootstrap.com/docs/4.6/components/modal/-->
@@ -48,8 +51,8 @@
                             <h6 id="info-modal-content">Are you sure you want to delete the category?</h6>
                         </div>
                         <div class="modal-footer">
-                            <button class="delete-btn-custom"><a href="{{ url_for('delete_category', category_id=category._id) }}">Delete</a></button>
-                            <button class="cancel-btn-custom"><a href="{{ url_for('get_categories') }}">Cancel</a></button>
+                            <a href="{{ url_for('delete_category', category_id=category._id) }}" class="delete-btn-custom">Delete</a>
+                            <a href="{{ url_for('get_categories') }}" class="cancel-btn-custom">Cancel</a>
                         </div>
                       </div>
                     </div>

@@ -15,7 +15,6 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 }
-
 .navbar {
     background: rgba(0,0,0,.6) !important;
     width: 100%;
@@ -26,7 +25,7 @@ body {
 .search-bar {
     position: absolute;
     z-index: 1;
-    top: 20%;
+    top: 10%;
     width: 100%;
 }
 
@@ -79,14 +78,6 @@ body {
 
 }
 
-.fa-user-cog {
-    color: var(--orange-color);
-}
-
-.fa-user-lock {
-    color: var(--orange-color);
-}
-
 .input-group>.form-control:focus {
     box-shadow: none;
 }
@@ -110,6 +101,10 @@ body {
     color: #fff !important;
 }
 
+.navbar .navbar-brand:hover {
+    color: var(--slogen-color) !important;
+}
+
 .navbar .slogen {
     display: block;
     font-size: 1.5rem;
@@ -119,7 +114,6 @@ body {
     color: var(--slogen-color);
     line-height: 0 !important;
 }
-
 
 .navbar .navbar-brand span {
     font-family: var(--secondary-font);
@@ -145,7 +139,10 @@ body {
 .modal-title {
     color: var(--purple-text-color);
     font-family: var(--logo-font);
+    letter-spacing: 1px;
+    font-size: 20px;
 }
+
 .modal-footer a {
     text-decoration: none;
     color: var(--purple-text-color);
@@ -153,6 +150,27 @@ body {
 }
 
 .modal-footer a:hover {
+    color: var(--orange-color);
+}
+/*==Sign-in and Sign-up modal btn======*/
+.purple-btn {
+    width: 200px;
+    height: 50px;
+    background: none;
+    border: 4px solid;
+    border-radius: 30px;
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.purple-btn:hover {
+    border: 4px solid var(--orange-color);
+}
+
+.purple-btn i {
     color: var(--orange-color);
 }
 
@@ -292,19 +310,28 @@ body {
     color: var(--main-text-color);
 }
 
-.recipe-bottom a {
+/*===Home page purple btn===*/
+.all-recipe-btn a{
     text-decoration: none;
-    color: var(--main-text-color);
+    width: 200px;
+    height: 50px;
+    background: none;
+    border: 4px solid;
+    border-radius: 30px;
+    color: var(--purple-text-color);
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
-.recipe-bottom a:hover {
+.all-recipe-btn a:hover {
+    border: 4px solid var(--orange-color);
+}
+
+.all-recipe-btn i {
     color: var(--orange-color);
 }
-
-.recipe-bottom i {
-    color: var(--orange-color);
-}
-
 /*=========Add Recipe=============*/
 .add-recipe-img {
     background: url('../img/7.jpg') no-repeat;
@@ -313,6 +340,10 @@ body {
     background-position: center;
     object-fit: cover;
 }
+.back-to-recipe {
+    padding-top: 120px;
+}
+
 .back-to-recipe a {
     text-decoration: none;
     color: var(--purple-text-color);
@@ -368,6 +399,77 @@ form label {
     color: var(--main-text-color);
 }
 
+.add-recipe-buttons a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background: none;
+    border: 4px solid;
+    border-radius: 30px;
+    color: #198754;
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+.add-recipe-buttons a:hover {
+    color: #02532e;
+}
+
+.add-recipe-buttons button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: var(--secondary-font);
+    color: var(--purple-text-color);
+    border: 4px solid;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 20px;
+}
+
+.add-recipe-buttons button:hover {
+    color: var(--orange-color);
+}
+
+.edit-recipe-buttons a {
+    text-decoration: none;
+    padding: 10px 70px;
+    background: none;
+    border: 4px solid;
+    border-radius: 30px;
+    color: #198754;
+    font-family: var(--secondary-font);
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.edit-recipe-buttons a:hover {
+    color: #02532e;
+}
+
+.edit-recipe-buttons button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: var(--secondary-font);
+    color: var(--gold-text-color);
+    border: 4px solid;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 52px;
+}
+
+.edit-recipe-buttons button:hover {
+    color: #70470d;
+}
+
 /*=============Profile==============*/
 .profile-header-img {
     background: url('../img/3.jpg') no-repeat;
@@ -415,68 +517,13 @@ form label {
     color: #573a11;
 }
 
-.card-buttons {
-    padding-top: 50px;
+.profile-buttons {
+    margin-top: 50px;
 }
 
-/*=====================================CUSTOM BUTTONS===================================*/
-/*===Main Custom Button====*/
-
-.btn-custom a {
+.profile-buttons .edit {
     text-decoration: none;
-    color: var(--navbar-color);
-}
-.btn-custom {
-    width: 150px;
-    height: 40px;
-    background: none;
-    border: 4px solid;
-    border-radius: 30px;
-    color: var(--purple-text-color);
-    font-family: var(--secondary-font);
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-    margin-top: -100px;
-}
-
-.btn-custom::before, .btn-custom::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 4px;
-    background: #fff;
-    transform: skewX(50deg);
-    transition: .4s linear;
-}
-
-.btn-custom::before {
-    top: -4px;
-    left: 10%;
-}
-
-.btn-custom::after {
-    bottom: -4px;
-    right: 10%;
-}
-
-.btn-custom:hover::before {
-    left: 80%;
-}
-
-.btn-custom:hover::after {
-    right: 80%;
-}
-/*==========Edit Custom Button=============*/
-.edit-btn-custom a {
-    text-decoration: none;
-    color: var(--navbar-color);
-}
-.edit-btn-custom {
-    /* width: 150px;
-    height: 40px; */
-    padding: 5px 20px;
+    padding: 10px 30px;
     background: none;
     border: 4px solid;
     border-radius: 30px;
@@ -485,179 +532,28 @@ form label {
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    position: relative;
 }
 
-.edit-btn-custom::before, .edit-btn-custom::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 4px;
-    background: #fff;
-    transform: skewX(50deg);
-    transition: .4s linear;
+.profile-buttons .edit:hover {
+    color: #70470d;
 }
 
-.edit-btn-custom::before {
-    top: -4px;
-    left: 10%;
-}
-
-.edit-btn-custom::after {
-    bottom: -4px;
-    right: 10%;
-}
-
-.edit-btn-custom:hover::before {
-    left: 80%;
-}
-
-.edit-btn-custom:hover::after {
-    right: 80%;
-}
-/*=========Delete Custom Buttons=============*/
-.delete-btn-custom a {
+.profile-buttons .delete {
     text-decoration: none;
-    color: var(--navbar-color);
-}
-.delete-btn-custom {
-    /* width: 150px;
-    height: 40px; */
-    padding: 5px 20px;
+    padding: 10px 20px;
     background: none;
     border: 4px solid;
     border-radius: 30px;
-    color: #ff5722;
+    color: #C70039;
     font-family: var(--secondary-font);
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    position: relative;
 }
 
-.delete-btn-custom::before, .delete-btn-custom::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 4px;
-    background: #fff;
-    transform: skewX(50deg);
-    transition: .4s linear;
+.profile-buttons .delete:hover {
+    color: rgb(133, 2, 2);
 }
-
-.delete-btn-custom::before {
-    top: -4px;
-    left: 10%;
-}
-
-.delete-btn-custom::after {
-    bottom: -4px;
-    right: 10%;
-}
-
-.delete-btn-custom:hover::before {
-    left: 80%;
-}
-
-.delete-btn-custom:hover::after {
-    right: 80%;
-}
-
-/*=========Cancel Custom Buttons=============*/
-.cancel-btn-custom a {
-    text-decoration: none;
-    color: var(--navbar-color);
-}
-
-.cancel-btn-custom {
-    padding: 5px 20px;
-    background: none;
-    border: 4px solid;
-    border-radius: 30px;
-    color: #53958F;
-    font-family: var(--secondary-font);
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-}
-
-.cancel-btn-custom::before, .cancel-btn-custom::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 4px;
-    background: #fff;
-    transform: skewX(50deg);
-    transition: .4s linear;
-}
-
-.cancel-btn-custom::before {
-    top: -4px;
-    left: 10%;
-}
-
-.cancel-btn-custom::after {
-    bottom: -4px;
-    right: 10%;
-}
-
-.cancel-btn-custom:hover::before {
-    left: 80%;
-}
-
-.cancel-btn-custom:hover::after {
-    right: 80%;
-}
-
-/*=================btn-All-recipes==================*/
-.btn-all-recipes a {
-    text-decoration: none;
-    color: var(--navbar-color);
-}
-.btn-all-recipes {
-    width: 200px;
-    height: 50px;
-    background: none;
-    border: 4px solid;
-    border-radius: 30px;
-    color: var(--purple-text-color);
-    font-family: var(--secondary-font);
-    font-size: 20px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-    margin-top: -100px;
-}
-
-.btn-all-recipes::before, .btn-all-recipes::after {
-    content: "";
-    position: absolute;
-    width: 14px;
-    height: 4px;
-    background: #fff;
-    transform: skewX(50deg);
-    transition: .4s linear;
-}
-
-.btn-all-recipes::before {
-    top: -4px;
-    left: 10%;
-}
-
-.btn-all-recipes::after {
-    bottom: -4px;
-    right: 10%;
-}
-
-.btn-all-recipes:hover::before {
-    left: 80%;
-}
-
-.btn-all-recipes:hover::after {
-    right: 80%;
-}
-/*======================End of buttons===========================================*/
 
 .card {
     padding: 5px;
@@ -681,8 +577,6 @@ form label {
     padding-top: 20px;
 }
 
-
-
 /*=========Single recipe page===========*/
 .single-rec-cont {
     margin-top: 6rem;
@@ -692,11 +586,6 @@ form label {
     color: var(--purple-text-color);
     font-family: var(--secondary-font);
     padding-bottom: 40px;
-}
-
-.single-rec-image  img{
-    width: 100%;
-    height: 320px;
 }
 
 .tags p{
@@ -730,6 +619,7 @@ form label {
     font-family: var(--logo-font);
     color: #fff;
     font-size: 50px;
+    padding-top: 65px;
 }
 
 .recipe-categories {
@@ -792,12 +682,47 @@ form label {
     width: 100%;
     height: 400px;
     background-position: center;
-    object-fit: cover; 
+    object-fit: cover;
+    position: relative;
+}   
+
+.admin-header-text {
+    position: absolute;
+    top: 50%;
+}
+
+.admin-header-text h2 {
+    font-family: var(--logo-font);
+    color: #fff;
+    font-size: 50px;
+}
+ 
+.card-action a{
+    text-decoration: none;
+    font-family: var(--secondary-font);
+    color: var(--purple-text-color);
+    padding: 0 10px;
+}
+
+.card-action a:hover {
+    color: var(--orange-color);
 }
 
 .card-content p {
     font-family: var(--secondary-font);
-    columns: var(--purple-text-color);
+    color: var(--purple-text-color);
+}
+
+.card-action button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family: var(--secondary-font);
+    color: var(--purple-text-color);
+}
+
+.card-action button:hover {
+    color: var(--orange-color);
 }
 
 /*============================FOOTER=======================*/
@@ -846,6 +771,13 @@ footer {
 }
 
 /*=========================Error pages-403,404,500=======================*/
+.error-hero h2 {
+    font-family: var(--logo-font);
+    color: #fff;
+    font-size: 50px;
+    margin-top: 10%;
+}
+
 .error-container {
     background: url('../img/10.jpg') no-repeat;
     width: 100%;
@@ -875,6 +807,10 @@ footer {
     color: var(--gold-text-color);
     font-family: var(--logo-font);
     padding: 5px;
+}
+
+.error-header a:hover {
+    color: var(--purple-text-color);
 }
 
 /* Pagination */
@@ -909,14 +845,11 @@ footer {
 
 /*==========================MEDIA=========================*/
 @media screen and (max-width: 1199px) {
-    .alert {
-        top: 15%;
+    .profile-buttons {
+        margin-top: 40px;
     }
 }
 @media screen and (max-width: 991px) {
-    .card-buttons {
-        padding-top: 0;
-    }
     .text h3 {
         font-size: 20px;
     }
@@ -932,7 +865,7 @@ footer {
         border-radius: 1px;
     }
     .alert {
-        top: 10%;
+        top: 15%;
     }
     .navbar-nav {
         padding: 20px 0;
@@ -955,12 +888,12 @@ footer {
         padding: 0px 0px;
         font-size: 1.5rem;
     }
-}
-
-@media screen and (max-width: 386px) {
-    .delete-btn-custom {
-        margin-top: 10px;
+    .search-bar {
+        top: 18%;
     }
+    .error-hero h2 {
+        margin-top: 30%;
+    } 
 }
 
 @media screen and (max-width:480px) {
@@ -1013,7 +946,17 @@ footer {
         top: 15%;
         font-size: 16px;
     }
-    .header-text h2 {
-        padding-top: 65px;
+    .error-hero h2 {
+        margin-top: 50%;
     }
+    .add-recipe-buttons button {
+        margin-bottom: 30px;
+    }
+    .edit-recipe-buttons button {
+        margin-bottom: 30px;
+    }
+    .profile-buttons {
+        margin-top: 30px;
+    }
+    
 }

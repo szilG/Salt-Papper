@@ -1,4 +1,8 @@
 <h1 align="center">Salt and Pepper<a name="#top"></a></h1>
+<h1 align="center"><img src="static/img/readme-images/mockups/home.png"/></h1>
+
+[Live Website](http://salt-and-pepper-project.herokuapp.com/home/)
+[GitHub Repo](https://github.com/szilG/Salt-and-Papper)
 
 
 ## About
@@ -99,6 +103,15 @@ Salt and Pepper provides to create your own account and post recipe.
 
 - #### Mockup made through original website 
     -[Wireframes](https://techsini.com/multi-mockup/index.php)
+
+    img src="static/img/readme-images/mockups/home.png"/>
+    img src="static/img/readme-images/mockups/recipes.png"/>
+    img src="static/img/readme-images/mockups/signin.png"/>
+    img src="static/img/readme-images/mockups/sindup.png"/>
+    img src="static/img/readme-images/mockups/404.png"/>
+    img src="static/img/readme-images/mockups/403.png"/>
+
+
     
     
 <div align="right"><a href="#top">🔝</a></div>

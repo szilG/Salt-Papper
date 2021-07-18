@@ -101,12 +101,12 @@ Salt and Pepper provides to create your own account and post recipe.
 - #### Mockup made through original website 
     -[Wireframes](https://techsini.com/multi-mockup/index.php)
 
-    img src="static/img/readme-images/mockups/home.png"/>
-    img src="static/img/readme-images/mockups/recipes.png"/>
-    img src="static/img/readme-images/mockups/signin.png"/>
-    img src="static/img/readme-images/mockups/sindup.png"/>
-    img src="static/img/readme-images/mockups/404.png"/>
-    img src="static/img/readme-images/mockups/403.png"/>
+    <img src="static/img/readme-images/mockups/home.png"/>
+    <img src="static/img/readme-images/mockups/recipes.png"/>
+    <img src="static/img/readme-images/mockups/signin.png"/>
+    <img src="static/img/readme-images/mockups/sindup.png"/>
+    <img src="static/img/readme-images/mockups/404.png"/>
+    <img src="static/img/readme-images/mockups/403.png"/>
 
 
     

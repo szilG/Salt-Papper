@@ -1,9 +1,6 @@
 <h1 align="center">Salt and Pepper<a name="#top"></a></h1>
 <h1 align="center"><img src="static/img/readme-images/mockups/home.png"/></h1>
 
-[Live Website](http://salt-and-pepper-project.herokuapp.com/home/)
-[GitHub Repo](https://github.com/szilG/Salt-and-Papper)
-
 
 ## About
 Salt and Pepper is the website for anyone who believes that good food brings us together, no matter where are you (they) live.
@@ -15,7 +12,7 @@ Salt and Pepper is a website for all food lovers who love to eat, try different 
 
 I created this for **Milestone Project 3 (Python and Data-Centric Development), Full Stack Software Development** in [Code Institute](https://codeinstitute.net/), Ireland.
 It is fully responsive on all devices and easy to navigate for users.
-The link to the website is available [HERE]().
+The link to the website is available [HERE](http://salt-and-pepper-project.herokuapp.com/home/).
 
 <div align="right"><a href="#top">🔝</a></div>
 

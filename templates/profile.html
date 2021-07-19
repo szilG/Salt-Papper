@@ -90,9 +90,19 @@
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row">
+                                    {% if recipe.image %}
                                     <div class="col-md-6">
-                                        <img class="img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+                                        <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                                            <img class="img-fluid" src="{{ recipe.image }}" alt="{{ recipe.recipe_name }}">
+                                        </a>
                                     </div>
+                                    {% else %}
+                                    <div class="col-md-4">
+                                        <a href="{{ url_for('single_recipe', recipe_id=recipe._id) }}">
+                                            <img class="img-fluid" src="{{ url_for('static', filename='img/no-recipe-img.jpg') }}" alt="{{ recipe.recipe_name }}">
+                                        </a>
+                                    </div>
+                                    {% endif %}
                                     <div class="col-md-6">
                                         <h6 class="text-center">{{ recipe.recipe_name }}</h6>
                                         <p>{{ recipe.description }}</p>

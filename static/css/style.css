@@ -75,7 +75,20 @@ body {
     border: 2px solid #fff;
     background-color: #fff;
     color: #C70039 !important;
+}
 
+#signout {
+    border: 2px solid #C70039;
+    background-color: #C70039;
+    border-radius: 20px;
+    padding: .2rem 1rem !important;
+    line-height: 30px; 
+}
+
+#signout:hover {
+    border: 2px solid #fff;
+    background-color: #fff;
+    color: #C70039 !important;
 }
 
 .input-group>.form-control:focus {
@@ -410,7 +423,6 @@ form label {
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-
 }
 
 .add-recipe-buttons a:hover {
@@ -428,7 +440,7 @@ form label {
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    padding: 8px 20px;
+    padding: 8px 30px;
 }
 
 .add-recipe-buttons button:hover {
@@ -929,6 +941,16 @@ footer {
     .search-bar {
         display: none;
     }
+    .profile-buttons .edit {
+        padding: 5px 10px;
+        border: 3px solid;
+        font-size: 15px;   
+    }
+    .profile-buttons .delete {
+        padding: 5px 10px;
+        border: 3px solid;
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width:767px) {
@@ -980,5 +1002,15 @@ footer {
     .profile-buttons {
         margin-top: 30px;
     }
+    .add-recipe-buttons a {
+        padding: 8px 10px;
+        border: 3px solid;
+        font-size: 15px;
+    }
+    .add-recipe-buttons button {
+        border: 3px solid;
+        font-size: 15px;
+        padding: 5px 20px;
+    }   
     
 }

@@ -14,3 +14,10 @@
   - All external links is tested to make sure they open up the correct pages in new tabs.
   - All internal links is tested to make sure that all pages are correctly connected.
     
+### CCS3 validator
+Validate by [CSS Validator](https://jigsaw.w3.org/css-validator/)
+  - Test result : No Error
+
+### HTML5 validator
+Vaidate by [HTML5 Validator](https://validator.w3.org/#validate_by_input)
+  - Test result : On all pages there are some error as I used jinja template to create the pages.

@@ -588,14 +588,36 @@ form label {
     padding-bottom: 40px;
 }
 
-.tags p{
-    display: inherit;
-    padding-left: 10px;
-    color: var(--main-text-color);
+.product2 {
+    width: 100%;
+    display: block;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
 }
 
-.tags i {
-    color: var(--main-text-color);
+.product2 .img img{
+    display: block;
+    border-radius: 4px;
+    height: 350px;
+    position: relative;
+    width: 100%;
+    object-fit: cover;
+}
+
+.tag {
+    display: inherit;
+    padding-left: 10px;
+    color: var(--purple-text-color);
+}
+
+.tag i {
+    color: var(--purple-text-color);
+}
+
+.details h6 {
+    font-family: var(--secondary-font);
+    color: var(--purple-text-color);
+    font-size: 20px;
 }
 
 /*=========Recipes page========*/

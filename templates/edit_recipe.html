@@ -14,7 +14,7 @@
                         <label class="input-group-text" for="category_name">Choose *</label>
                     </div>
                     <select id="category_name" name="category_name" class="custom-select validate" required>
-                        <option value="" disabled selected>Category *</option>
+                        <option value="" disabled>Category *</option>
                         {% for category in categories %}
                         {% if category.category_name == recipe.category_name %}
                                 <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
@@ -32,7 +32,7 @@
                         <label class="input-group-text">Choose *</label>
                     </div>
                     <select id="difficulty_level" name="difficulty_level" class="custom-select validate" required>
-                        <option value="" disabled selected>Difficulty Level *</option>
+                        <option value="" disabled>Difficulty Level *</option>
                         {% for difficulty in difficulties %}
                         {% if difficulty.difficulty_level == recipe.difficulty_level %}
                                     <option value="{{ difficulty.difficulty_level }}" selected>{{ difficulty.difficulty_level}}</option>
@@ -50,7 +50,7 @@
                     <div class="input-group mb-3">
                         <input type="text" id="recipe_name" name="recipe_name" value="{{ recipe.recipe_name }}"
                             class="form-control validate" minlength="5"
-                            maxlength="50" rows="1" aria-label="Recipe Name" aria-describedby="basic-addon1"
+                            maxlength="50" aria-label="Recipe Name"
                             placeholder="Recipe Title">
                     </div>
                 </div>
@@ -62,8 +62,8 @@
                     <div class="input-group mb-3">
                         <input type="text" id="chef" name="chef" value="{{ recipe.chef }}"
                             minlength="5" maxlength="30"
-                            class="form-control validate" placeholder="Chef" rows="1"
-                            aria-label="Chef" aria-describedby="basic-addon2">
+                            class="form-control validate" placeholder="Chef"
+                            aria-label="Chef">
                     </div>
                 </div>
                 <!--End Chef Name Section-->
@@ -86,7 +86,7 @@
                         data-toggle="tooltip" data-placement="right" title="Enter total preparation time"></i>
                     </label>
                     <div class="input-group mb-3">
-                        <input type="text" id="prep_time"  name="prep_time" value="{{ recipe.prep_time }}"
+                        <input type="text" id="prep_time" name="prep_time" value="{{ recipe.prep_time }}"
                         class="form-control validate"
                         placeholder="Preparation Time" aria-label="Preparation Time" aria-describedby="basic-addon4">
                         <span class="input-group-text" id="basic-addon4">For Example: 20 mins.</span>
@@ -113,7 +113,7 @@
                     <label class="form-label" for="image">Recipe Image URL</label>
                     <div class="input-group mb-3">
                         <input type="text" id="image" name="image" value="{{ recipe.image }}"
-                        rows="3" maxlength="200" class="form-control validate"
+                        maxlength="200" class="form-control validate"
                         aria-describedby="basic-addon6">
                         <span class="input-group-text" id="basic-addon6">https://example.com/users/</span>
                     </div>

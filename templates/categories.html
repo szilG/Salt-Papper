@@ -38,17 +38,17 @@
                 </div>
                 <!--Credit for https://getbootstrap.com/docs/4.6/components/modal/-->
                 <!--Start Delete-Modal-->
-                <div class="modal fade" id="delete-modal-{{ (category._id) }}" tabindex="-1" aria-labelledby="delete-modal-{{ (category._id) }}" aria-hidden="true">
+                <div class="modal fade" id="delete-modal-{{(category._id)}}" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="delete-modal-{{ (category._id) }}"></h5>
+                          <h5 class="modal-title" id="delete-modal-label"></h5>
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
                         <div class="modal-body">
-                            <h6 id="info-modal-content">Are you sure you want to delete the category?</h6>
+                            <h6 id="info-modal-content">Are you sure you want to delete {{ category.category_name }} category?</h6>
                         </div>
                         <div class="modal-footer">
                             <a href="{{ url_for('delete_category', category_id=category._id) }}" class="delete-btn-custom">Delete</a>

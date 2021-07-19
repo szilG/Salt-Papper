@@ -104,7 +104,7 @@ Salt and Pepper provides to create your own account and post recipe.
     <img src="static/img/readme-images/mockups/home.png"/>
     <img src="static/img/readme-images/mockups/recipes.png"/>
     <img src="static/img/readme-images/mockups/signin.png"/>
-    <img src="static/img/readme-images/mockups/sindup.png"/>
+    <img src="static/img/readme-images/mockups/singup.png"/>
     <img src="static/img/readme-images/mockups/404.png"/>
     <img src="static/img/readme-images/mockups/403.png"/>
 
@@ -178,7 +178,7 @@ Add, Edit and Delete categories.
   - A page where people can leave review and comments.
 
 * “Like” or "Rate" By Other Users/Owners:
-  - Create a way for the user to rate and like the recipes without having to type up feedback.
+  - Create a way for the user to rate and/or like the recipes without loggin in or register.
 
 
 <div align="right"><a href="#top">🔝</a></div>

@@ -204,7 +204,7 @@ Add, Edit and Delete categories.
 <a name="#testing"></a>
 
 ## Testing
-* Testing report is available **[TESTING.md]()**
+* Testing report is available **[TESTING.md](https://github.com/szilG/Salt-and-Papper/blob/master/TESTING.md)**
 
 <div align="right"><a href="#top">🔝</a></div>
 

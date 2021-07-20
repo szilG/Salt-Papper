@@ -20,7 +20,6 @@ All the forms used on the website is validated by HTML. A manual test is carried
 
 **Register**
 
-- Only the alphabet and numbers can be used as a username, and the length must be between 5 - 15. When invalid letters, including space, there is a warning message pops up.
 - For password, Minimum 8 characters maximum 20 characters one uppercase letter, one lowercase letter and one digit so a warning message pops up for an invalid length.
 - If the user already exists in the system, then an error message pops up saying **Username already exists** and it will not process the registration
 
@@ -99,15 +98,32 @@ Validate by direct input
 ---
 
 ### Defensive Design
+
 There are some pages on the website that users without permission are not allowed to access. Those users who have no permission from accessing these pages &#40;i.e Add New recipe page can be accessed from Profile page or navigation bar where only users who log in have access to it&#41;, however, by typing URL, non-authorised users can try to access these pages so there are some defensive programmes set up to prevent this from happening.
 
 Tests and results to check to see if the defensive programmes work properly.
-- try to access *Profile* `profile/?username=username` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
-- try to access *Add Recipe* `add_recipe` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
-- try to access *Edit Recipe* `edit_recipe/<object id>` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
-- try to access *Delete Recipe* `delete/<object id>` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
 
-- try to access *Manage Category `get_categories` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
-- try to access *Add Category `add_category` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
-- try to access *Edit Category `edit_category/<object id>` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
-- try to access *Delete Category `delete_category/<object id>` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go back to Home page.
+**Not Logged in users**  
+
+- try to access *Profile* `profile/?username=username` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+- try to access *Add Recipe* `add_recipe` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+- try to access *Edit Recipe* `edit_recipe/<object id>` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+- try to access *Delete Recipe* `delete/<object id>` this led to *Error 404*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+
+- try to access *Manage Category `get_categories` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+- try to access *Add Category `add_category` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+- try to access *Edit Category `edit_category/<object id>` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+- try to access *Delete Category `delete_category/<object id>` this led to *Error 403 Not autorized*. Then on the page they can go to *Sign-Up* *Sign-In Modal or go to Home page.
+
+**Logged in users**
+
+- try to access to someone else recipes with `edit_recipe/<object id>` this led to *Profile* page with "Access denied. This is not your recipe" message
+- try to access to someone else recipes with `delete_recipe/<object id>` this led to *Profile* page with "Access denied. This is not your recipe" message
+
+**Logged in user who is Not the Admin Uses**
+
+- try to access to `get_categories` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
+- try to access to `add_category` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
+- try to access to `edit_category/<object id>` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
+- try to access to `delete_category/<object id>` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
+

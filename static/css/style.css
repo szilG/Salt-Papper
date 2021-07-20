@@ -927,7 +927,10 @@ footer {
     }
     .error-hero h2 {
         margin-top: 30%;
-    } 
+    }
+    .profile-container h3 {
+        padding-top: 40px;
+    }
 }
 
 @media screen and (max-width:480px) {
@@ -978,7 +981,55 @@ footer {
         padding-bottom: 10px;
     }
     .input-group {
+        display: block;
         padding: 0;
+    }
+    #method {
+        margin: 0;
+        width: 100%;
+    }
+    #description {
+        margin: 0;
+        width: 100%;
+    }
+    #ingredients {
+        margin: 0;
+        width: 100%;
+    }
+    #image {
+        margin: 0;
+        width: 100%;
+    }
+    #cook_time {
+        margin: 0;
+        width: 100%;
+    }
+    #prep_time {
+        margin: 0;
+        width: 100%;
+    }
+    #serves {
+        margin: 0;
+        width: 100%;
+    }
+    #chef {
+        margin: 0;
+        width: 100%;
+    }
+    #recipe_name {
+        margin: 0;
+        width: 100%;
+    }
+    #difficulty_level {
+        margin: 0;
+        width: 100%;
+    }
+    #category_name {
+        margin: 0;
+        width: 100%;
+    }
+    .input-group-prepend {
+        display: block;
     }
     .search-bar {
         top: 25%;

@@ -157,24 +157,32 @@ def login():
 # Profile route
 @app.route("/profile/", methods=["GET", "POST"])
 def profile():
+    """User profile page where users have access to all their recipes,
+    and to create, edit and delete recipes
+    """
     if not session.get("user"):
         return render_template("404.html")
 
-    # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+    if "user" in session:
+        """grab the session user's username from db"""
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
 
-    if session["user"]:
-        if session["user"] == ADMIN_USER_NAME:
-            user_recipes = list(mongo.db.recipes.find().sort("_id", -1))
-        else:
-            user_recipes = list(
-                mongo.db.recipes.find({"username": session["user"]}).sort(
-                    "_id", -1))
+        if session["user"]:
+            if session["user"] == ADMIN_USER_NAME:
+                user_recipes = list(mongo.db.recipes.find().sort("_id", -1))
+            else:
+                user_recipes = list(
+                    mongo.db.recipes.find({"username": session["user"]}).sort(
+                        "_id", -1))
+            return render_template(
+                "profile.html", username=username, user_recipes=user_recipes)
+
         return render_template(
-            "profile.html", username=username, user_recipes=user_recipes)
+                "profile.html", username=username, user_recipes=user_recipes)
 
-    return redirect(url_for("login"))
+    flash("Access denied. Create your own account and login")
+    return redirect(url_for("home"))
 
 
 # Logout route
@@ -197,37 +205,42 @@ def add_recipe():
     if not session.get("user"):
         return render_template("404.html")
 
-    if request.method == "POST":
-        """
-        Create dictionary
-        """
-        recipe = {
-            "category_name": request.form.get("category_name"),
-            "recipe_name": request.form.get("recipe_name"),
-            "chef": request.form.get("chef"),
-            "serves": request.form.get("serves"),
-            "difficulty_level": request.form.get("difficulty_level"),
-            "prep_time": request.form.get("prep_time"),
-            "cook_time": request.form.get("cook_time"),
-            "image": request.form.get("image"),
-            "ingredients": request.form.get("ingredients"),
-            "method": request.form.get("method"),
-            "description": request.form.get("description"),
-            "username": session["user"],
-            "formated_date": datetime.today().strftime("%d-%m-%Y")
-        }
-        """
-        Insert form to database
-        """
-        mongo.db.recipes.insert_one(recipe)
-        flash("Recipe is successfully added")
-        return redirect(url_for("profile", username=session['user']))
+    if "user" in session:
 
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
-    return render_template(
-        "add_recipe.html",
-        categories=categories, difficulties=difficulties)
+        if request.method == "POST":
+            """
+            Create dictionary
+            """
+            recipe = {
+                "category_name": request.form.get("category_name"),
+                "recipe_name": request.form.get("recipe_name"),
+                "chef": request.form.get("chef"),
+                "serves": request.form.get("serves"),
+                "difficulty_level": request.form.get("difficulty_level"),
+                "prep_time": request.form.get("prep_time"),
+                "cook_time": request.form.get("cook_time"),
+                "image": request.form.get("image"),
+                "ingredients": request.form.get("ingredients"),
+                "method": request.form.get("method"),
+                "description": request.form.get("description"),
+                "username": session["user"],
+                "formated_date": datetime.today().strftime("%d-%m-%Y")
+            }
+            """
+            Insert form to database
+            """
+            mongo.db.recipes.insert_one(recipe)
+            flash("Recipe is successfully added")
+            return redirect(url_for("profile", username=session['user']))
+
+        categories = mongo.db.categories.find().sort("category_name", 1)
+        difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
+        return render_template(
+            "add_recipe.html",
+            categories=categories, difficulties=difficulties)
+
+    flash("Access denied. Create your own account and login")
+    return redirect(url_for("register"))
 
 
 # Edit recipe route
@@ -237,38 +250,54 @@ def edit_recipe(recipe_id):
     if not session.get("user"):
         return render_template("404.html")
 
-    if request.method == "POST":
+    if "user" in session:
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         """
-        Create dictionary
+        check user == recipe owner,
+        or the user is Admin
         """
-        submit = {
-            "category_name": request.form.get("category_name"),
-            "recipe_name": request.form.get("recipe_name"),
-            "chef": request.form.get("chef"),
-            "serves": request.form.get("serves"),
-            "difficulty_level": request.form.get("difficulty_level"),
-            "prep_time": request.form.get("prep_time"),
-            "cook_time": request.form.get("cook_time"),
-            "image": request.form.get("image"),
-            "ingredients": request.form.get("ingredients"),
-            "method": request.form.get("method"),
-            "description": request.form.get("description"),
-            "username": session["user"],
-            "formated_date": datetime.today().strftime("%d-%m-%Y")
-        }
-        """
-        Insert form to database
-        """
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
-        flash("Recipe is successfully updated")
-        return redirect(url_for("profile", username=session['user']))
 
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    categories = mongo.db.categories.find().sort("category_name", 1)
-    difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
-    return render_template(
-        "edit_recipe.html",
-        recipe=recipe, categories=categories, difficulties=difficulties)
+        if session["user"].lower() == recipe["username"].lower(
+        ) or session["user"] == ADMIN_USER_NAME:
+
+            if request.method == "POST":
+                submit = {
+                    "category_name": request.form.get("category_name"),
+                    "recipe_name": request.form.get("recipe_name"),
+                    "chef": request.form.get("chef"),
+                    "serves": request.form.get("serves"),
+                    "difficulty_level": request.form.get("difficulty_level"),
+                    "prep_time": request.form.get("prep_time"),
+                    "cook_time": request.form.get("cook_time"),
+                    "image": request.form.get("image"),
+                    "ingredients": request.form.get("ingredients"),
+                    "method": request.form.get("method"),
+                    "description": request.form.get("description"),
+                    "username": session["user"],
+                    "formated_date": datetime.today().strftime("%d-%m-%Y")
+                }
+                """
+                Insert form to database
+                """
+                mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+                flash("Recipe is successfully updated")
+                return redirect(url_for("profile", username=session['user']))
+
+            recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+            categories = mongo.db.categories.find().sort("category_name", 1)
+            difficulties = mongo.db.difficulty.find().sort(
+                "difficulty_level", 1)
+
+            return render_template(
+                "edit_recipe.html",
+                recipe=recipe, categories=categories,
+                difficulties=difficulties)
+
+        flash("Access denied. This is not your recipe")
+        return redirect(url_for("profile", username=session["user"]))
+
+    flash("Access denied. This is not your recipe")
+    return redirect(url_for("home"))
 
 
 # Delete recipe route
@@ -278,9 +307,25 @@ def delete_recipe(recipe_id):
     if not session.get("user"):
         return render_template("404.html")
 
-    mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
-    flash("Recipe successfully deleted")
-    return redirect(url_for("profile", username=session['user']))
+    # if the user logged in
+    if "user" in session:
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        """
+        check user == recipe owner,
+        or the user is Admin
+        """
+        if session["user"].lower() == recipe["username"].lower(
+        ) or session["user"] == ADMIN_USER_NAME:
+
+            mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
+            flash("Recipe successfully deleted")
+            return redirect(url_for("profile", username=session['user']))
+
+        flash("Access denied. This is not your recipe")
+        return redirect(url_for("profile", username=session["user"]))
+
+    flash("Access denied. This is not your recipe")
+    return redirect(url_for("home"))
 
 
 # Categories route

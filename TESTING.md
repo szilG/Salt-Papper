@@ -120,7 +120,7 @@ Tests and results to check to see if the defensive programmes work properly.
 - try to access to someone else recipes with `edit_recipe/<object id>` this led to *Profile* page with "Access denied. This is not your recipe" message
 - try to access to someone else recipes with `delete_recipe/<object id>` this led to *Profile* page with "Access denied. This is not your recipe" message
 
-**Logged in user who is Not the Admin Uses**
+**Logged in user who is Not the Admin User**
 
 - try to access to `get_categories` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
 - try to access to `add_category` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.

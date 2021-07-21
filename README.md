@@ -200,7 +200,7 @@ Add, Edit and Delete categories.
 - [MongoDB](https://www.mongodb.com/) - MongoDB is cloud database service used for the project.
 The project has four collections in the database. All fields are string data type.The database structure in MongoDB is as follows:
 
-  <img src="static/img/readme-images/mongodb_diagram"/>
+  <img src="static/img/readme-images/mongodb_diagram.png"/>
 
 
 

@@ -106,7 +106,7 @@ Salt and Pepper provides to create your own account and post recipe.
     <img src="static/img/readme-images/mockups/403.png"/>
 
 
-- [Wireframes](https://github.com/szilG/Salt-and-Papper/tree/master/wireframes)   
+- #### Wireframe information can be found in the separate [Wireframes](https://github.com/szilG/Salt-and-Papper/tree/master/wireframes) file.   
     
 <div align="right"><a href="#top">🔝</a></div>
 <a name="#features"></a>
@@ -156,7 +156,7 @@ At the bottom of the form there are the add recipe and Cancel buttons.
   - Only admin can access this page. In this page admin can manage categories
 Add, Edit and Delete categories.
 
-**Recipes Description page Features**
+**Recipes Description (Single_recipe.html) page Features**
   - This page displays recipe description of selected recipe.
 
 **Sign-In Modal Features**
@@ -196,6 +196,13 @@ Add, Edit and Delete categories.
 - [GitHub](https://github.com/) for online version control and keeping the files & documents
 - [Heroku](https://www.heroku.com/) for deploying the website
 - [Balsamiq](https://balsamiq.com/) Balsamiq was used to create the [wireframes](https://github.com/szilG/Salt-and-Papper/tree/master/wireframes) during the design process.
+
+- [MongoDB](https://www.mongodb.com/) - MongoDB is cloud database service used for the project.
+The project has four collections in the database. All fields are string data type.The database structure in MongoDB is as follows:
+
+  <img src="static/img/readme-images/mongodb_diagram"/>
+
+
 
 <div align="right"><a href="#top">🔝</a></div>
 

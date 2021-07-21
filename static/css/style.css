@@ -187,6 +187,10 @@ body {
     color: var(--orange-color);
 }
 
+main {
+    min-height: calc(100vh - 150px);
+}
+
 /*==========Home===========*/
 .carousel-inner {
     max-height: 40rem;
@@ -354,7 +358,7 @@ body {
     object-fit: cover;
 }
 .back-to-recipe {
-    padding-top: 120px;
+    padding-top: 100px;
 }
 
 .back-to-recipe a {
@@ -480,6 +484,10 @@ form label {
 
 .edit-recipe-buttons button:hover {
     color: #70470d;
+}
+
+.border-top {
+    color: var(--orange-color) !important;
 }
 
 /*=============Profile==============*/
@@ -882,6 +890,12 @@ footer {
     .profile-buttons {
         margin-top: 40px;
     }
+    .profile-container h3 {
+        padding-top: 45px;
+    }
+    .alert {
+        top: 10%;
+    }
 }
 @media screen and (max-width: 991px) {
     .text h3 {
@@ -899,7 +913,7 @@ footer {
         border-radius: 1px;
     }
     .alert {
-        top: 15%;
+        top: 10%;
     }
     .navbar-nav {
         padding: 20px 0;
@@ -923,7 +937,7 @@ footer {
         font-size: 1.5rem;
     }
     .search-bar {
-        top: 18%;
+        top: 20%;
     }
     .error-hero h2 {
         margin-top: 30%;
@@ -981,8 +995,10 @@ footer {
         padding-bottom: 10px;
     }
     .input-group {
-        display: block;
         padding: 0;
+    }
+    .input-group-text {
+        width: 100%;
     }
     #method {
         margin: 0;
@@ -1029,7 +1045,7 @@ footer {
         width: 100%;
     }
     .input-group-prepend {
-        display: block;
+        width: 100%;
     }
     .search-bar {
         top: 25%;

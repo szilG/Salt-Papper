@@ -3,12 +3,7 @@
 
 
 ## About
-Salt and Pepper is the website for anyone who believes that good food brings us together, no matter where are you (they) live.
-
-KEEP COOKING DAILY - these recipes show you how to make a delicious meal or incredible drinks easyly in your home.
-
-Salt and Pepper is a website for all food lovers who love to eat, try different flavour and create magnificent recipes!
-
+Salt and Pepper is the website for anyone who believes that good food brings us together, no matter where are you (they) live.<br>KEEP COOKING DAILY - these recipes show you how to make a delicious meal or incredible drinks easyly in your home.<br>Salt and Pepper is a website for all food lovers who love to eat, try different flavour and create magnificent recipes!
 
 I created this for **Milestone Project 3 (Python and Data-Centric Development), Full Stack Software Development** in [Code Institute](https://codeinstitute.net/), Ireland.
 It is fully responsive on all devices and easy to navigate for users.
@@ -30,8 +25,11 @@ The link to the website is available [HERE](http://salt-and-pepper-project.herok
 
 [Deployment](#deployment)
 
+[Credits](#credits)
+
 
 <div align="right"><a href="#top">🔝</a></div>
+
 <a name="ux"></a>
 
 ## User Experience (UX)
@@ -48,11 +46,11 @@ Salt and Pepper provides to create your own account and post recipe.
 - ####  Admin/Owner
     1. As a Admin/Owner I want to read all the recipe.
     1. As a Admin/Owner I want to add, edit and delete my recipe.
-    1. As a Admin/Owner I can delete others recipe from my site.
+    1. As a Admin/Owner I can delete or edit others recipe from my site.
     1. As a Admin/Owner I want manage categories of recipes.I want to add, edit and delete the category.
 
 - #### User who wants to get recipe
-    1. I want to check all the recipe without login or sign up on site.
+    1. I want to check all the recipe without sign in or sign up on site.
     1. I want to get recipe by search option.
 
 - #### User who wants to post recipe
@@ -98,8 +96,7 @@ Salt and Pepper provides to create your own account and post recipe.
 
 ### Mockups
 
-- #### Mockup made through original website 
-    -[Wireframes](https://techsini.com/multi-mockup/index.php)
+- #### [Mockup made through original website](https://techsini.com/multi-mockup/index.php) 
 
     <img src="static/img/readme-images/mockups/home.png"/>
     <img src="static/img/readme-images/mockups/recipes.png"/>
@@ -109,7 +106,7 @@ Salt and Pepper provides to create your own account and post recipe.
     <img src="static/img/readme-images/mockups/403.png"/>
 
 
-    
+- [Wireframes](https://github.com/szilG/Salt-and-Papper/tree/master/wireframes)   
     
 <div align="right"><a href="#top">🔝</a></div>
 <a name="#features"></a>
@@ -198,6 +195,7 @@ Add, Edit and Delete categories.
 - [Git](https://git-scm.com/) for local version control, keeping the files & documents
 - [GitHub](https://github.com/) for online version control and keeping the files & documents
 - [Heroku](https://www.heroku.com/) for deploying the website
+- [Balsamiq](https://balsamiq.com/) Balsamiq was used to create the [wireframes](https://github.com/szilG/Salt-and-Papper/tree/master/wireframes) during the design process.
 
 <div align="right"><a href="#top">🔝</a></div>
 
@@ -209,15 +207,83 @@ Add, Edit and Delete categories.
 <div align="right"><a href="#top">🔝</a></div>
 
 <a name="#deployment"></a>
+
 ## Deployment
 
+- ### Working with the local copy
+  1. Install all the requirements: Go to the workspace of your local copy. In the terminal window of your IDE type: pip3 install -r requirements.txt.
+  2. Create a database in MongoDB
+     - Signup or login to your MongoDB account.
+     - Create a cluster and a database.
+     - Create four collections in the db: categories, recipes, difficulty, users.
+     - Add string values for the collections.
+  3. Create the environment variables
+     - Create a .gitignore file in the root directory of the project.
+     - Add the env.py file in the .gitignore.
+     - Create the file env.py. This will contain all the envornment variables.
+        - Import os
+        - os.environ.setdefault("IP", "Your IP")
+        - os.environ.setdefault("PORT", "Yout Port")
+        - os.environ.setdefault("SECRET_KEY", "Your Secret_key")
+        - os.environ.setdefault("MONGO_URI", "Your mongo_uri")
+        - os.environ.setdefault("MONGO_DBNAME", "Your database name")
+  4. Run the app: Open your terminal window in your IDE. Type python3 app.py and run the app.
+
+- ### Heroku Deployment
+  1. Set up local workspace for Heroku
+     - In terminal window of your IDE type: pip3 freeze -- local > requirements.txt. (The file is needed for Heroku to know which filed to install.)
+     - In termial window of your IDE create a file called Procfile: "echo web: python app.py > Procfile". (The file is needed for Heroku to know which file is needed as entry point.)
+  2. Set up Heroku: create a Heroku account and create a new app and select your region.
+  3. Deployment method 'Github'
+     - Click on the Connect to GitHub section in the deploy tab in Heroku.
+       - Search your repository to connect with it.
+       - When your repository appears click on connect to connect your repository with the Heroku.
+     - Go to the settings app in Heroku and go to Config Vars. Click on Reveal Config Vars.
+       - Enter the variables contained in your env.py file. it is about: IP, PORT, SECRET_KEY, MONGO_URI, MONGO_DBNAME
+  4. Back within the terminal Push the requirements.txt and Procfile to repository.
+     - $ git add requirements.txt
+     - $ git commit -m "Add requirements.txt"
+     - $ git add Procfile 
+     - $ git commit -m "Add Procfile"
+     - $ git push
+  5. Automatic deployment: Go to the deploy tab in Heroku and scroll down to Aotmatic deployments. Click on Enable Automatic Deploys. By Manual deploy click on Deploy Branch.
+
+  Heroku will receive the code from Github and host the app using the required packages. Click "View" to launch your new app. The app will open and the live link is available from the address bar. 
+
+- ### Forking
+  If you wish to contribute to this website you can Fork it without affecting the main branch by following the procedure outlined below.
+  1. Go to the [GitHub](https://github.com/) website and log in.
+  2. Locate the [Repository](https://github.com/szilG/Salt-and-Papper) used for this project.
+  3. On the right-hand side of the Repository name, you'll see the 'Fork' button. It's located next to the 'Star' and 'Watch' buttons.
+  4. This will create a copy in your personal repository.
+  5. Once you're finished making changes you can locate the 'New Pull Request' button just above the file listing in the original repository.
+
+- ### Cloning 
+  If you wish to clone or download this repository to your local device you can follow the procedure outlined below.
+  1. Go to the [GitHub](https://github.com/) website and log in.
+  2. Locate the [Repository](https://github.com/szilG/Salt-and-Papper) used for this project.
+  3. Under the Repository name locate 'Code' button. Click on it and a pop-up window will appear.
+  4. To clone the repository using HTTPS click the copy button next to HTTPS".
+  5. Open your Terminal and go to a directory where you want the cloned directory to be copied in.
+  6. Type `Git Clone` and paste the URL you copied from the GitHub.
+  7. To create your local clone press `Enter`
+
+
 <div align="right"><a href="#top">🔝</a></div>
+
+<a name="#credits"></a>
 
 ## Credits
 #### Code
 * Bootstrap library was used to create a responsive design.
 #### Content
 * The recipes and the Image URL-s of the page was copied from [Jamie Oliver](https://www.jamieoliver.com/)
+
+- To write up a README file the most helpful documents were
+    - Code Institute [SampleREADME](https://github.com/Code-Institute-Solutions/SampleREADME)
+    - Code Institute [README Template](https://github.com/Code-Institute-Solutions/readme-template)
+    - [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#code)
+
 #### Media
 ###### No recipe Image
 * The [No Recipe Image](https://norecipes.com/karaage-recipe/) was used from this website.

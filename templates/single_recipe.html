@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+<!--Top buttons-->
 <div class="container back-to-recipe">
     {% if recipe.username == session.user %}
     <a href="{{ url_for('profile', username=session['user']) }}"><i class="fas fa-arrow-circle-left"></i>Back to my
@@ -10,6 +10,7 @@
         recipes</a>
     {% endif %}
 </div>
+<!--End Top buttons-->
 
 <!--Start recipe content container-->
 <div class="container single-rec-cont">
@@ -84,7 +85,7 @@
         </div>
     </div>
 
-    <!--Start Delete-Modal-->
+    <!--Start Delete-Modal--><!--https://getbootstrap.com/docs/4.6/components/modal/-->
     <div class="modal fade" id="delete-modal-{{recipe._id}}" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

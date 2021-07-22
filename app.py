@@ -23,6 +23,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # MongoDB Global Variable
 mongo = PyMongo(app)
 
+# Pagination
+# Credit: Ed Bradley https://github.com/Edb83/self-isolution/blob/master/app.py
 
 PER_PAGE = 6
 
@@ -40,6 +42,7 @@ def pagination_args(recipe):
     total = recipe.count()
     return Pagination(page=page, per_page=PER_PAGE, total=total)
 
+#End of credit
 
 # HOME
 @app.route("/")
@@ -62,7 +65,6 @@ def home():
 # RECIPES
 @app.route("/recipes/", methods=["GET", "POST"])
 def recipes():
-
     categories = request.args.get("categories")
     query = request.form.get("query")
     page_number = int(request.args.get("page_number", 1))
@@ -80,25 +82,14 @@ def recipes():
 
     return render_template(
         "recipes.html", recipes=recipes, categories=categories,
-        recipe_paginated=recipes_paginated, pagination=pagination)
-
-
-# @app.route("/search/", methods=["GET", "POST"])
-# def search():
-#     query = request.form.get("query")
-#     recipes = list(mongo.db.recipes.find({"$text": {"$search": query}}))
-#     """
-#     count how many recipes in total from search word(s)
-#     """
-#     total = int(mongo.db.recipes.find({"$text": {"$search": query}}).count())
-#     categories = mongo.db.categories.find()
-#     return render_template("search.html", recipes=recipes,
-#                            total=total, categories=categories, search=True)
+        recipe_paginated=recipes_paginated, pagination=pagination,
+        query=query)
 
 
 # Register/signin route
 @app.route("/register/", methods=["GET", "POST"])
 def register():
+
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -125,6 +116,7 @@ def register():
 # login route
 @app.route("/login/", methods=["GET", "POST"])
 def login():
+
     if request.method == "POST":
         # check if username exists in db
         existing_user = mongo.db.users.find_one(
@@ -165,24 +157,16 @@ def profile():
 
     if "user" in session:
         """grab the session user's username from db"""
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-
-        if session["user"]:
-            if session["user"] == ADMIN_USER_NAME:
+        username = session["user"]
+        if username:
+            if username == ADMIN_USER_NAME:
                 user_recipes = list(mongo.db.recipes.find().sort("_id", -1))
             else:
                 user_recipes = list(
-                    mongo.db.recipes.find({"username": session["user"]}).sort(
+                    mongo.db.recipes.find({"username": username}).sort(
                         "_id", -1))
-            return render_template(
-                "profile.html", username=username, user_recipes=user_recipes)
-
-        return render_template(
-                "profile.html", username=username, user_recipes=user_recipes)
-
-    flash("Access denied. Create your own account and login")
-    return redirect(url_for("home"))
+    return render_template(
+        "profile.html", username=username, user_recipes=user_recipes)
 
 
 # Logout route
@@ -231,7 +215,7 @@ def add_recipe():
             """
             mongo.db.recipes.insert_one(recipe)
             flash("Recipe is successfully added")
-            return redirect(url_for("profile", username=session['user']))
+            return redirect(url_for("profile"))
 
         categories = mongo.db.categories.find().sort("category_name", 1)
         difficulties = mongo.db.difficulty.find().sort("difficulty_level", 1)
@@ -255,6 +239,7 @@ def edit_recipe(recipe_id):
         """
         check user == recipe owner,
         or the user is Admin
+        give privilege to Admin to Edit other users recipes
         """
 
         if session["user"].lower() == recipe["username"].lower(
@@ -313,6 +298,7 @@ def delete_recipe(recipe_id):
         """
         check user == recipe owner,
         or the user is Admin
+        give privilege to Admin to Delete other users recipes
         """
         if session["user"].lower() == recipe["username"].lower(
         ) or session["user"] == ADMIN_USER_NAME:
@@ -371,8 +357,7 @@ def edit_category(category_id):
         return redirect(url_for("get_categories"))
 
     category = mongo.db.categories.find_one({"_id": ObjectId(category_id)})
-    return render_template(
-        "edit_category.html", category=category)
+    return render_template("edit_category.html", category=category)
 
 
 # Delete Category route
@@ -402,4 +387,4 @@ def single_recipe(recipe_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)

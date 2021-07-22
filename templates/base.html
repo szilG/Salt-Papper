@@ -53,7 +53,7 @@
                 </div>
             </li>
             {% if session.user %}
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('profile')}}">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('add_recipe') }}">New recipe</a></li>
                 {% if session.user|lower == "Admin222"|lower %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('get_categories') }}">Manage Categories</a></li>
@@ -197,7 +197,6 @@
                       </div>
                     </div>
                   </form>
-
               </fieldset>
             </div>
           </div>
@@ -206,9 +205,8 @@
   </div>
   <!--End Register modal-->
 
-
+  <!-- flash messages -->
   <div class="mt-0">
-    <!-- flash messages -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -217,12 +215,14 @@
         {% endif %}
     {% endwith %}
   </div>
+  <!-- end flash messages -->
 
-
+<!--Main contenct block-->
   <main>
       {% block content %}
       {% endblock %}
   </main>
+  <!-- end Main contenct block-->
 
     
   <!--Footer Section-->

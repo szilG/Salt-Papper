@@ -99,7 +99,7 @@ Validate by direct input
 
 ### Defensive Design
 
-There are some pages on the website that users without permission are not allowed to access. Those users who have no permission from accessing these pages &#40;i.e Add New recipe page can be accessed from Profile page or navigation bar where only users who log in have access to it&#41;, however, by typing URL, non-authorised users can try to access these pages so there are some defensive programmes set up to prevent this from happening.
+There are some pages on the website that users without permission are not allowed to access. Those users who have no permission from accessing these pages(i.e Add New recipe page can be accessed from Profile page or navigation bar where only users who log in have access to it), however, by typing URL, non-authorised users can try to access these pages so there are some defensive programmes set up to prevent this from happening.
 
 Tests and results to check to see if the defensive programmes work properly.
 
@@ -127,3 +127,18 @@ Tests and results to check to see if the defensive programmes work properly.
 - try to access to `edit_category/<object id>` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
 - try to access to `delete_category/<object id>` this led to *Error 403 Not autorized*. Then they can go to Home page or they can use the navigation bar.
 
+## Known Bugs
+- On the `recipes.html` page there is no message shown for how many results are found from using the search bar or which category the user selected from the navbar dropdown list.
+Did not know how to achieve this with my current skill and do not have time to learn so I decided to leave this out.
+
+  - Search results
+      <img src="static/img/readme-images/1.png"/>
+
+  - Resuls from navbar dropdown -Breakfast-
+      <img src="static/img/readme-images/2.png"/>
+
+  - Code 
+      <img src="static/img/readme-images/4.png"/>
+      <img src="static/img/readme-images/3.png"/>
+      
+- Customise Pagination: I do not know how to customise pagination (e.g. When there are more recipes, it will show page 1, 2, 3, 4, 5, 6, 7...); and do not have time to look into details so decide to leave as it is.

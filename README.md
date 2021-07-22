@@ -283,6 +283,8 @@ The project has four collections in the database. All fields are string data typ
 ## Credits
 #### Code
 * Bootstrap library was used to create a responsive design.
+[Ed Bradley](https://github.com/Edb83/self-isolution/blob/master/app.py) for pagination
+
 #### Content
 * The recipes and the Image URL-s of the page was copied from [Jamie Oliver](https://www.jamieoliver.com/)
 

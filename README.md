@@ -7,7 +7,7 @@ Salt and Pepper is the website for anyone who believes that good food brings us 
 
 I created this for **Milestone Project 3 (Python and Data-Centric Development), Full Stack Software Development** in [Code Institute](https://codeinstitute.net/), Ireland.
 It is fully responsive on all devices and easy to navigate for users.
-The link to the website is available [HERE](http://salt-and-pepper-project.herokuapp.com/home/).
+The link to the website is available [HERE](https://salt-and-pepper.onrender.com/home).
 
 <div align="right"><a href="#top">🔝</a></div>
 
